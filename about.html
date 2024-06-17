@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<link rel="modulepreload" href="./_app/immutable/entry/start.DXnvWRWN.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/entry.B1T_0FQA.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.CtbWrGNo.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.CjfrSgi4.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.CcFmrAFp.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.BH9ohgRI.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.BAyO_bYH.js">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">  <nav data-svelte-h="svelte-ski1ty"><a href="/">Home</a> <a href="/portfolio">Portfolio</a> <a href="/about">About</a></nav> <main data-svelte-h="svelte-1t8f0sj"><p>Something about me</p></main> 
+			
+			<script>
+				{
+					__sveltekit_jpznv5 = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null];
+
+					Promise.all([
+						import("./_app/immutable/entry/start.DXnvWRWN.js"),
+						import("./_app/immutable/entry/app.CjfrSgi4.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

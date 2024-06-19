@@ -1,4 +1,5 @@
-<script lang="ts">
+<script>
+	import 'bulma/css/bulma.css';
 	import { route } from '$lib/ROUTES';
 </script>
 
@@ -9,3 +10,6 @@
 </nav>
 
 <slot></slot>
+<slot></slot>
+
+<style></style>

@@ -1,15 +1,19 @@
 <script>
+	import Link from '../lib/components/Link.svelte';
+	import Navbar from './../lib/components/Navbar.svelte';
 	import 'bulma/css/bulma.css';
-	import { route } from '$lib/ROUTES';
 </script>
 
-<nav>
-	<a href={route('/')}>Home</a>
-	<a href={route('/portfolio')}>Portfolio</a>
-	<a href={route('/about')}>About</a>
-</nav>
+<Navbar>
+	<Link href="/">Home</Link>
+	<Link href="/portfolio">Portfolio</Link>
+	<Link href="/contact">Contact</Link>
+
+	<div slot="end" class="navbar-item">
+		<div class="buttons">
+			<a class="button is-light" href="/">Get my CV</a>
+		</div>
+	</div>
+</Navbar>
 
 <slot></slot>
-<slot></slot>
-
-<style></style>

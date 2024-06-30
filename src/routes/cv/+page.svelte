@@ -10,20 +10,17 @@
 	});
 </script>
 
-<main id="cv" data-theme="light" class="cv card">
+<div id="cv" class="cv">
 	{#await cvHTML}
-		<progress class="progress is-small is-primary" max="100"></progress>
+		<progress class="progress is-small is-primary"></progress>
 	{:then cvContent}
 		{@html cvContent}
 	{/await}
-</main>
+</div>
 
 <style>
 	.cv {
-		margin: auto;
-		margin-top: 1rem;
-		width: 1080px;
-		padding: 2rem;
+		min-width: 448px;
 
 		& h1 {
 			font-size: 2rem;
@@ -31,7 +28,7 @@
 		& h2 {
 			margin: 1rem 0;
 			font-size: 1.75rem;
-			border-bottom: 1px solid black;
+			border-bottom: 1px solid;
 		}
 		& h3 {
 			font-size: 1.3rem;
@@ -53,16 +50,23 @@
 			font-size: 1.1rem;
 		}
 
-		& strong {
-			color: black;
-		}
-
 		& ul {
 			margin: 0 3rem;
 			list-style: unset;
 			& li {
 				font-size: 1rem;
 			}
+		}
+	}
+	@media (max-width: 960px) {
+		:global(.cv img) {
+			transform: scale(0.75);
+		}
+	}
+
+	@media (max-width: 640px) {
+		:global(.cv img) {
+			transform: scale(0.5);
 		}
 	}
 </style>

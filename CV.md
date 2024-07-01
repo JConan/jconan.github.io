@@ -1,4 +1,4 @@
-<div style="margin-bottom:3rem; position:relative; display:grid; grid-template-columns: 0.24fr 2fr">
+<div style="margin-bottom:3rem; position:relative; display:grid; grid-template-columns: 0.30fr 2fr">
     <h1 style="grid-column: 2 span">Johan CHAN</h1>
     <strong style="margin-top: 1em">Email:</strong>
         <span style="margin-top: 1em">johan.chan@outlook.fr</span>
@@ -15,6 +15,8 @@ Spécialisé en ingénierie d'intégration de données (Tibco Business works) et
 
 ## Work Experience
 
+<div style="page-break-inside: avoid;">
+
 ### **10/2021 – 05/2024**: Ingénieur de Production, BNP Paribas CIB Montreuil
 
 - Support de production NV 2 et 3: gestions, analyses et résolutions des incidents
@@ -22,16 +24,25 @@ Spécialisé en ingénierie d'intégration de données (Tibco Business works) et
 - Support applicative: gestion des clefs de cryptages PGP/GPG et certificats SSL, configuration et déploiement des applicatifs
 - Outil collaborative: mise en place d'une stack collaborative pour l'accès au serveur en SSH (Terminal + Cygwin + ssh config et alias)
 
+</div>
+<div style="page-break-inside: avoid;">
+
 ### **11/2020 - 07/2021**: Développeur SOA/ESB (TIBCO), Allianz France
 
 - Développement et support des applicatifs TIBCO BW 5
 - Spécification des API au format SWAGGER pour l’APIfication des services SOAP
+
+</div>
+<div style="page-break-inside: avoid;">
 
 ### **10/2016 - 10/2019**: Développeur SOA/ESB (TIBCO), UP Group
 
 - Développement des applicatifs TIBCO BW 5: Implémentation, documentation, administration et support technique
 - Développement des APIs REST avec TIBCO Mashery: Conception et management
 - Outillage de Monitoring: Mise en place d'un dashboard avec la stack Elastic Search (ELK) pour le suivi du trafic des APIs
+
+</div>
+<div style="page-break-inside: avoid;">
 
 ### **10/2015 - 08/2016**: Développeur SOA/ESB (TIBCO), BNP Paribas
 
@@ -41,16 +52,25 @@ Spécialisé en ingénierie d'intégration de données (Tibco Business works) et
 - Conception et implémentation d'un dashboard pour le monitoring des APIs en Angular2
 - Collaboration en mode Scrum/Agile: documentation et présentation des avancements
 
+</div>
+<div style="page-break-inside: avoid;">
+
 ### **01/2010 - 06/2015**: Développeur SOA/ESB (TIBCO), Sanofi Aventis
 
 - Développement des applicatifs TIBCO BW 5: Implémentation, documentation, administration et support technique
 - Transformation des données: Intégration de données au format SOAP+XML / IDocs / Fichier plats
 - Outillage de Monitoring: développement d'un dashboard avec jQuery/YUI3 + Oracle
 
+</div>
+<div style="page-break-inside: avoid;">
+
 ## Formation
 
 - SUPINFO, 2011
 - ReactJS, par Le reacteur 2021
+
+</div>
+<div style="page-break-inside: avoid;">
 
 ## Skills
 
@@ -59,3 +79,5 @@ Spécialisé en ingénierie d'intégration de données (Tibco Business works) et
 - Design API, API management (Mashery)
 - SQL, Data Modeling et transformation de données (XML, JSON, YAML, CSV ...)
 - Framework: ReactJS, Sveltekit
+
+</div>

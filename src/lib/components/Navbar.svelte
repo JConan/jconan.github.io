@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Sun, Moon } from 'lucide-svelte';
 	let isActiveClass = '';
 	function toggle() {
 		isActiveClass = isActiveClass === '' ? 'is-active' : '';
@@ -10,21 +11,18 @@
 		<div class="navbar-brand">
 			<slot name="brand" />
 
-			<div class="navbar-small {isActiveClass}">
-				<button class="button is-small">download</button>
-				<button
-					class="navbar-burger"
-					aria-label="menu"
-					aria-expanded="false"
-					data-target="navbar-items"
-					on:click={toggle}
-				>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-				</button>
-			</div>
+			<button
+				class="navbar-burger {isActiveClass}"
+				aria-label="menu"
+				aria-expanded="false"
+				data-target="navbar-items"
+				on:click={toggle}
+			>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+			</button>
 		</div>
 
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -35,7 +33,7 @@
 			</div>
 
 			<div class="navbar-end">
-				<slot name="end" />
+				<button class="button is-ghost is-small navbar-item"><Moon /></button>
 			</div>
 		</div>
 	</nav>

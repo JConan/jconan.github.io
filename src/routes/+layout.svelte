@@ -4,6 +4,14 @@
 	import Navbar from './../lib/components/Navbar.svelte';
 </script>
 
+<!-- load user theme before rendering -->
+<svelte:head>
+	<script>
+		const dataTheme = localStorage.getItem('theme');
+		if (dataTheme) document.documentElement.setAttribute('data-theme', dataTheme);
+	</script>
+</svelte:head>
+
 <main class="container">
 	<Navbar>
 		<Link href="/">Home</Link>
@@ -30,7 +38,7 @@
 	@media (max-width: 640px) {
 		:root {
 			--page-vertical-padding: 0.75rem;
-			--page-horizontal-padding: 1.5rem;
+			--page-horizontal-padding: 0.5rem;
 			font-size: 12px;
 		}
 	}

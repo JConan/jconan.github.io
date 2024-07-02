@@ -13,7 +13,7 @@
 
 Spécialisé en ingénierie d'intégration de données (Tibco Business works) et passionné par la technologie, j'ai aussi une expérience dans le support de production orienté DevOps. De plus, mes compétences dans le développement Fullstack (Sveltekit, React, NodeJs) et scripting (Bash, PowerShell) m'ont permis d’être plus productif en créant des outils pour améliorer les performances de l’équipe.
 
-## Work Experience
+## Experience
 
 <div style="page-break-inside: avoid;">
 

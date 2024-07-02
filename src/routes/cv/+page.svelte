@@ -11,7 +11,6 @@
 
 		const container = document.getElementById('cv')!;
 		container.setAttribute('data-theme', 'light');
-		container.style.fontSize = '16px';
 		const doc = new jsPDF({
 			format: 'a4',
 			orientation: 'portrait',
@@ -69,7 +68,7 @@
 			right: 0;
 		}
 	}
-	.cv {
+	:global(.cv) {
 		margin-top: -60px;
 		padding: var(--page-vertical-padding) var(--page-horizontal-padding);
 		min-width: 448px;
@@ -124,11 +123,16 @@
 		color: black;
 	}
 
-	.print {
-		--page-vertical-padding: 2rem;
-		--page-horizontal-padding: 5rem;
+	:global(.print) {
 		font-size: 16px;
+		padding: 28px 70px;
 		margin-top: 0px;
+		min-width: 1080px;
+		max-width: 1080px;
+
+		& img {
+			width: 128px;
+		}
 	}
 
 	@media (max-width: 640px) {

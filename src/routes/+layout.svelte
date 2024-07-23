@@ -14,7 +14,7 @@
 
 <main class="container">
 	<Navbar>
-		<Link href="/">Home</Link>
+		<Link href="/">Blog</Link>
 		<Link href="/portfolio">Portfolio</Link>
 		<Link href="/contact">Contact</Link>
 		<Link href="/cv">CV</Link>

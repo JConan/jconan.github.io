@@ -3,7 +3,7 @@
 
 	export let data;
 
-	let src = data.projects.filter((project) => project.slug === $page.params.slug)[0].demoLink;
+	let src = data.projects.filter((project) => project.slug === $page.params.slug)[0]?.demoLink;
 
 	let iframe: HTMLIFrameElement;
 	let height = 400;

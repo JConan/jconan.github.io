@@ -1,7 +1,8 @@
-import type { PageLoad } from './$types';
+import type { LayoutLoad } from './$types';
 
 type Project = {
 	name: string;
+	slug: string;
 	descriptionLink: string;
 	source: string;
 	demoLink: string;
@@ -10,13 +11,14 @@ type Project = {
 const projects: Project[] = [
 	{
 		name: 'Tic Tac Toe',
+		slug: 'fm-tic-tac-toe',
 		demoLink: 'https://jconan.github.io/fm-tic-tac-toe/',
 		descriptionLink: 'https://raw.githubusercontent.com/JConan/fm-tic-tac-toe/main/DESCRIPTION.md',
 		source: 'https://github.com/JConan/fm-tic-tac-toe/'
 	}
 	// {
 	// 	name: 'Memory Game',
-	// 	demoLink: 'https://jconan.github.io/fm-tic-tac-toe/',
+	// 	demoLink: 'https://jconan.github.io/fm-memory-game-challenge/',
 	// 	descriptionLink:
 	// 		'https://raw.githubusercontent.com/JConan/fm-memory-game-challenge/main/DESCRIPTION.md',
 	// 	source: 'https://github.com/JConan/fm-memory-game-challenge/'
@@ -32,4 +34,4 @@ const projects: Project[] = [
 
 export const load = (async () => {
 	return { projects };
-}) satisfies PageLoad;
+}) satisfies LayoutLoad;

@@ -9,6 +9,12 @@
 	$: currentPath = $page.url.pathname;
 </script>
 
-<a class="navbar-item {currentPath === href ? 'is-selected' : ''}" {href}>
+<a
+	class="navbar-item {(href === '/' && href === currentPath) ||
+	(href !== '/' && currentPath.startsWith(href))
+		? 'is-selected'
+		: ''}"
+	{href}
+>
 	<slot />
 </a>

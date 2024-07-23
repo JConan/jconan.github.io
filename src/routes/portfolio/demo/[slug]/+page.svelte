@@ -2,8 +2,9 @@
 	import { page } from '$app/stores';
 
 	export let data;
+	const { selectedProject } = data;
 
-	let src = data.projects.filter((project) => project.slug === $page.params.slug)[0]?.demoLink;
+	let src: string;
 
 	let iframe: HTMLIFrameElement;
 	let height = 400;
@@ -13,6 +14,7 @@
 		if (event.data.type === 'getHeight') {
 			height = event.data.height + 10;
 			isLoaded = true;
+			window.removeEventListener('message', getHeightHandler);
 		}
 	}
 
@@ -23,21 +25,27 @@
 
 	$: {
 		if (iframe) {
+			isLoaded = false;
 			window.addEventListener('message', getHeightHandler);
 			iframe.addEventListener('load', getHeight);
-			iframe.src = src;
-			window.removeEventListener('message', getHeightHandler);
+			iframe.src = $selectedProject.demoLink;
 		}
 	}
+	$: console.log({ height });
 </script>
 
-<div class="buttons is-right">
-	<button
-		class="button is-info is-outlined"
-		on:click={() => {
-			history.back();
-		}}>&lt;= back</button
-	>
+<div class="columns">
+	<div class="column is-8 title">{$selectedProject.name}</div>
+	<div class="column">
+		<div class="buttons is-justify-content-flex-end">
+			<button
+				class="button is-info is-outlined"
+				on:click={() => {
+					history.back();
+				}}>back</button
+			>
+		</div>
+	</div>
 </div>
 
 <div style="opacity: {isLoaded ? 1 : 0}">

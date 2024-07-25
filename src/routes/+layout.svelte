@@ -44,7 +44,6 @@
 	}
 
 	main {
-		min-width: 448px;
 		padding: var(--page-vertical-padding) var(--page-horizontal-padding);
 	}
 </style>

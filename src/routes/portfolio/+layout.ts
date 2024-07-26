@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 import type { LayoutLoad } from './$types';
 import { page } from '$app/stores';
+import { browser } from '$app/environment';
 
 type Project = {
 	name: string;
@@ -24,7 +25,7 @@ const projects: Project[] = [
 		name: 'Memory Game',
 		slug: 'fm-memory-game-challenge',
 		shortDescription: '',
-		demoLink: 'http://localhost:3000/',
+		demoLink: 'https://jconan.github.io/fm-memory-game-challenge/',
 		descriptionLink:
 			'https://raw.githubusercontent.com/JConan/fm-memory-game-challenge/main/DESCRIPTION.md',
 		source: 'https://github.com/JConan/fm-memory-game-challenge/'
@@ -42,12 +43,13 @@ const projects: Project[] = [
 
 const selectedProject = writable(projects[0]);
 
-page.subscribe(($page) => {
-	if ('/portfolio/demo/[slug]' === $page.route?.id) {
-		const project = projects.filter((project) => project.slug === $page.params.slug)[0];
-		selectedProject.set(project);
-	}
-});
+if (browser)
+	page.subscribe(($page) => {
+		if ('/portfolio/demo/[slug]' === $page.route?.id) {
+			const project = projects.filter((project) => project.slug === $page.params.slug)[0];
+			selectedProject.set(project);
+		}
+	});
 
 export const load = (async () => {
 	return {

@@ -1,37 +1,17 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-
 	export let data;
 	const { selectedProject } = data;
 
-	let src: string;
-
 	let iframe: HTMLIFrameElement;
-	let height = 400;
 	let isLoaded = false;
 
-	function getHeightHandler(event: MessageEvent) {
-		if (event.data.type === 'getHeight') {
-			height = event.data.height + 10;
+	$: if (iframe) {
+		iframe.onload = () => {
 			isLoaded = true;
-			window.removeEventListener('message', getHeightHandler);
-		}
+		};
+		iframe.classList.add($selectedProject.slug);
+		iframe.src = $selectedProject.demoLink;
 	}
-
-	function getHeight() {
-		isLoaded = true;
-		iframe.contentWindow?.postMessage('getHeight', '*');
-	}
-
-	$: {
-		if (iframe) {
-			isLoaded = false;
-			window.addEventListener('message', getHeightHandler);
-			iframe.addEventListener('load', getHeight);
-			iframe.src = $selectedProject.demoLink;
-		}
-	}
-	$: console.log({ height });
 </script>
 
 <div class="columns">
@@ -48,8 +28,18 @@
 	</div>
 </div>
 
+{#if !isLoaded}
+	<progress class="progress is-large" />
+{/if}
+
 <div style="opacity: {isLoaded ? 1 : 0}">
-	<iframe bind:this={iframe} title="tic-tac-toe" frameborder="0" class="container" {height} />
+	<iframe
+		style="opacity: {isLoaded ? 1 : 0}"
+		bind:this={iframe}
+		title="tic-tac-toe"
+		frameborder="0"
+		class="container"
+	/>
 </div>
 
 <style>
@@ -57,6 +47,21 @@
 		transition: all 1s;
 		& iframe {
 			border-radius: 15px;
+			resize: both;
 		}
+	}
+
+	:global(.fm-memory-game-challenge) {
+		height: 700px;
+	}
+
+	@media (max-width: 851px) {
+		:global(.fm-memory-game-challenge) {
+			height: 600px;
+		}
+	}
+
+	:global(.fm-tic-tac-toe) {
+		height: 720px;
 	}
 </style>

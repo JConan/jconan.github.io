@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { route } from '$lib/ROUTES';
+	import { onMount } from 'svelte';
 	export let data;
 
 	const { projects, selectedProject } = data;
 
 	let description = '';
 
-	$: loadContent($selectedProject.descriptionLink);
-
-	async function loadContent(url: string) {
-		description = await (await fetch(url)).text();
-	}
+	onMount(() => {
+		return data.selectedProject.subscribe(async ($selected) => {
+			description = await (await fetch($selected.descriptionLink)).text();
+		});
+	});
 
 	function selectProject(slug: string) {
 		return function () {

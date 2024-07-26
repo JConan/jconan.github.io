@@ -14,14 +14,6 @@ type Project = {
 
 const projects: Project[] = [
 	{
-		name: 'Tic Tac Toe',
-		slug: 'fm-tic-tac-toe',
-		shortDescription: 'Game Tic Tac Toe built with svelte',
-		demoLink: 'https://jconan.github.io/fm-tic-tac-toe/',
-		descriptionLink: 'https://raw.githubusercontent.com/JConan/fm-tic-tac-toe/main/DESCRIPTION.md',
-		source: 'https://github.com/JConan/fm-tic-tac-toe/'
-	},
-	{
 		name: 'Memory Game',
 		slug: 'fm-memory-game-challenge',
 		shortDescription: '',
@@ -29,6 +21,14 @@ const projects: Project[] = [
 		descriptionLink:
 			'https://raw.githubusercontent.com/JConan/fm-memory-game-challenge/main/DESCRIPTION.md',
 		source: 'https://github.com/JConan/fm-memory-game-challenge/'
+	},
+	{
+		name: 'Tic Tac Toe',
+		slug: 'fm-tic-tac-toe',
+		shortDescription: 'Game Tic Tac Toe built with svelte',
+		demoLink: 'https://jconan.github.io/fm-tic-tac-toe/',
+		descriptionLink: 'https://raw.githubusercontent.com/JConan/fm-tic-tac-toe/main/DESCRIPTION.md',
+		source: 'https://github.com/JConan/fm-tic-tac-toe/'
 	},
 	{
 		name: 'Connect Four',

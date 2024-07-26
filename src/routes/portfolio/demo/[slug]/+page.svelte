@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { route } from '$lib/ROUTES';
+
 	export let data;
 	const { selectedProject } = data;
 
@@ -21,7 +24,7 @@
 			<button
 				class="button is-info is-outlined"
 				on:click={() => {
-					history.back();
+					goto(route('/portfolio'));
 				}}>back</button
 			>
 		</div>

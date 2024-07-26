@@ -71,7 +71,6 @@
 	:global(.cv) {
 		margin-top: -60px;
 		padding: var(--page-vertical-padding) var(--page-horizontal-padding);
-		min-width: 448px;
 		display: flex;
 		flex-direction: column;
 		align-content: center;
@@ -137,8 +136,13 @@
 
 	@media (max-width: 640px) {
 		.buttons {
-			min-width: 448px;
 			margin: 10px 0px;
+		}
+	}
+
+	@media (max-width: 445px) {
+		:global(.cv:not(.print) img) {
+			display: none;
 		}
 	}
 </style>

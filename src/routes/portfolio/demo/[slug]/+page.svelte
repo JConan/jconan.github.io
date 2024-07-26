@@ -14,9 +14,9 @@
 	}
 </script>
 
-<div class="columns">
-	<div class="column is-8 title">{$selectedProject.name}</div>
-	<div class="column">
+<div class="columns level">
+	<div class="column is-8 title level-left">{$selectedProject.name}</div>
+	<div class="column level-right">
 		<div class="buttons is-justify-content-flex-end">
 			<button
 				class="button is-info is-outlined"

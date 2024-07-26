@@ -21,6 +21,7 @@
 		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@types/eslint": "^9.6.0",
+		"@types/node": "^20.14.12",
 		"bulma": "^1.0.1",
 		"eslint": "^9.7.0",
 		"eslint-config-prettier": "^9.1.0",

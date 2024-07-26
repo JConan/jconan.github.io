@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MaltLogo from '$lib/assets/icons/malt-logo.svelte';
 	import ConstructionImage from '$lib/assets/under-construction.png?w=1184&h=888&format=webp&meta&imagetools';
 	import { Linkedin, Github } from 'lucide-svelte';
 </script>
@@ -23,12 +24,15 @@
 		<p>
 			Please note that this is currently under construction as I fine-tune it to provide you with an
 			engaging and informative experience. Your patience is appreciated during this phase. In the
-			meantime, feel free to connect with me on [ <a
-				href="https://www.linkedin.com/in/johan-chan/"
-				target="_blank"><Linkedin /> LinkedIn</a
+			meantime, feel free to connect with me on <a href="https://www.malt.fr/profile/johanchan"
+				><span class="malt"><MaltLogo /></span> Malt.fr</a
 			>
-			/ <a href="https://github.com/JConan" target="_blank"><Github />GitHub</a> ]. Stay tuned for exciting
-			updates and fresh content coming soon!
+			/
+			<a href="https://www.linkedin.com/in/johan-chan/" target="_blank"
+				><Linkedin size="18" /> LinkedIn</a
+			>
+			/ <a href="https://github.com/JConan" target="_blank"><Github size="18" />GitHub</a> . Stay tuned
+			for exciting updates and fresh content coming soon!
 		</p>
 
 		<p class="time"><time datetime="2024-7-23">23 Jul 2024</time></p>

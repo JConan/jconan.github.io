@@ -1,7 +1,10 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import type { LayoutLoad } from './$types';
 import { page } from '$app/stores';
 import { browser } from '$app/environment';
+import { redirect } from '@sveltejs/kit';
+import { route } from '$lib/ROUTES';
+import { goto } from '$app/navigation';
 
 type Project = {
 	name: string;
@@ -43,15 +46,21 @@ const projects: Project[] = [
 
 const selectedProject = writable(projects[0]);
 
+// update project selection base on the path
 if (browser)
 	page.subscribe(($page) => {
-		if ('/portfolio/demo/[slug]' === $page.route?.id) {
+		if ($page.route?.id?.startsWith('/portfolio/[slug]')) {
 			const project = projects.filter((project) => project.slug === $page.params.slug)[0];
 			selectedProject.set(project);
 		}
 	});
 
-export const load = (async () => {
+export const load = (async ({ url: { pathname } }) => {
+	// redirect to the last selected project
+	if (browser && pathname === route('/portfolio')) {
+		goto(route('/portfolio/[slug]', { slug: get(selectedProject).slug }));
+	}
+
 	return {
 		projects,
 		selectedProject

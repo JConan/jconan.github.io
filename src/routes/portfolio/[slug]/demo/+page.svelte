@@ -12,13 +12,13 @@
 		iframe.onload = () => {
 			isLoaded = true;
 		};
-		iframe.classList.add($selectedProject.slug);
-		iframe.src = $selectedProject.demoLink;
+		iframe.classList.add($selectedProject!.slug);
+		iframe.src = $selectedProject!.demoLink;
 	}
 </script>
 
 <div class="columns level">
-	<div class="column is-8 title level-left">{$selectedProject.name}</div>
+	<div class="column is-8 title level-left">{$selectedProject?.name}</div>
 	<div class="column level-right">
 		<div class="buttons is-justify-content-flex-end">
 			<button
@@ -55,7 +55,7 @@
 	}
 
 	:global(.fm-memory-game-challenge) {
-		height: 700px;
+		height: 780px;
 	}
 
 	@media (max-width: 851px) {

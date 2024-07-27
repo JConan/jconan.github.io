@@ -15,7 +15,7 @@
 <main class="container">
 	<Navbar>
 		<Link href="/">Blog</Link>
-		<Link href="/portfolio">Portfolio</Link>
+		<Link href="/portfolio" preload="off">Portfolio</Link>
 		<Link href="/contact">Contact</Link>
 		<Link href="/cv">CV</Link>
 	</Navbar>

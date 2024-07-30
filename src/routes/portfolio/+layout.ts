@@ -2,7 +2,6 @@ import { get, writable } from 'svelte/store';
 import type { LayoutLoad } from './$types';
 import { page } from '$app/stores';
 import { browser } from '$app/environment';
-import { redirect } from '@sveltejs/kit';
 import { route } from '$lib/ROUTES';
 import { goto } from '$app/navigation';
 

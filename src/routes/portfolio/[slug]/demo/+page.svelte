@@ -11,6 +11,7 @@
 	$: if (iframe) {
 		iframe.onload = () => {
 			isLoaded = true;
+			iframe.scrollIntoView({ behavior: 'smooth' });
 		};
 		iframe.classList.add($selectedProject!.slug);
 		iframe.src = $selectedProject!.demoLink;

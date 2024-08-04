@@ -9,7 +9,6 @@
 	onMount(() => {
 		return data.selectedProject.subscribe(async ($selected) => {
 			description = await marked.parse(await (await fetch($selected.descriptionLink)).text());
-			console.log(description);
 		});
 	});
 </script>

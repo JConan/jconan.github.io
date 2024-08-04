@@ -8,7 +8,6 @@
 	$: selectProject = $selectedProjectStore!;
 
 	$: isDemo = $page.url.pathname.endsWith('/demo');
-	$: console.log({ isDemo });
 </script>
 
 <div class="columns">

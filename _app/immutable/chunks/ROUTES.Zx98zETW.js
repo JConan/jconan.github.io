@@ -1,1 +1,0 @@
-const c={"/":"/","/contact":"/contact","/cv":"/cv","/portfolio":"/portfolio","/portfolio/[slug]":o=>`/portfolio/${o.slug}`,"/portfolio/[slug]/demo":o=>`/portfolio/${o.slug}/demo`},l={},s={},e={},t={...c,...s,...l,...e};function u(o,...n){if(t[o]instanceof Function){const r=t[o];return r(...n)}else return t[o]}export{u as r};

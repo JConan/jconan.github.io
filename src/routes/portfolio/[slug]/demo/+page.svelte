@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { route } from '$lib/ROUTES';
-
 	export let data;
 	const { selectedProject } = data;
 
@@ -17,20 +14,6 @@
 		iframe.src = $selectedProject!.demoLink;
 	}
 </script>
-
-<div class="columns level">
-	<div class="column is-8 title level-left">{$selectedProject?.name}</div>
-	<div class="column level-right">
-		<div class="buttons is-justify-content-flex-end">
-			<button
-				class="button is-info is-outlined"
-				on:click={() => {
-					goto(route('/portfolio'));
-				}}>back</button
-			>
-		</div>
-	</div>
-</div>
 
 {#if !isLoaded}
 	<progress class="progress is-large" />
@@ -66,6 +49,10 @@
 	}
 
 	:global(.fm-tic-tac-toe) {
+		height: 720px;
+	}
+
+	:global(.fm-connect-four) {
 		height: 720px;
 	}
 </style>

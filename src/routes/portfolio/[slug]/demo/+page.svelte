@@ -42,17 +42,22 @@
 		height: 780px;
 	}
 
-	@media (max-width: 851px) {
-		:global(.fm-memory-game-challenge) {
-			height: 600px;
-		}
-	}
-
 	:global(.fm-tic-tac-toe) {
 		height: 720px;
 	}
 
 	:global(.fm-connect-four) {
-		height: 720px;
+		height: 900px;
+	}
+
+	@media (max-width: 851px) {
+		:global(.fm-memory-game-challenge) {
+			height: 600px;
+		}
+	}
+	@media (max-width: 639px) {
+		:global(.fm-connect-four) {
+			height: 844px;
+		}
 	}
 </style>

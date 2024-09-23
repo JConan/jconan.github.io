@@ -1,5 +1,5 @@
 <script lang="ts">
-	import 'bulma/css/bulma.css';
+	import '../app.css';
 	import Link from '../lib/components/Link.svelte';
 	import Navbar from './../lib/components/Navbar.svelte';
 </script>
@@ -22,7 +22,7 @@
 	<slot></slot>
 </main>
 
-<style>
+<style lang="postcss">
 	:root {
 		--page-vertical-padding: 2rem;
 		--page-horizontal-padding: 5rem;

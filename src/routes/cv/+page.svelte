@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FileDown } from 'lucide-svelte';
+	import Icon from '@iconify/svelte';
 	import { jsPDF } from 'jspdf';
 	export let data;
 
@@ -35,7 +35,7 @@
 
 <div class="buttons">
 	<button bind:this={downloadBtn} on:click={getCV} class="button is-ghost is-small">
-		<FileDown />
+		<Icon icon="uil:file-download" />
 	</button>
 </div>
 

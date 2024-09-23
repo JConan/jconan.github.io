@@ -1,7 +1,7 @@
 <script lang="ts">
 	import MaltLogo from '$lib/assets/icons/malt-logo.svelte';
 	import ConstructionImage from '$lib/assets/under-construction.png?w=1184&h=888&format=webp&meta&imagetools';
-	import { Linkedin, Github } from 'lucide-svelte';
+	import Icon from '@iconify/svelte';
 </script>
 
 <div class="card">
@@ -29,10 +29,12 @@
 			>
 			/
 			<a href="https://www.linkedin.com/in/johan-chan/" target="_blank"
-				><Linkedin size="18" /> LinkedIn</a
+				><Icon icon="hugeicons:linkedin-02" /> LinkedIn</a
 			>
-			/ <a href="https://github.com/JConan" target="_blank"><Github size="18" />GitHub</a> . Stay tuned
-			for exciting updates and fresh content coming soon!
+			/
+			<a href="https://github.com/JConan" target="_blank">
+				<Icon icon="mynaui:brand-github" />GitHub</a
+			> . Stay tuned for exciting updates and fresh content coming soon!
 		</p>
 
 		<p class="time"><time datetime="2024-7-23">23 Jul 2024</time></p>

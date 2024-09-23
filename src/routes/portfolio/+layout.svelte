@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { route } from '$lib/ROUTES.js';
-	import { Github } from 'lucide-svelte';
+	import Icon from '@iconify/svelte';
+
 	export let data;
 	const { projects, selectedProject: selectedProjectStore } = data;
 
@@ -36,7 +37,9 @@
 					<a href={route('/portfolio/[slug]/demo', { slug: selectProject.slug })}>demo</a>
 				</li>
 				<li>
-					<a href={selectProject.source} target="_blank"><Github size="18" />github</a>
+					<a href={selectProject.source} target="_blank"
+						><Icon icon="mynaui:brand-github" height="18" />github</a
+					>
 				</li>
 			</ul>
 		</div>

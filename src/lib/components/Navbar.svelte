@@ -1,11 +1,27 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import { theme } from '$lib/stores/Theme';
-	import { Sun, Moon } from 'lucide-svelte';
+	import { onMount } from 'svelte';
 
 	let isActiveClass = '';
+	let icon = '';
+	let isAnimating = false;
+
+	onMount(() => {
+		icon = $theme === 'dark' ? 'line-md:moon-filled-loop' : 'line-md:sunny-filled-loop';
+	});
+
 	function toggle() {
 		isActiveClass = isActiveClass === '' ? 'is-active' : '';
+		icon =
+			$theme === 'dark'
+				? 'line-md:sunny-filled-loop-to-moon-filled-loop-transition'
+				: 'line-md:moon-filled-to-sunny-filled-loop-transition';
 	}
+
+	let button: HTMLButtonElement;
+
+	$: console.log({ icon });
 </script>
 
 <section>
@@ -35,12 +51,20 @@
 			</div>
 
 			<div class="navbar-end">
-				<button on:click={theme.toggle} class="button is-ghost is-small navbar-item">
-					{#if $theme === 'dark'}
-						<Sun />
-					{:else}
-						<Moon />
-					{/if}
+				<button
+					bind:this={button}
+					on:click={theme.toggle}
+					class="button is-ghost is-small navbar-item"
+					on:mouseenter={() => {
+						isAnimating = true;
+					}}
+					on:mouseleave={() => {
+						isAnimating = false;
+					}}
+				>
+					{#key icon}
+						<Icon {icon} height={'2rem'} />
+					{/key}
 				</button>
 			</div>
 		</div>
@@ -54,5 +78,11 @@
 			display: flex;
 		}
 		margin-bottom: 1rem;
+
+		& :global(svg animate) {
+			fill: freeze;
+			animation-fill-mode: forwards;
+			animation-iteration-count: 1;
+		}
 	}
 </style>

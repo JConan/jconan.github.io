@@ -1,5 +1,5 @@
 <script>
-	import { User, Mail } from 'lucide-svelte';
+	import Icon from '@iconify/svelte';
 </script>
 
 <h1 class="title">Formulaire de contact</h1>
@@ -9,7 +9,7 @@
 		<div class="control has-icons-left">
 			<input class="input" name="name" type="text" placeholder="Comment te référer?" />
 			<span class="icon is-left">
-				<User />
+				<Icon icon="mdi:user-outline" />
 			</span>
 		</div>
 	</label>
@@ -24,7 +24,7 @@
 				required
 			/>
 			<span class="icon is-left">
-				<Mail />
+				<Icon icon="tabler:mail" />
 			</span>
 		</div>
 	</label>

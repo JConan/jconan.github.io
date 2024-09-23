@@ -41,7 +41,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
 	p.time {
 		text-align: right;
 	}

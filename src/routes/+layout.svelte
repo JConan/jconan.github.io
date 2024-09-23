@@ -2,6 +2,8 @@
 	import '../app.css';
 	import Link from '../lib/components/Link.svelte';
 	import Navbar from './../lib/components/Navbar.svelte';
+
+	const { children } = $props();
 </script>
 
 <!-- load user theme before rendering -->
@@ -12,14 +14,22 @@
 	</script>
 </svelte:head>
 
+<Navbar>
+	{#snippet brand()}
+		<a class="btn btn-ghost text-xl" href="/">
+			{' '}
+			Blog
+		</a>
+	{/snippet}
+
+	<Link href="/">Blog</Link>
+	<Link href="/portfolio" preload="off">Portfolio</Link>
+	<Link href="/contact">Contact</Link>
+	<Link href="/cv">CV</Link>
+</Navbar>
+
 <main class="container">
-	<Navbar>
-		<Link href="/">Blog</Link>
-		<Link href="/portfolio" preload="off">Portfolio</Link>
-		<Link href="/contact">Contact</Link>
-		<Link href="/cv">CV</Link>
-	</Navbar>
-	<slot></slot>
+	{@render children()}
 </main>
 
 <style lang="postcss">

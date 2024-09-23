@@ -1,22 +1,36 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { KIT_ROUTES } from '$lib/ROUTES';
+	import type { Snippet } from 'svelte';
 
 	type Routes = keyof KIT_ROUTES['PAGES'];
 
-	export let href: Routes;
-	export let preload: 'hover' | 'tap' | 'off' = 'hover';
+	interface Props {
+		href: Routes;
+		preload?: 'hover' | 'tap' | 'off';
+		children: Snippet;
+	}
 
-	$: currentPath = $page.url.pathname;
+	const { href, preload = $bindable('hover'), children }: Props = $props();
+
+	let currentPath = $state('');
+	$effect(() => {
+		currentPath = $page.url.pathname;
+	});
 </script>
 
 <a
 	data-sveltekit-preload-data={preload}
-	class="navbar-item {(href === '/' && href === currentPath) ||
-	(href !== '/' && currentPath.startsWith(href))
-		? 'is-selected'
-		: ''}"
+	class="menu menu-horizontal hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
+	class:active={(href === '/' && href === currentPath) ||
+		(href !== '/' && currentPath.startsWith(href))}
 	{href}
 >
-	<slot />
+	{@render children()}
 </a>
+
+<style lang="postcss">
+	.active {
+		@apply text-primary bg-primary/10;
+	}
+</style>

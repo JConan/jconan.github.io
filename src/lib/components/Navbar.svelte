@@ -1,13 +1,20 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { theme } from '$lib/stores/Theme';
-	import { onMount } from 'svelte';
+	import type { Snippet } from 'svelte';
 
-	let isActiveClass = '';
-	let icon = '';
-	let isAnimating = false;
+	interface Props {
+		brand?: Snippet;
+		children: Snippet;
+	}
 
-	onMount(() => {
+	const { brand, children }: Props = $props();
+
+	let isActiveClass = $state('');
+	let icon = $state('');
+	let isAnimating = $state(false);
+
+	$effect(() => {
 		icon = $theme === 'dark' ? 'line-md:moon-filled-loop' : 'line-md:sunny-filled-loop';
 	});
 
@@ -20,69 +27,66 @@
 	}
 
 	let button: HTMLButtonElement;
-
-	$: console.log({ icon });
 </script>
 
-<section>
-	<nav class="navbar" aria-label="main navigation">
-		<div class="navbar-brand">
-			<slot name="brand" />
+<header class="sticky top-0 z-50">
+	<nav
+		class="navbar bg-base-100/90 shadow-sm backdrop-blur-lg justify-center items-center py-2 md:px-10 px-5"
+	>
+		<div class="navbar-start">
+			<div class="dropdown">
+				<button aria-label="button" class="btn btn-ghost lg:hidden">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-5 w-5"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h8m-8 6h16"
+						></path>
+					</svg>
+				</button>
 
+				<div
+					class="menu dropdown-content menu-md z-[1] mt-3 w-52 gap-2 rounded-box bg-base-100 p-2 shadow"
+				>
+					{@render children()}
+				</div>
+			</div>
+
+			{#if brand}
+				{@render brand()}
+			{/if}
+		</div>
+
+		<div class="navbar-center hidden lg:flex">
+			{@render children()}
+		</div>
+
+		<div class="navbar-end">
 			<button
-				class="navbar-burger {isActiveClass}"
-				aria-label="menu"
-				aria-expanded="false"
-				data-target="navbar-items"
-				on:click={toggle}
+				bind:this={button}
+				onclick={theme.toggle}
+				class="button is-ghost is-small navbar-item"
+				onmouseenter={() => {
+					isAnimating = true;
+				}}
+				onmouseleave={() => {
+					isAnimating = false;
+				}}
 			>
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
-				<span aria-hidden="true"></span>
+				{#key icon}
+					<Icon {icon} height={'2rem'} />
+				{/key}
 			</button>
 		</div>
-
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<div id="navbar-items" class="navbar-menu {isActiveClass}" on:click={toggle}>
-			<div class="navbar-start">
-				<slot />
-			</div>
-
-			<div class="navbar-end">
-				<button
-					bind:this={button}
-					on:click={theme.toggle}
-					class="button is-ghost is-small navbar-item"
-					on:mouseenter={() => {
-						isAnimating = true;
-					}}
-					on:mouseleave={() => {
-						isAnimating = false;
-					}}
-				>
-					{#key icon}
-						<Icon {icon} height={'2rem'} />
-					{/key}
-				</button>
-			</div>
-		</div>
 	</nav>
-</section>
+</header>
 
 <style>
-	section {
-		& .navbar-small {
-			width: 100%;
-			display: flex;
-		}
-		margin-bottom: 1rem;
-
-		& :global(svg animate) {
-			fill: freeze;
-			animation-fill-mode: forwards;
-			animation-iteration-count: 1;
-		}
-	}
 </style>

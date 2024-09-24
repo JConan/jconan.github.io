@@ -3,7 +3,7 @@
 	import Link from './(root)/layout/Link.svelte';
 	import Navbar from './(root)/layout/Navbar.svelte';
 
-	const { children } = $props();
+	const { children, data } = $props();
 </script>
 
 <!-- load user theme before rendering -->
@@ -23,9 +23,13 @@
 	{/snippet}
 
 	<Link href="/">Blog</Link>
-	<Link href="/portfolio" preload="off">Portfolio</Link>
-	<Link href="/contact">Contact</Link>
-	<Link href="/cv">CV</Link>
+
+	<!-- public link -->
+	{#if data.env === 'development'}
+		<Link href="/portfolio" preload="off">Portfolio</Link>
+		<Link href="/contact">Contact</Link>
+		<Link href="/cv">CV</Link>
+	{/if}
 </Navbar>
 
 <main>

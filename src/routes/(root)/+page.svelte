@@ -1,48 +1,56 @@
 <script lang="ts">
 	import MaltLogo from '$lib/assets/icons/malt-logo.svelte';
-	import ConstructionImage from '$lib/assets/under-construction.png?w=1184&h=888&format=webp&meta&imagetools';
 	import Icon from '@iconify/svelte';
+
+	const { data } = $props();
 </script>
 
-<div class="card">
-	<div class="card-header">
-		<p class="card-header-title">Welcome to My Portfolio and Tech Blog!</p>
-	</div>
+<div class="hero p-0">
+	<div class="w-full p-0 gap-0 flex flex-col justify-center items-center">
+		<div class="text-center pt-10">
+			<div class="badge badge-outline badge-lg">Salut!</div>
+			<h1 class="text-4xl md:text-5xl xl:text-7xl font-semibold brightness-150">
+				Je suis <span class="text-primary">Johan,</span>
+				<br />
+				développeur Fullstack dans le monde du web et mobile.
+			</h1>
+		</div>
 
-	<div class="card-image">
-		<figure class="image is-4by3">
-			<img src={ConstructionImage} alt="under construction" />
-		</figure>
-	</div>
+		{#if data.env === 'development'}
+			<img
+				src="/images/antonio.png"
+				alt="bg"
+				height={500}
+				width={700}
+				class="max-w-xs md:max-w-lg mt-4 absolute"
+			/>
+		{/if}
 
-	<div class="card-content content">
-		<p>
-			Greetings, fellow tech enthusiasts, clients, and curious minds! You’ve landed at the right
-			place to explore my work, thoughts, and innovations in the world of technology. Whether you're
-			here to check out my portfolio or read my tech blog, I'm thrilled to have you. site
-		</p>
-		<p>
-			Please note that this is currently under construction as I fine-tune it to provide you with an
-			engaging and informative experience. Your patience is appreciated during this phase. In the
-			meantime, feel free to connect with me on <a href="https://www.malt.fr/profile/johanchan"
-				><span class="malt"><MaltLogo /></span> Malt.fr</a
-			>
-			/
-			<a href="https://www.linkedin.com/in/johan-chan/" target="_blank"
-				><Icon icon="hugeicons:linkedin-02" /> LinkedIn</a
-			>
-			/
-			<a href="https://github.com/JConan" target="_blank">
-				<Icon icon="mynaui:brand-github" />GitHub</a
-			> . Stay tuned for exciting updates and fresh content coming soon!
-		</p>
+		<img src="/images/bg.png" alt="bg" height={500} width={700} />
 
-		<p class="time"><time datetime="2024-7-23">23 Jul 2024</time></p>
+		<div class="w-full bg-base-200 py-20 flex flex-col justify-center items-center z-40">
+			<h1 class="text-xl font-light">Retrouvez moi</h1>
+			<div class="flex justify-center lg:justify-start space-x-4 mt-4">
+				<a
+					class="btn btn-circle btn-md"
+					href="https://www.linkedin.com/in/johan-chan/"
+					target="_blank"
+					aria-label="linkedin"
+				>
+					<Icon icon="teenyicons:linkedin-outline" height="2rem" />
+				</a>
+				<a
+					class="btn btn-circle btn-md"
+					href="https://www.malt.fr/profile/johanchan"
+					target="_blank"
+					aria-label="youtube"
+				>
+					<MaltLogo />
+				</a>
+			</div>
+		</div>
 	</div>
 </div>
 
 <style lang="postcss">
-	p.time {
-		text-align: right;
-	}
 </style>

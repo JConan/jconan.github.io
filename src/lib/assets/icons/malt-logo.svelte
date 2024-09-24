@@ -1,8 +1,8 @@
 <svg
 	xmlns="http://www.w3.org/2000/svg"
-	width="18"
-	height="18"
-	viewbox="0 0 186.795 186.795"
+	width="2rem"
+	height="2rem"
+	viewBox="0 0 186.795 186.795"
 	fill="none"
 	version="1.1"
 	id="svg28"

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
-	import Link from '../lib/components/Link.svelte';
-	import Navbar from './../lib/components/Navbar.svelte';
+	import Link from './(root)/layout/Link.svelte';
+	import Navbar from './(root)/layout/Navbar.svelte';
 
 	const { children } = $props();
 </script>
@@ -28,7 +28,7 @@
 	<Link href="/cv">CV</Link>
 </Navbar>
 
-<main class="container">
+<main>
 	{@render children()}
 </main>
 
@@ -54,6 +54,7 @@
 	}
 
 	main {
+		@apply w-screen;
 		padding: var(--page-vertical-padding) var(--page-horizontal-padding);
 	}
 </style>

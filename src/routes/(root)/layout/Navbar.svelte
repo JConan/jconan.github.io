@@ -10,8 +10,10 @@
 	const { brand, children }: Props = $props();
 </script>
 
-<header class="nav-container">
-	<nav class="nav navbar">
+<header class="sticky top-0 z-50">
+	<nav
+		class="navbar bg-base-100/90 shadow-sm backdrop-blur-lg justify-center items-center py-2 md:px-10 px-5"
+	>
 		<div class="navbar-start">
 			<div class="dropdown">
 				<HamburgerButton />
@@ -39,10 +41,4 @@
 </header>
 
 <style lang="postcss">
-	.nav-container {
-		@apply sticky top-0 z-50;
-		.nav {
-			@apply navbar bg-base-100/90 shadow-sm backdrop-blur-lg justify-center items-center py-2 md:px-10 px-5;
-		}
-	}
 </style>

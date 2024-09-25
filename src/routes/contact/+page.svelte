@@ -1,45 +1,55 @@
-<script>
+<script lang="ts">
 	import Icon from '@iconify/svelte';
 </script>
 
-<h1 class="title">Formulaire de contact</h1>
-<form target="_blank" action="https://formsubmit.co/formsubmit@mojojo.mozmail.com" method="POST">
-	<label class="label">
-		<span>Name</span>
-		<div class="control has-icons-left">
-			<input class="input" name="name" type="text" placeholder="Comment te référer?" />
-			<span class="icon is-left">
-				<Icon icon="mdi:user-outline" />
-			</span>
+{#snippet textInput({
+	label,
+	name,
+	placeholder
+}: {
+	label: string;
+	name: string;
+	placeholder: string;
+})}
+	<label>
+		<span>{label}</span>
+		<div class="join join-horizontal items-center">
+			<Icon class="joint-item mx-4" icon="mdi:user-outline" height={'2rem'} />
+			<input class="input input-bordered join-item m-0 grow" {name} type="text" {placeholder} />
 		</div>
 	</label>
-	<label class="label">
-		<span class="">Email</span>
-		<div class="control has-icons-left">
-			<input
-				class="input"
-				type="email"
-				name="email"
-				placeholder="A quelle adresse électronique te contacter ?"
-				required
-			/>
-			<span class="icon is-left">
-				<Icon icon="tabler:mail" />
-			</span>
-		</div>
+{/snippet}
+
+<h1 class="text-4xl">Pour me contacter</h1>
+<form target="_blank" action="https://formsubmit.co/formsubmit@mojojo.mozmail.com" method="POST">
+	{@render textInput({ label: 'Prénom et nom', name: 'name', placeholder: 'Comment te référer ?' })}
+	{@render textInput({
+		label: 'Email',
+		name: 'email',
+		placeholder: 'A quelle adresse électronique te contacter ?'
+	})}
+
+	<label>
+		<span>Message</span>
+		<textarea
+			class="textarea textarea-bordered h-24"
+			placeholder="Your Message"
+			name="message"
+			required
+		></textarea>
 	</label>
 
-	<label class="label">
-		<span>Message</span>
-		<div class="control">
-			<textarea class="textarea" placeholder="Your Message" name="message" required></textarea>
-		</div>
-	</label>
-	<button type="submit" class="button is-fullwidth is-outlined is-primary">Submit Form</button>
+	<button type="submit" class="btn btn-outline btn-primary mt-4">Submit Form</button>
 </form>
 
-<style>
-	label :last-child {
-		margin-bottom: 1.25rem;
+<style lang="postcss">
+	label {
+		@apply grid my-4 gap-2;
+	}
+	input,
+	textarea {
+		&:focus {
+			@apply textarea-primary input-primary;
+		}
 	}
 </style>

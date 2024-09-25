@@ -7,3 +7,23 @@
 		@apply transition-colors duration-300;
 	}
 }
+
+.content-grid {
+	@apply w-full relative grid;
+	grid-template-columns:
+		[full-width-start] var(--page-margin) [breakout-start] var(--page-breakout) [content-start]
+		1fr
+		[content-end] var(--page-breakout) [breakout-end] var(--page-margin) [full-width-end];
+}
+
+.content-grid > * {
+	grid-column: content;
+}
+
+.content-grid > .breakout {
+	grid-column: breakout;
+}
+
+.content-grid > .full-width {
+	grid-column: full-width;
+}

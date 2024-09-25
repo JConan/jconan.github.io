@@ -23,42 +23,41 @@
 	{/snippet}
 
 	<Link href="/">Blog</Link>
+	<Link href="/contact">Contact</Link>
 
 	<!-- public link -->
 	{#if data.env === 'development'}
 		<Link href="/portfolio" preload="off">Portfolio</Link>
-		<Link href="/contact">Contact</Link>
 		<Link href="/cv">CV</Link>
 	{/if}
 </Navbar>
 
-<main>
+<main class="content-grid">
 	{@render children()}
 </main>
 
 <style lang="postcss">
 	:root {
-		--page-vertical-padding: 2rem;
-		--page-horizontal-padding: 5rem;
+		--page-breakout: 4rem;
+		--page-margin: 2rem;
 		font-size: 16px;
 	}
 	@media (max-width: 960px) {
 		:root {
-			--page-vertical-padding: 1rem;
-			--page-horizontal-padding: 3rem;
+			--page-breakout: 2rem;
+			--page-margin: 1rem;
 			font-size: 14px;
 		}
 	}
 	@media (max-width: 640px) {
 		:root {
-			--page-vertical-padding: 0.75rem;
-			--page-horizontal-padding: 0.5rem;
+			--page-breakout: 1.5rem;
+			--page-margin: 0.5rem;
 			font-size: 12px;
 		}
 	}
 
 	main {
-		@apply w-screen;
-		padding: var(--page-vertical-padding) var(--page-horizontal-padding);
+		@apply w-full relative;
 	}
 </style>

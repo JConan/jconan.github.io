@@ -5,28 +5,41 @@
 {#snippet textInput({
 	label,
 	name,
-	placeholder
+	placeholder,
+	icon
 }: {
 	label: string;
 	name: string;
 	placeholder: string;
+	icon: string;
 })}
 	<label>
 		<span>{label}</span>
-		<div class="join join-horizontal items-center">
-			<Icon class="joint-item mx-4" icon="mdi:user-outline" height={'2rem'} />
-			<input class="input input-bordered join-item m-0 grow" {name} type="text" {placeholder} />
+		<div class="join join-horizontal relative">
+			<Icon class="absolute m-2 z-10" {icon} height={'2rem'} />
+			<input
+				class="input input-bordered join-item m-0 grow pl-12"
+				{name}
+				type="text"
+				{placeholder}
+			/>
 		</div>
 	</label>
 {/snippet}
 
 <h1 class="text-4xl">Pour me contacter</h1>
 <form target="_blank" action="https://formsubmit.co/formsubmit@mojojo.mozmail.com" method="POST">
-	{@render textInput({ label: 'Prénom et nom', name: 'name', placeholder: 'Comment te référer ?' })}
+	{@render textInput({
+		label: 'Prénom et nom',
+		name: 'name',
+		placeholder: 'Comment te référer ?',
+		icon: 'mdi:user-outline'
+	})}
 	{@render textInput({
 		label: 'Email',
 		name: 'email',
-		placeholder: 'A quelle adresse électronique te contacter ?'
+		placeholder: 'A quelle adresse électronique te contacter ?',
+		icon: 'hugeicons:mail-01'
 	})}
 
 	<label>

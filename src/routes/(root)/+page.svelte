@@ -24,15 +24,7 @@
 			class="max-w-md md:max-w-full absolute bottom-0 -z-10"
 		/>
 
-		{#if data.env === 'development'}
-			<img
-				src="/images/antonio.png"
-				alt="bg"
-				height={500}
-				width={700}
-				class="max-w-xs md:max-w-lg"
-			/>
-		{/if}
+		<img src="/images/johan.webp" alt="bg" height={500} width={700} class="max-w-xs md:max-w-lg" />
 	</div>
 
 	<div class="w-full bg-base-200 py-20 flex flex-col justify-center items-center z-40 row-start-3">

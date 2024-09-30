@@ -52,7 +52,7 @@
 		></textarea>
 	</label>
 
-	<button type="submit" class="btn btn-outline btn-primary mt-4">Submit Form</button>
+	<button type="submit" class="btn btn-outline btn-primary mt-4">Envoyer</button>
 </form>
 
 <style lang="postcss">

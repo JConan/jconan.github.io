@@ -11,7 +11,28 @@
 
 ## Résumé Professionnel
 
-Spécialisé en ingénierie d'intégration de données (Tibco Business works) et passionné par la technologie, j'ai aussi une expérience dans le support de production orienté DevOps. De plus, mes compétences dans le développement Fullstack (Sveltekit, React, NodeJs) et scripting (Bash, PowerShell) m'ont permis d’être plus productif en créant des outils pour améliorer les performances de l’équipe.
+Après ma dernière mission en ingénieur de Production terminée en mai 2024, j’ai décidé de me consacrer pleinement au développement web et mobile. Développeur Fullstack spécialisé en Svelte et SvelteKit, j’ai expérimenté plusieurs frameworks tels que React, Angular et Vue avant de choisir Svelte pour son efficacité et sa simplicité. Mon parcours antérieur en intégration de données (Tibco BusinessWorks) et en support de production DevOps m’a permis de développer une solide capacité à aborder des problématiques complexes. Aujourd’hui, je mets cette expertise au service de projets ambitieux, avec une attention particulière sur la performance et la qualité des applications.
+
+<div style="page-break-inside: avoid;">
+
+## Skills
+
+- Framework: ReactJS, Sveltekit, CapacitorJS, DaisyUI
+- Tibco Business works 5 / 6
+- Javascript, Typescript, Java, scripting Bash et Powershell, HTML/CSS
+- Design API, API management (Mashery)
+- SQL, Data Modeling et transformation de données (XML, JSON, YAML, CSV ...)
+
+</div>
+
+<div style="page-break-inside: avoid;">
+
+## Formation
+
+- SUPINFO, 2011
+- ReactJS, [certification avec Le reacteur 2021](https://s3.eu-west-3.amazonaws.com/cdn.alpha.tech/5ecb9ef2de95840007fc039d/students/Johan_CHAN/certification_Johan_CHAN_440312f16d752355.pdf)
+
+</div>
 
 ## Experience
 
@@ -33,7 +54,7 @@ Spécialisé en ingénierie d'intégration de données (Tibco Business works) et
 - Spécification des API au format SWAGGER pour l’APIfication des services SOAP
 
 </div>
-<div style="page-break-inside: avoid;">
+<div style="page-break-inside: avoid; margin-bottom: 10rem">
 
 ### **10/2016 - 10/2019**: Développeur SOA/ESB (TIBCO), UP Group
 
@@ -60,24 +81,5 @@ Spécialisé en ingénierie d'intégration de données (Tibco Business works) et
 - Développement des applicatifs TIBCO BW 5: Implémentation, documentation, administration et support technique
 - Transformation des données: Intégration de données au format SOAP+XML / IDocs / Fichier plats
 - Outillage de Monitoring: développement d'un dashboard avec jQuery/YUI3 + Oracle
-
-</div>
-<div style="page-break-inside: avoid;">
-
-## Formation
-
-- SUPINFO, 2011
-- ReactJS, par Le reacteur 2021
-
-</div>
-<div style="page-break-inside: avoid;">
-
-## Skills
-
-- Tibco Business works 5 / 6
-- Javascript, Typescript, Java, scripting Bash et Powershell
-- Design API, API management (Mashery)
-- SQL, Data Modeling et transformation de données (XML, JSON, YAML, CSV ...)
-- Framework: ReactJS, Sveltekit
 
 </div>

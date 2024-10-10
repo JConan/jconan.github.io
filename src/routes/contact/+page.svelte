@@ -17,12 +17,7 @@
 		<span>{label}</span>
 		<div class="join join-horizontal relative">
 			<Icon class="absolute m-2 z-10" {icon} height={'2rem'} />
-			<input
-				class="input input-bordered join-item m-0 grow pl-12"
-				{name}
-				type="text"
-				{placeholder}
-			/>
+			<input class="input input-bordered m-0 grow pl-12" {name} type="text" {placeholder} />
 		</div>
 	</label>
 {/snippet}
@@ -64,5 +59,11 @@
 		&:focus {
 			@apply textarea-primary input-primary;
 		}
+	}
+	textarea {
+		height: 10rem;
+	}
+	button {
+		@apply text-xl w-full;
 	}
 </style>

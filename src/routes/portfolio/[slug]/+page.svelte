@@ -13,6 +13,6 @@
 	});
 </script>
 
-<div class="content">
+<div class="prose max-w-none">
 	{@html description}
 </div>

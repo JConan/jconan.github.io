@@ -31,16 +31,16 @@ const projects: Project[] = [
 		demoLink: 'https://jconan.github.io/fm-tic-tac-toe/',
 		descriptionLink: 'https://raw.githubusercontent.com/JConan/fm-tic-tac-toe/main/DESCRIPTION.md',
 		source: 'https://github.com/JConan/fm-tic-tac-toe/'
-	},
-	{
-		name: 'Connect Four',
-		slug: 'fm-connect-four',
-		shortDescription:
-			'Connect Four is a two-player game where the goal is to align four discs in a row',
-		demoLink: 'https://jconan.github.io/fm-connect-four',
-		descriptionLink: 'https://raw.githubusercontent.com/JConan/fm-connect-four/main/DESCRIPTION.md',
-		source: 'https://github.com/JConan/fm-connect-four'
 	}
+	// {
+	// 	name: 'Connect Four',
+	// 	slug: 'fm-connect-four',
+	// 	shortDescription:
+	// 		'Connect Four is a two-player game where the goal is to align four discs in a row',
+	// 	demoLink: 'https://jconan.github.io/fm-connect-four',
+	// 	descriptionLink: 'https://raw.githubusercontent.com/JConan/fm-connect-four/main/DESCRIPTION.md',
+	// 	source: 'https://github.com/JConan/fm-connect-four'
+	// }
 ];
 
 const selectedProject = writable(projects[0]);

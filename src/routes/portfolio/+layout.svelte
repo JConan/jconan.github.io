@@ -11,11 +11,11 @@
 	$: isDemo = $page.url.pathname.endsWith('/demo');
 </script>
 
-<div class="columns">
-	<div class="column is-one-fifth">
-		<aside class="menu">
-			<a href="https://www.frontendmentor.io" class="menu-label">Frontend Mentor</a>
-			<ul class="menu-list">
+<div class="full-width grid grid-cols-5 gap-x-2">
+	<div>
+		<aside>
+			<a href="https://www.frontendmentor.io" target="_blank" class="menu-label">Frontend Mentor</a>
+			<ul class="menu">
 				{#each projects as { name, slug }}
 					<li>
 						<a
@@ -27,31 +27,21 @@
 			</ul>
 		</aside>
 	</div>
-	<div class="column is-four-fifths">
-		<div class="tabs">
-			<ul>
-				<li class={!isDemo ? 'is-active' : ''}>
-					<a href={route('/portfolio/[slug]', { slug: selectProject.slug })}>description</a>
-				</li>
-				<li class={isDemo ? 'is-active' : ''}>
-					<a href={route('/portfolio/[slug]/demo', { slug: selectProject.slug })}>demo</a>
-				</li>
-				<li>
-					<a href={selectProject.source} target="_blank"
-						><Icon icon="mynaui:brand-github" height="18" />github</a
-					>
-				</li>
-			</ul>
-		</div>
+	<div class="col-start-2 col-end-5">
+		<ul class="tabs tabs-bordered mb-4">
+			<li role="tab" class="tab" class:tab-active={!isDemo}>
+				<a href={route('/portfolio/[slug]', { slug: selectProject.slug })}>description</a>
+			</li>
+			<li role="tab" class="tab" class:tab-active={isDemo}>
+				<a href={route('/portfolio/[slug]/demo', { slug: selectProject.slug })}>demo</a>
+			</li>
+			<li class="tab justify-end">
+				<a href={selectProject.source} target="_blank" class="flex items-center"
+					><Icon icon="mynaui:brand-github" height="18" /> github
+				</a>
+			</li>
+		</ul>
 
 		<slot />
 	</div>
 </div>
-
-<style>
-	.tabs {
-		& li:last-child {
-			margin-left: auto;
-		}
-	}
-</style>

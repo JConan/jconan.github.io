@@ -24,36 +24,38 @@
 
 	<Link href="/">Blog</Link>
 	<Link href="/contact">Contact</Link>
+	<Link href="/portfolio" preload="off">Portfolio</Link>
 
 	<!-- public link -->
 	{#if data.env === 'development'}
-		<Link href="/portfolio" preload="off">Portfolio</Link>
 		<Link href="/cv">CV</Link>
 	{/if}
 </Navbar>
 
-<main class="content-grid">
+<main class="content-grid p-4">
 	{@render children()}
 </main>
 
 <style lang="postcss">
 	:root {
-		--page-breakout: 4rem;
-		--page-margin: 2rem;
-		font-size: 16px;
+		--page-breakout: 0.5rem;
+		--page-margin: 0.5rem;
+		font-size: 12px;
 	}
-	@media (max-width: 960px) {
-		:root {
-			--page-breakout: 2rem;
-			--page-margin: 1rem;
-			font-size: 14px;
-		}
-	}
-	@media (max-width: 640px) {
+
+	@media (min-width: 640px) {
 		:root {
 			--page-breakout: 1.5rem;
 			--page-margin: 0.5rem;
-			font-size: 12px;
+			font-size: 14px;
+		}
+	}
+
+	@media (min-width: 960px) {
+		:root {
+			--page-breakout: 2rem;
+			--page-margin: 1rem;
+			font-size: 16px;
 		}
 	}
 

@@ -13,6 +13,6 @@
 	});
 </script>
 
-<div class="content">
+<div class="content prose">
 	{@html description}
 </div>

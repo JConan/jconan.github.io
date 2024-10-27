@@ -6,6 +6,7 @@
 	let downloadBtn: HTMLButtonElement;
 
 	function getCV() {
+		console.log('start');
 		downloadBtn.classList.add('is-loading');
 		downloadBtn.disabled = true;
 
@@ -34,8 +35,8 @@
 </script>
 
 <div class="buttons">
-	<button bind:this={downloadBtn} on:click={getCV} class="button is-ghost is-small">
-		<Icon icon="uil:file-download" />
+	<button bind:this={downloadBtn} on:click={getCV} class="button is-ghost">
+		<Icon icon="uil:file-download" scale="4" />
 	</button>
 </div>
 

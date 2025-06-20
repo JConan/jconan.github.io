@@ -5,8 +5,10 @@ import { imagetools } from 'vite-imagetools';
 import type { KIT_ROUTES } from '$lib/ROUTES';
 import { kitRoutes } from 'vite-plugin-kit-routes';
 
+import tailwindcss from '@tailwindcss/vite';
+
 export default defineConfig({
-	plugins: [sveltekit(), kitRoutes<KIT_ROUTES>({}), imagetools()],
+	plugins: [tailwindcss(), sveltekit(), kitRoutes<KIT_ROUTES>({}), imagetools()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	}

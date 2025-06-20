@@ -9,7 +9,7 @@
 	<div class="text-center pt-4 padded-container">
 		<div class="badge badge-outline badge-lg">Salut!</div>
 		<h1 class="text-4xl md:text-5xl xl:text-7xl font-semibold brightness-150">
-			Je suis <span class="text-primary">Johan,</span>
+			Je suis <span class="text-blue-600">Johan,</span>
 			<br />
 			développeur Fullstack dans le monde du web et mobile.
 		</h1>
@@ -50,5 +50,6 @@
 	</div>
 </div>
 
-<style lang="postcss">
+<style>
+	@reference "tailwindcss";
 </style>

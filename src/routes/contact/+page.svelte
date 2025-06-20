@@ -47,17 +47,22 @@
 		></textarea>
 	</label>
 
-	<button type="submit" class="btn btn-outline btn-primary mt-4">Envoyer</button>
+	<button
+		type="submit"
+		class="btn btn-outline btn-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white mt-4"
+		>Envoyer</button
+	>
 </form>
 
-<style lang="postcss">
+<style>
+	@reference "tailwindcss";
 	label {
 		@apply grid my-4 gap-2;
 	}
 	input,
 	textarea {
 		&:focus {
-			@apply textarea-primary input-primary;
+			@apply border-blue-600 ring-blue-600;
 		}
 	}
 	textarea {

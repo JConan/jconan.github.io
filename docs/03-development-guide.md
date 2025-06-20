@@ -141,7 +141,7 @@ const { variant = 'primary', size = 'md', disabled = false, onclick } = $props<B
 ```html
 <!-- ✅ Use utility classes with responsive modifiers -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+  <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm">
     Content
   </div>
 </div>
@@ -155,7 +155,8 @@ const { variant = 'primary', size = 'md', disabled = false, onclick } = $props<B
 #### Custom Styles
 ```html
 <!-- ✅ Use style blocks with Tailwind reference -->
-<style lang="postcss">
+<style>
+	@reference "tailwindcss";
   @reference "tailwindcss";
   
   .custom-component {

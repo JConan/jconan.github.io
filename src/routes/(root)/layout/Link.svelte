@@ -21,7 +21,7 @@
 
 <a
 	data-sveltekit-preload-data={preload}
-	class="menu menu-horizontal hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
+	class="menu menu-horizontal hover:text-blue-600 hover:bg-blue-100 transition flex py-2 px-4 rounded-md"
 	class:active={(href === '/' && href === currentPath) ||
 		(href !== '/' && currentPath.startsWith(href))}
 	{href}
@@ -29,8 +29,9 @@
 	{@render children()}
 </a>
 
-<style lang="postcss">
+<style>
+	@reference "tailwindcss";
 	.active {
-		@apply text-primary bg-primary/10;
+		@apply text-blue-600 bg-blue-100;
 	}
 </style>

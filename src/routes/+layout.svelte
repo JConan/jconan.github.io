@@ -36,7 +36,8 @@
 	{@render children()}
 </main>
 
-<style lang="postcss">
+<style>
+	@reference "tailwindcss";
 	:root {
 		--page-breakout: 0.5rem;
 		--page-margin: 0.5rem;

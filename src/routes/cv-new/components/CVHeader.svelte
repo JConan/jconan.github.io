@@ -10,7 +10,7 @@
 
 <header class="cv-header grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative">
 	<div class="md:col-span-2">
-		<h1 class="text-4xl font-bold text-primary mb-4">{personalInfo.name}</h1>
+		<h1 class="text-4xl font-bold text-blue-600 mb-4">{personalInfo.name}</h1>
 
 		<div class="space-y-2">
 			<div class="flex items-center gap-2">

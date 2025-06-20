@@ -9,9 +9,9 @@
 	let { experience, showDetails = true }: Props = $props();
 </script>
 
-<article class="experience-item mb-6 p-4 border-l-4 border-primary/30 bg-base-200/50 rounded-r-lg">
+<article class="experience-item mb-6 p-4 border-l-4 border-blue-600/30 bg-base-200/50 rounded-r-lg">
 	<div class="experience-header mb-3">
-		<h3 class="text-lg font-semibold text-primary mb-1">
+		<h3 class="text-lg font-semibold text-blue-600 mb-1">
 			{experience.title}
 		</h3>
 

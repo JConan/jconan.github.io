@@ -6,7 +6,7 @@
 	@apply max-w-4xl mx-auto p-6 bg-base-100 min-h-screen;
 
 	.cv-actions {
-		@apply mb-6 print:hidden;
+		@apply mb-6 print:hidden flex gap-4;
 	}
 
 	.cv-header {

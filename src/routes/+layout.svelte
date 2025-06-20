@@ -23,13 +23,13 @@
 	{/snippet}
 
 	<Link href="/">Blog</Link>
-	<Link href="/contact">Contact</Link>
 	<Link href="/portfolio" preload="off">Portfolio</Link>
+	<Link href="/cv">CV</Link>
+	<Link href="/contact">Contact</Link>
 
 	<!-- public link -->
-	{#if data.env === 'development'}
-		<Link href="/cv">CV</Link>
-	{/if}
+	<!-- {#if data.env === 'development'}
+	{/if} -->
 </Navbar>
 
 <main class="content-grid p-4">

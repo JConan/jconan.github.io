@@ -12,8 +12,6 @@ const PAGES = {
   "/": `/`,
   "/contact": `/contact`,
   "/cv": `/cv`,
-  "/cv-new": `/cv-new`,
-  "/cv-v2": `/cv-v2`,
   "/portfolio": `/portfolio`,
   "/portfolio/[slug]": (params: { slug: (string | number) }) => {
     return `/portfolio/${params['slug']}`
@@ -149,7 +147,7 @@ export function route<T extends keyof AllTypes>(key: T, ...params: any[]): strin
 * ```
 */
 export type KIT_ROUTES = {
-  PAGES: { '/': never, '/contact': never, '/cv': never, '/cv-new': never, '/cv-v2': never, '/portfolio': never, '/portfolio/[slug]': 'slug', '/portfolio/[slug]/demo': 'slug' }
+  PAGES: { '/': never, '/contact': never, '/cv': never, '/portfolio': never, '/portfolio/[slug]': 'slug', '/portfolio/[slug]/demo': 'slug' }
   SERVERS: Record<string, never>
   ACTIONS: Record<string, never>
   LINKS: Record<string, never>

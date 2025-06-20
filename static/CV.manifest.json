@@ -1,0 +1,12 @@
+{
+  "lastHash": "9d76db18",
+  "generated": "2025-06-20T13:40:35.144Z",
+  "sourceFiles": [
+    "static/CV.md",
+    "src/routes/cv/+page.svelte",
+    "src/routes/cv/+page.ts",
+    "src/routes/cv/cv.css",
+    "src/app.css",
+    "plugins/cv-pdf-generator.ts"
+  ]
+}

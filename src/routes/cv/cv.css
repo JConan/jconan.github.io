@@ -1,0 +1,169 @@
+@reference "tailwindcss";
+@plugin "daisyui";
+
+/* Header styling - maximum specificity */
+.cv-container {
+	@apply max-w-4xl mx-auto p-6 bg-base-100 min-h-screen;
+
+	.cv-actions {
+		@apply mb-6 print:hidden;
+	}
+
+	.cv-header {
+		@apply grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative;
+
+		.cv-info {
+			@apply md:col-span-2;
+
+			h1 {
+				@apply text-4xl font-bold mb-4 text-blue-600;
+			}
+
+			.cv-contact {
+				@apply space-y-2;
+
+				.cv-contact-item {
+					@apply flex items-center gap-2;
+
+					strong {
+						@apply text-base-content/70;
+					}
+
+					span {
+						@apply text-base-content;
+					}
+
+					a {
+						@apply link link-primary hover:link-accent;
+					}
+				}
+			}
+		}
+
+		.cv-photo-container {
+			@apply flex justify-center md:justify-end;
+
+			.cv-photo {
+				@apply w-40 h-40 rounded-lg object-cover shadow-lg;
+			}
+		}
+	}
+
+	.cv {
+		h2 {
+			@apply text-2xl font-bold border-b-2 border-primary pb-2 mb-4;
+		}
+
+		h3 {
+			@apply text-xl font-semibold mb-3;
+		}
+
+		p {
+			@apply mb-4;
+		}
+
+		ul {
+			@apply list-disc list-inside space-y-1 mb-4;
+		}
+
+		li {
+			@apply leading-relaxed;
+		}
+	}
+
+	.cv-skills-section {
+		@apply mb-8;
+
+		ul {
+			@apply space-y-2;
+			list-style: none !important;
+			padding-left: 0 !important;
+
+			li {
+				@apply flex items-start gap-2;
+				list-style: none !important;
+
+				&::before {
+					content: '';
+					@apply w-2 h-2 bg-primary rounded-full mt-2 shrink-0;
+					display: block !important;
+				}
+			}
+		}
+	}
+
+	.cv-education-section {
+		@apply mb-8 space-y-4;
+
+		ul {
+			@apply space-y-4;
+			list-style: none !important;
+			padding-left: 0 !important;
+
+			li {
+				@apply p-3 bg-base-200/30 rounded-lg border-l-4 border-secondary/50;
+				list-style: none !important;
+			}
+		}
+	}
+
+	.cv-experience-item {
+		@apply mb-6 p-4 border-l-4 border-blue-600/30 bg-base-200/50 rounded-r-lg;
+
+		h3 {
+			@apply text-lg font-semibold text-blue-600 mb-1;
+		}
+
+		ul {
+			@apply list-disc list-inside space-y-1 text-sm;
+
+			li {
+				@apply text-base-content/90;
+			}
+		}
+	}
+}
+
+/* In your stylesheet */
+@media print {
+	.cv-actions,
+	header:not(.cv-header) {
+		display: none !important;
+	}
+
+	.cv-container {
+		padding: 1rem !important;
+		max-width: none !important;
+	}
+
+	.cv-header {
+		display: grid !important;
+		grid-template-columns: 2fr 1fr !important;
+		gap: 2rem !important;
+		align-items: start !important;
+		margin-bottom: 2rem !important;
+	}
+
+	.cv-info {
+		padding-right: 1rem !important;
+	}
+
+	.cv-photo-container {
+		display: flex !important;
+		justify-content: center !important;
+		align-items: flex-start !important;
+	}
+
+	.cv-photo {
+		width: 160px !important;
+		height: 160px !important;
+		object-fit: cover !important;
+		border-radius: 8px !important;
+		display: block !important;
+	}
+
+	.cv-education-section {
+		page-break-after: always;
+		break-after: page;
+	}
+}

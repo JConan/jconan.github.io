@@ -1,149 +1,53 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
-	import { jsPDF } from 'jspdf';
-	export let data;
+	import type { PageData } from './$types';
+	import './cv.css';
 
-	let downloadBtn: HTMLButtonElement;
+	interface Props {
+		data: PageData;
+	}
 
-	function getCV() {
-		console.log('start');
-		downloadBtn.classList.add('is-loading');
-		downloadBtn.disabled = true;
+	let { data }: Props = $props();
 
-		const container = document.getElementById('cv')!;
-		container.setAttribute('data-theme', 'light');
-		const doc = new jsPDF({
-			format: 'a4',
-			orientation: 'portrait',
-			unit: 'mm'
-		});
-		doc.addFont('Inter-VariableFont_slnt,wght.ttf', 'Inter', 'normal');
-		doc.setFont('Inter');
-		doc.html(container, {
-			callback: () => {
-				window.open(doc.output('bloburl'), '_blank');
-				// doc.save('CV - Johan CHAN.pdf');
-				downloadBtn.classList.remove('is-loading');
-				downloadBtn.disabled = false;
-			},
-			margin: 8,
-			width: 196,
-			windowWidth: 1080,
-			autoPaging: 'text'
-		});
+	function handlePrint() {
+		window.print();
 	}
 </script>
 
-<div class="buttons">
-	<button bind:this={downloadBtn} on:click={getCV} class="button is-ghost">
-		<Icon icon="uil:file-download" scale="4" />
-	</button>
-</div>
+<svelte:head>
+	<title>CV - Johan CHAN</title>
+	<meta
+		name="description"
+		content="CV professionnel de Johan CHAN - Développeur Fullstack spécialisé en Svelte et SvelteKit"
+	/>
+</svelte:head>
 
-<div class="cv card">
-	{#if data.cvHTML}
+<div class="cv-container">
+	<!-- Print Button - Hidden in print mode -->
+	<div class="cv-actions">
+		<button onclick={handlePrint} class="btn btn-primary gap-2">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-5 w-5"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+				/>
+			</svg>
+			Télécharger PDF
+		</button>
+	</div>
+
+	<div class="cv">
 		{@html data.cvHTML}
-	{:else}
-		<progress class="progress is-small is-info" />
-	{/if}
-</div>
-
-<div style="display: none">
-	<div data-theme="light" id="cv" class="cv card print">
-		{#if data.cvHTML}
-			{@html data.cvHTML}
-		{/if}
 	</div>
 </div>
 
 <style>
-	.buttons {
-		position: sticky;
-		z-index: 1;
-		top: 10px;
-		margin: 10px;
-		height: 50px;
-
-		& button {
-			position: absolute;
-			right: 0;
-		}
-	}
-	:global(.cv) {
-		margin-top: -60px;
-		padding: var(--page-vertical-padding) var(--page-horizontal-padding);
-		display: flex;
-		flex-direction: column;
-		align-content: center;
-		justify-content: center;
-
-		& img {
-			width: 8em;
-		}
-
-		& h1 {
-			font-size: 2em;
-		}
-		& h2 {
-			margin: 1em 0;
-			font-size: 1.75em;
-			border-bottom: 1px solid;
-		}
-		& h3 {
-			font-size: 1.3em;
-			font-weight: 500;
-
-			margin-top: 1em;
-
-			& + p {
-				margin-left: 1.5em;
-			}
-
-			& strong::before {
-				content: '→ ';
-				font-weight: bold;
-			}
-		}
-
-		& p {
-			margin-bottom: 0.25em;
-			font-size: 1.1em;
-		}
-
-		& ul {
-			margin: 0 3em;
-			list-style: unset;
-			& li {
-				font-size: 1em;
-			}
-		}
-	}
-
-	:global([data-theme='light'] strong) {
-		color: black;
-	}
-
-	:global(.print) {
-		font-size: 16px;
-		padding: 28px 70px;
-		margin-top: 0px;
-		min-width: 1080px;
-		max-width: 1080px;
-
-		& img {
-			width: 128px;
-		}
-	}
-
-	@media (max-width: 640px) {
-		.buttons {
-			margin: 10px 0px;
-		}
-	}
-
-	@media (max-width: 445px) {
-		:global(.cv:not(.print) img) {
-			display: none;
-		}
-	}
+	@reference "tailwindcss";
 </style>

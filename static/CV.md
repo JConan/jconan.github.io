@@ -1,19 +1,31 @@
-<div style="margin-bottom:3rem; position:relative; display:grid; grid-template-columns: 0.30fr 2fr">
-    <h1 style="grid-column: 2 span">Johan CHAN</h1>
-    <strong style="margin-top: 1em">Email:</strong>
-        <span style="margin-top: 1em">johan.chan@outlook.fr</span>
-    <strong>LinkedIn:</strong> 
-        <span><a target="_blank" href="https://www.linkedin.com/in/johan-chan/">https://www.linkedin.com/in/johan-chan/</a></span>
-    <strong>GitHub:</strong>
-        <span><a  target="_blank" href="https://github.com/JConan">https://github.com/JConan</a></span>
-    <img style="position:absolute; top:0.5rem; right:2rem" height="160" width="160" src="./my-photo.png" />
+<div class="cv-header">
+    <div class="cv-info">
+        <h1>Johan CHAN</h1>
+        <div class="cv-contact">
+            <div class="cv-contact-item">
+                <strong>Email:</strong>
+                <span>johan.chan@outlook.fr</span>
+            </div>
+            <div class="cv-contact-item">
+                <strong>LinkedIn:</strong>
+                <a target="_blank" href="https://www.linkedin.com/in/johan-chan/">https://www.linkedin.com/in/johan-chan/</a>
+            </div>
+            <div class="cv-contact-item">
+                <strong>GitHub:</strong>
+                <a target="_blank" href="https://github.com/JConan">https://github.com/JConan</a>
+            </div>
+        </div>
+    </div>
+    <div class="cv-photo-container">
+        <img class="cv-photo" src="./my-photo.png" alt="Johan CHAN" />
+    </div>
 </div>
 
 ## Résumé Professionnel
 
-Après ma dernière mission en ingénieur de Production terminée en mai 2024, j’ai décidé de me consacrer pleinement au développement web et mobile. Développeur Fullstack spécialisé en Svelte et SvelteKit, j’ai expérimenté plusieurs frameworks tels que React, Angular et Vue avant de choisir Svelte pour son efficacité et sa simplicité. Mon parcours antérieur en intégration de données (Tibco BusinessWorks) et en support de production DevOps m’a permis de développer une solide capacité à aborder des problématiques complexes. Aujourd’hui, je mets cette expertise au service de projets ambitieux, avec une attention particulière sur la performance et la qualité des applications.
+Après ma dernière mission en ingénieur de Production terminée en mai 2024, j'ai décidé de me consacrer pleinement au développement web et mobile. Développeur Fullstack spécialisé en Svelte et SvelteKit, j'ai expérimenté plusieurs frameworks tels que React, Angular et Vue avant de choisir Svelte pour son efficacité et sa simplicité. Mon parcours antérieur en intégration de données (Tibco BusinessWorks) et en support de production DevOps m'a permis de développer une solide capacité à aborder des problématiques complexes. Aujourd'hui, je mets cette expertise au service de projets ambitieux, avec une attention particulière sur la performance et la qualité des applications.
 
-<div style="page-break-inside: avoid;">
+<div class="cv-skills-section">
 
 ## Skills
 
@@ -25,7 +37,7 @@ Après ma dernière mission en ingénieur de Production terminée en mai 2024, j
 
 </div>
 
-<div style="page-break-inside: avoid;">
+<div class="cv-education-section">
 
 ## Formation
 
@@ -36,7 +48,7 @@ Après ma dernière mission en ingénieur de Production terminée en mai 2024, j
 
 ## Experience
 
-<div style="page-break-inside: avoid;">
+<div class="cv-experience-item">
 
 ### **10/2021 – 05/2024**: Ingénieur de Production, BNP Paribas CIB Montreuil
 
@@ -46,15 +58,15 @@ Après ma dernière mission en ingénieur de Production terminée en mai 2024, j
 - Outil collaborative: mise en place d'une stack collaborative pour l'accès au serveur en SSH (Terminal + Cygwin + ssh config et alias)
 
 </div>
-<div style="page-break-inside: avoid;">
+<div class="cv-experience-item">
 
 ### **11/2020 - 07/2021**: Développeur SOA/ESB (TIBCO), Allianz France
 
 - Développement et support des applicatifs TIBCO BW 5
-- Spécification des API au format SWAGGER pour l’APIfication des services SOAP
+- Spécification des API au format SWAGGER pour l'APIfication des services SOAP
 
 </div>
-<div style="page-break-inside: avoid; margin-bottom: 10rem">
+<div class="cv-experience-item">
 
 ### **10/2016 - 10/2019**: Développeur SOA/ESB (TIBCO), UP Group
 
@@ -63,18 +75,18 @@ Après ma dernière mission en ingénieur de Production terminée en mai 2024, j
 - Outillage de Monitoring: Mise en place d'un dashboard avec la stack Elastic Search (ELK) pour le suivi du trafic des APIs
 
 </div>
-<div style="page-break-inside: avoid;">
+<div class="cv-experience-item">
 
 ### **10/2015 - 08/2016**: Développeur SOA/ESB (TIBCO), BNP Paribas
 
 - Design des applicatifs orienté évènement
 - Utilisation d'une stack TIBCO : Business Works 6, Streambase, Business Events, EMS
-- Conception et implémentation d’API REST
+- Conception et implémentation d'API REST
 - Conception et implémentation d'un dashboard pour le monitoring des APIs en Angular2
 - Collaboration en mode Scrum/Agile: documentation et présentation des avancements
 
 </div>
-<div style="page-break-inside: avoid;">
+<div class="cv-experience-item">
 
 ### **01/2010 - 06/2015**: Développeur SOA/ESB (TIBCO), Sanofi Aventis
 

@@ -6,9 +6,18 @@ import type { KIT_ROUTES } from '$lib/ROUTES';
 import { kitRoutes } from 'vite-plugin-kit-routes';
 
 import tailwindcss from '@tailwindcss/vite';
+import { cvPDFGenerator } from './plugins/cv-pdf-generator';
+import { devServerCleanup } from './plugins/dev-server-cleanup';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit(), kitRoutes<KIT_ROUTES>({}), imagetools()],
+	plugins: [
+		devServerCleanup(),
+		tailwindcss(),
+		cvPDFGenerator(),
+		sveltekit(),
+		kitRoutes<KIT_ROUTES>({}),
+		imagetools()
+	],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	}

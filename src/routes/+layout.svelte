@@ -2,9 +2,18 @@
 	import '../app.css';
 	import Link from './(root)/layout/Link.svelte';
 	import Navbar from './(root)/layout/Navbar.svelte';
+	import SEO from '$lib/components/SEO.svelte';
+	import { getSEOData } from '$lib/data/seo-data';
+	import { page } from '$app/stores';
 
 	const { children, data } = $props();
+
+	// Get SEO data for current page
+	const seoData = $derived(getSEOData($page.url.pathname));
 </script>
+
+<!-- SEO Component -->
+<SEO {...seoData} />
 
 <!-- load user theme before rendering -->
 <svelte:head>

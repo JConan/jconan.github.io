@@ -25,7 +25,7 @@ const PAGES = {
  * SERVERS
  */
 const SERVERS = {
-  "GET /sitemap.xml": `/sitemap.xml`
+  
 }
 
 /**
@@ -148,7 +148,7 @@ export function route<T extends keyof AllTypes>(key: T, ...params: any[]): strin
 */
 export type KIT_ROUTES = {
   PAGES: { '/': never, '/contact': never, '/cv': never, '/portfolio': never, '/portfolio/[slug]': 'slug', '/portfolio/[slug]/demo': 'slug' }
-  SERVERS: { 'GET /sitemap.xml': never }
+  SERVERS: Record<string, never>
   ACTIONS: Record<string, never>
   LINKS: Record<string, never>
   Params: { 'slug': never }

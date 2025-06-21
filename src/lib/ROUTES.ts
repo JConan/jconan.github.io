@@ -13,12 +13,11 @@ const PAGES = {
   "/blog": `/blog`,
   "/contact": `/contact`,
   "/cv": `/cv`,
-  "/portfolio": `/portfolio`,
-  "/portfolio/[slug]": (params: { slug: (string | number) }) => {
-    return `/portfolio/${params['slug']}`
+  "/portfolio": (params?: { app?: (string | number) }) => {
+    return `/portfolio${params?.['app'] ? `/${params?.['app']}`: ''}`
   },
-  "/portfolio/[slug]/demo": (params: { slug: (string | number) }) => {
-    return `/portfolio/${params['slug']}/demo`
+  "/portfolio/demo": (params?: { app?: (string | number) }) => {
+    return `/portfolio${params?.['app'] ? `/${params?.['app']}`: ''}/demo`
   },
   "/services": `/services`
 }
@@ -149,9 +148,9 @@ export function route<T extends keyof AllTypes>(key: T, ...params: any[]): strin
 * ```
 */
 export type KIT_ROUTES = {
-  PAGES: { '/': never, '/blog': never, '/contact': never, '/cv': never, '/portfolio': never, '/portfolio/[slug]': 'slug', '/portfolio/[slug]/demo': 'slug', '/services': never }
+  PAGES: { '/': never, '/blog': never, '/contact': never, '/cv': never, '/portfolio': 'app', '/portfolio/demo': 'app', '/services': never }
   SERVERS: Record<string, never>
   ACTIONS: Record<string, never>
   LINKS: Record<string, never>
-  Params: { 'slug': never }
+  Params: { 'app': never }
 }

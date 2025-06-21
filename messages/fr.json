@@ -21,6 +21,20 @@
 		"linkedin_aria_label": "Profil LinkedIn de Johan Chan",
 		"malt_aria_label": "Profil Malt de Johan Chan"
 	},
+	"contact": {
+		"page_title": "Contact | Johan Chan",
+		"page_description": "Contactez Johan Chan, développeur freelance, pour discuter de vos projets d'applications web et mobile.",
+		"page_keywords": "contact, développeur freelance, Johan Chan, projets web, devis développement",
+		"heading": "Pour me contacter",
+		"lead_text": "Vous avez un projet en tête ? N'hésitez pas à me contacter pour discuter de vos besoins et voir comment je peux vous aider.",
+		"form_name_label": "Prénom et nom",
+		"form_name_placeholder": "Comment te référer ?",
+		"form_email_label": "Email",
+		"form_email_placeholder": "A quelle adresse électronique te contacter ?",
+		"form_message_label": "Message",
+		"form_message_placeholder": "Décrivez votre projet ou votre demande",
+		"form_submit_button": "Envoyer"
+	},
 	"error": {
 		"404": {
 			"title": "Page introuvable",

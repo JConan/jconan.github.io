@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import SEO from '$lib/components/SEO.svelte';
+	import { m } from '$lib/paraglide/messages';
 </script>
 
 <SEO
-	title="Contact | Johan Chan"
-	description="Contactez Johan Chan, développeur freelance, pour discuter de vos projets d'applications web et mobile."
-	keywords="contact, développeur freelance, Johan Chan, projets web, devis développement"
+	title={m['contact.page_title']()}
+	description={m['contact.page_description']()}
+	keywords={m['contact.page_keywords']()}
 />
 
 {#snippet textInput({
@@ -27,11 +28,10 @@
 {/snippet}
 
 <div class="prose max-w-4xl mx-auto">
-	<h1>Pour me contacter</h1>
+	<h1>{m['contact.heading']()}</h1>
 
 	<p class="lead">
-		Vous avez un projet en tête ? N'hésitez pas à me contacter pour discuter de vos besoins et voir
-		comment je peux vous aider.
+		{m['contact.lead_text']()}
 	</p>
 
 	<div class="contact-form">
@@ -41,28 +41,28 @@
 			method="POST"
 		>
 			{@render textInput({
-				label: 'Prénom et nom',
+				label: m['contact.form_name_label'](),
 				name: 'name',
-				placeholder: 'Comment te référer ?'
+				placeholder: m['contact.form_name_placeholder']()
 			})}
 			{@render textInput({
-				label: 'Email',
+				label: m['contact.form_email_label'](),
 				name: 'email',
 				type: 'email',
-				placeholder: 'A quelle adresse électronique te contacter ?'
+				placeholder: m['contact.form_email_placeholder']()
 			})}
 
 			<label>
-				<span>Message</span>
+				<span>{m['contact.form_message_label']()}</span>
 				<textarea
 					class="form-textarea"
-					placeholder="Décrivez votre projet ou votre demande"
+					placeholder={m['contact.form_message_placeholder']()}
 					name="message"
 					required
 				></textarea>
 			</label>
 
-			<button type="submit" class="btn btn-primary"> Envoyer </button>
+			<button type="submit" class="btn btn-primary">{m['contact.form_submit_button']()}</button>
 		</form>
 	</div>
 </div>

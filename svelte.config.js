@@ -14,12 +14,16 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter({}),
 		prerender: {
-			entries: [
-				'*',
-				'/portfolio/fm-memory-game-challenge/demo',
-				'/portfolio/fm-tic-tac-toe/demo',
-				'/portfolio/fm-connect-four/demo'
-			]
+			entries: ['*'],
+			handleHttpError: ({ path, referrer, message }) => {
+				// Handle 404s during prerendering by ignoring them
+				if (path.includes('/journey/') && path.includes('/demo')) {
+					console.warn(`Skipping missing demo page: ${path}`);
+					return;
+				}
+				// Re-throw other errors
+				throw new Error(`${message} (${path})`);
+			}
 		}
 	},
 

@@ -64,6 +64,13 @@ export const seoData: Record<string, SEOData> = {
 		keywords:
 			'blog développement, tutoriels web, React, Svelte, Node.js, JavaScript, TypeScript, meilleures pratiques',
 		type: 'website'
+	},
+	'/404': {
+		title: 'Page introuvable - Erreur 404 | Johan Chan',
+		description:
+			"La page que vous recherchez est introuvable. Retournez à l'accueil ou explorez les autres sections du portfolio de Johan Chan.",
+		keywords: 'page introuvable, erreur 404, développeur freelance, Johan Chan',
+		type: 'website'
 	}
 };
 

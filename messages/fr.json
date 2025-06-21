@@ -1,0 +1,11 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"hello_world": "Hello, {name} from fr!",
+	"error_404_title": "Page introuvable",
+	"error_404_subtitle": "Erreur 404",
+	"error_404_message": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
+	"error_404_suggestion": "Vous pouvez retourner à l'accueil ou explorer les autres sections du site.",
+	"error_404_home_button": "Retour à l'accueil",
+	"error_404_contact_button": "Me contacter",
+	"error_404_journey_button": "Voir mon parcours"
+}

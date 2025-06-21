@@ -1,16 +1,30 @@
 <script lang="ts">
 	import '../app.css';
-	import Link from './(root)/layout/Link.svelte';
-	import Navbar from './(root)/layout/Navbar.svelte';
+	import Link from '$lib/components/Link.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import { getSEOData } from '$lib/data/seo-data';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
+	import { locales, localizeHref, getLocale } from '$lib/paraglide/runtime';
 
 	const { children, data } = $props();
 
 	// Get SEO data for current page
-	const seoData = $derived(getSEOData($page.url.pathname));
+	const seoData = $derived(getSEOData(page.url.pathname));
+
+	$effect(() => {
+		if (page.url) {
+			console.log({ local: getLocale() });
+		}
+	});
 </script>
+
+<!-- Paraglide static generation strategy -->
+<div style="display:none">
+	{#each locales as locale}
+		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
+	{/each}
+</div>
 
 <!-- SEO Component -->
 <SEO {...seoData} />
@@ -18,7 +32,7 @@
 <!-- load user theme before rendering -->
 <svelte:head>
 	<script>
-		const dataTheme = localStorage.getItem('theme');
+		dataTheme = localStorage.getItem('theme');
 		if (dataTheme) document.documentElement.setAttribute('data-theme', dataTheme);
 	</script>
 </svelte:head>
@@ -70,6 +84,6 @@
 	}
 
 	main {
-		@apply w-full relative;
+		@apply w-full h-[calc(100%-4rem)] relative;
 	}
 </style>

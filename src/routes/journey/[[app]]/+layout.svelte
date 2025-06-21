@@ -1,18 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { route } from '$lib/ROUTES.js';
 	import Icon from '@iconify/svelte';
 	import type { Project } from '$lib/types/portfolio.js';
 
-	interface Props {
-		data: {
-			projects: Project[];
-			selectedProject: Project;
-			selectedSlug: string;
-		};
-	}
-
-	let { data }: Props = $props();
+	let { data, children } = $props();
 
 	// Svelte 5 runes for reactive state
 	let selectedProject = $state(data.selectedProject);
@@ -105,13 +96,14 @@
 
 		<!-- Content Container -->
 		<div class="content-container">
-			<slot />
+			{@render children?.()}
 		</div>
 	</section>
 </div>
 
 <style>
 	@reference "tailwindcss";
+	@plugin "daisyui";
 
 	.portfolio-container {
 		display: grid;
@@ -126,114 +118,63 @@
 
 	/* Project Sidebar */
 	.project-sidebar {
-		background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
-		border-radius: 1rem;
-		border: 1px solid #d1d5db;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-		padding: 1.5rem;
+		@apply bg-base-200 rounded-2xl border border-base-300 shadow-lg p-6;
 		height: fit-content;
 		position: sticky;
 		top: 2rem;
 	}
 
 	.sidebar-header {
-		margin-bottom: 1.5rem;
+		@apply mb-6;
 	}
 
 	.frontend-mentor-link {
-		display: block;
-		font-size: 1.25rem;
-		font-weight: 700;
-		color: #1f2937;
-		text-decoration: none;
-		transition: color 0.2s ease;
+		@apply block text-xl font-bold text-base-content no-underline link link-hover;
 	}
 
 	.frontend-mentor-link:hover {
-		color: #2563eb;
+		@apply text-primary;
 	}
 
 	.project-nav {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
+		@apply flex flex-col gap-2;
 	}
 
 	.project-button {
-		width: 100%;
-		padding: 0.875rem 1rem;
-		text-align: left;
-		font-weight: 500;
-		color: #374151;
-		background: transparent;
-		border: none;
-		border-radius: 0.5rem;
-		cursor: pointer;
-		transition: all 0.2s ease;
-	}
-
-	.project-button:hover {
-		background-color: #dbeafe;
-		color: #1d4ed8;
+		@apply btn btn-ghost w-full justify-start font-medium text-base-content;
 	}
 
 	.project-button.active {
-		background-color: #2563eb;
-		color: white;
-	}
-
-	.project-button.active:hover {
-		background-color: #1d4ed8;
+		@apply btn-primary;
 	}
 
 	/* Main Content Area */
 	.content-area {
-		background: white;
-		border-radius: 1rem;
-		border: 1px solid #d1d5db;
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-		overflow: hidden;
+		@apply bg-base-100 rounded-2xl border border-base-300 shadow-lg overflow-hidden;
 	}
 
 	.tab-nav {
-		display: flex;
-		border-bottom: 2px solid #e5e7eb;
-		background: #f9fafb;
+		@apply flex border-b-2 border-base-300 bg-base-200;
 	}
 
 	.tab-button {
-		padding: 1rem 1.5rem;
-		font-weight: 500;
-		color: #6b7280;
-		background: transparent;
-		border: none;
-		border-bottom: 2px solid transparent;
-		cursor: pointer;
-		transition: all 0.2s ease;
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
+		@apply px-6 py-4 font-medium text-base-content/70 bg-transparent border-none border-b-2 border-transparent cursor-pointer transition-all flex items-center gap-2;
 	}
 
 	.tab-button:hover {
-		color: #2563eb;
-		background-color: #eff6ff;
+		@apply text-primary bg-primary/10;
 	}
 
 	.tab-button.active {
-		color: #2563eb;
-		border-bottom-color: #2563eb;
-		background-color: white;
+		@apply text-primary border-b-primary bg-base-100;
 	}
 
 	.github-button {
-		margin-left: auto;
+		@apply ml-auto;
 	}
 
 	.content-container {
-		padding: 2rem;
-		color: #1f2937;
-		min-height: 600px;
+		@apply p-8 text-base-content min-h-[600px];
 	}
 
 	/* Responsive Design */

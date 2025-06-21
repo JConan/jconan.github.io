@@ -19,8 +19,8 @@
 		</ul>
 
 		<div class="cta">
-			<p>En attendant, n'hésitez pas à consulter mes projets :</p>
-			<a href="/portfolio" class="btn btn-primary" data-sveltekit-preload-data="off"
+			<p>En attendant, n'hésitez pas à consulter mes projets de parcours :</p>
+			<a href="/journey" class="btn btn-primary" data-sveltekit-preload-data="off"
 				>Voir le Portfolio</a
 			>
 		</div>
@@ -29,17 +29,22 @@
 
 <style>
 	@reference "tailwindcss";
+	@plugin "daisyui";
 
 	.prose {
-		@apply text-gray-800 dark:text-gray-900;
+		@apply text-base-content;
+	}
+
+	.prose h1 {
+		@apply text-3xl font-bold mb-6 text-base-content;
 	}
 
 	.lead {
-		@apply text-xl text-gray-600 dark:text-gray-700 mb-12;
+		@apply text-xl text-base-content/80 mb-12;
 	}
 
 	.coming-soon {
-		@apply text-center py-16 px-8 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-50 dark:to-blue-50 rounded-xl;
+		@apply text-center py-16 px-8 bg-base-200 rounded-xl;
 	}
 
 	.icon {
@@ -47,7 +52,11 @@
 	}
 
 	.coming-soon h2 {
-		@apply text-2xl font-bold mb-6 text-gray-800 dark:text-gray-900;
+		@apply text-2xl font-bold mb-6 text-base-content;
+	}
+
+	.coming-soon p {
+		@apply text-base-content/80 mb-6;
 	}
 
 	.topics-list {
@@ -55,28 +64,23 @@
 	}
 
 	.topics-list li {
-		@apply flex items-center text-gray-700 dark:text-gray-800;
+		@apply flex items-center text-base-content/80;
 	}
 
 	.topics-list li::before {
 		content: '→';
-		@apply text-blue-500 mr-3 font-bold;
+		@apply text-primary mr-3 font-bold;
 	}
 
 	.cta {
-		@apply pt-6 border-t border-gray-200 dark:border-gray-300;
+		@apply pt-6 border-t border-base-300;
+	}
+
+	.cta p {
+		@apply text-base-content/80 mb-4;
 	}
 
 	.btn {
-		@apply inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold;
-		@apply transition-all duration-200 text-center cursor-pointer;
-		@apply shadow-lg hover:shadow-xl transform hover:-translate-y-1;
-		@apply text-lg leading-none;
-		@apply no-underline;
-	}
-
-	.btn-primary {
-		@apply bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700;
-		@apply border-2 border-blue-600 hover:border-blue-700;
+		@apply btn btn-primary btn-lg;
 	}
 </style>

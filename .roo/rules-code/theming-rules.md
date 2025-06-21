@@ -178,6 +178,7 @@ a {
 ```svelte
 <style>
 	@reference "tailwindcss";
+	@plugin "daisyui"; /* ✅ REQUIRED for DaisyUI classes in Tailwind v4 */
 
 	/* ✅ REQUIRED - Light theme for content */
 	.main-content {
@@ -207,6 +208,207 @@ a {
 
 .card-content {
 	@apply text-gray-700 dark:text-gray-800;
+}
+```
+
+## Tailwind CSS v4 + DaisyUI v5 Requirements
+
+### Component Style Block Configuration
+
+**CRITICAL**: Every Svelte component using DaisyUI classes MUST include both directives:
+
+```svelte
+<style>
+	@reference "tailwindcss";
+	@plugin "daisyui"; /* MANDATORY - Component-level plugin declaration */
+
+	/* Your styles here */
+</style>
+```
+
+**WHY REQUIRED**:
+
+- Tailwind v4 requires explicit plugin declarations in each component's style block
+- Global plugin configuration in `src/app.css` is not sufficient for component-level styles
+- Missing `@plugin "daisyui"` causes "Cannot apply unknown utility class" errors
+
+**COMMON ERROR**:
+
+```
+Error: Cannot apply unknown utility class `bg-base-200`
+```
+
+**FIX**: Add `@plugin "daisyui";` after `@reference "tailwindcss";`
+
+### DaisyUI Class Usage Standards
+
+**Approved DaisyUI Classes**:
+
+```css
+/* ✅ Background colors */
+.sidebar {
+	@apply bg-base-200;
+}
+.content {
+	@apply bg-base-100;
+}
+
+/* ✅ Text colors */
+.text {
+	@apply text-base-content;
+}
+
+/* ✅ Component classes */
+.button {
+	@apply btn btn-primary;
+}
+.navigation {
+	@apply btn btn-ghost;
+}
+
+/* ✅ Border colors */
+.border {
+	@apply border-base-300;
+}
+```
+
+**Component Validation Checklist**:
+
+- [ ] `@reference "tailwindcss";` present
+- [ ] `@plugin "daisyui";` present (if using DaisyUI classes)
+- [ ] All DaisyUI classes properly resolved
+- [ ] No "unknown utility class" errors in build
+- [ ] No hardcoded hex colors in CSS
+- [ ] No invalid CSS custom properties (var(--color-\*))
+- [ ] All text uses `text-base-content` variants
+- [ ] All backgrounds use `bg-base-*` classes
+
+### CRITICAL: Common Dark Theme Mistakes to Avoid
+
+**❌ NEVER USE - Hardcoded colors that break dark mode:**
+
+```css
+/* ❌ Dark text on dark backgrounds - invisible in dark mode */
+.prose h1 {
+	color: #1f2937; /* Very dark gray - invisible on dark backgrounds */
+}
+
+.prose p {
+	color: #374151; /* Dark gray - poor contrast on dark backgrounds */
+}
+
+.prose li {
+	color: #374151; /* Same issue for list items */
+}
+
+.prose strong {
+	color: #1f2937; /* Dark text for emphasis - invisible */
+}
+
+/* ❌ Hardcoded colors that don't adapt to themes */
+.link:hover {
+	color: #2563eb; /* Hardcoded blue - not theme-aware */
+}
+
+.loading-text {
+	color: #6b7280; /* Medium gray - poor contrast in dark mode */
+}
+
+/* ❌ Invalid CSS custom properties */
+.sidebar {
+	background-color: var(--color-base-200); /* This variable doesn't exist */
+}
+
+/* ❌ Invalid Tailwind classes */
+.link {
+	@apply hover:text-primary-focus; /* This class doesn't exist */
+}
+```
+
+**✅ CORRECT Dark Theme Implementation:**
+
+```css
+/* ✅ Theme-aware text colors that adapt automatically */
+.prose h1 {
+	@apply text-base-content; /* Adapts: dark text in light mode, light text in dark mode */
+}
+
+.prose h2 {
+	@apply text-base-content; /* High contrast in both themes */
+}
+
+.prose h3 {
+	@apply text-base-content/90; /* Slightly reduced opacity but still readable */
+}
+
+.prose p {
+	@apply text-base-content/80; /* Good contrast for body text in both themes */
+}
+
+.prose li {
+	@apply text-base-content/80; /* Consistent with paragraphs */
+}
+
+.prose strong {
+	@apply text-base-content; /* Maximum contrast for emphasis */
+}
+
+.prose code {
+	@apply bg-base-200 text-base-content; /* Theme-aware code styling */
+}
+
+.prose a {
+	@apply text-primary hover:text-blue-600; /* Valid hover state */
+}
+
+.sidebar {
+	@apply bg-base-200; /* Proper DaisyUI background class */
+}
+
+.loading-text {
+	@apply text-base-content/60; /* Subtle but readable in both themes */
+}
+
+.error-text {
+	@apply text-error; /* DaisyUI semantic color for errors */
+}
+
+.retry-button {
+	@apply btn btn-primary; /* DaisyUI button component */
+}
+```
+
+### Dark Theme Debugging Checklist
+
+When dark theme text is hard to read:
+
+1. **Check for hardcoded hex colors** - Replace with DaisyUI classes
+2. **Verify @plugin "daisyui" is present** - Required for DaisyUI classes to work
+3. **Test contrast in browser dev tools** - Ensure 4.5:1 ratio minimum
+4. **Look for invalid CSS custom properties** - Use DaisyUI classes instead
+5. **Check for invalid Tailwind classes** - Verify all classes exist
+
+### Real-World Example: Journey Page Fix
+
+**Before (Broken Dark Mode):**
+
+```css
+.prose-content :global(h1) {
+	color: #1f2937; /* ❌ Invisible in dark mode */
+}
+.prose-content :global(p) {
+	color: #374151; /* ❌ Poor contrast in dark mode */
+}
+```
+
+**After (Working Dark Mode):**
+
+```css
+.prose-content :global(h1) {
+	@apply text-base-content; /* ✅ Perfect contrast in both themes */
+}
+.prose-content :global(p) {
+	@apply text-base-content/80; /* ✅ Good contrast in both themes */
 }
 ```
 

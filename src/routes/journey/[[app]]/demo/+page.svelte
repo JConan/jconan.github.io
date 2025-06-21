@@ -277,17 +277,4 @@
 			flex-direction: column;
 		}
 	}
-
-	/* Project-specific styles can be added here if needed */
-	:global(.fm-memory-game-challenge) {
-		/* Memory Game specific adjustments if needed */
-	}
-
-	:global(.fm-tic-tac-toe) {
-		/* Tic Tac Toe specific adjustments if needed */
-	}
-
-	:global(.fm-connect-four) {
-		/* Connect Four specific adjustments if needed */
-	}
 </style>

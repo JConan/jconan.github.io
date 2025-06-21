@@ -16,7 +16,7 @@
 			@apply md:col-span-2;
 
 			h1 {
-				@apply text-4xl font-bold mb-4 text-blue-600;
+				@apply text-4xl font-bold mb-4 text-primary;
 			}
 
 			.cv-contact {
@@ -108,10 +108,10 @@
 	}
 
 	.cv-experience-item {
-		@apply mb-6 p-4 border-l-4 border-blue-600/30 bg-base-200/50 rounded-r-lg;
+		@apply mb-6 p-4 border-l-4 border-primary/30 bg-base-200/50 rounded-r-lg;
 
 		h3 {
-			@apply text-lg font-semibold text-blue-600 mb-1;
+			@apply text-lg font-semibold text-primary mb-1;
 		}
 
 		ul {

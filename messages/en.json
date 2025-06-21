@@ -45,5 +45,33 @@
 			"contactButton": "Contact me",
 			"journeyButton": "View my journey"
 		}
+	},
+	"services": {
+		"page_title": "Development Services | Johan Chan",
+		"page_description": "Custom web and mobile application development services by Johan Chan, freelance developer specialized in React, Svelte and Node.js.",
+		"page_keywords": "development services, web applications, mobile applications, React, Svelte, Node.js, freelance developer",
+		"heading": "Development Services",
+		"lead_text": "Custom web and mobile application development to transform your ideas into high-performance solutions.",
+		"web_apps": {
+			"title": "Web Applications",
+			"description": "Modern web application development with React, Svelte and Node.js."
+		},
+		"mobile_apps": {
+			"title": "Mobile Applications",
+			"description": "High-performance mobile applications with React Native and hybrid technologies."
+		},
+		"api_integration": {
+			"title": "API Integration",
+			"description": "Integration and development of RESTful and GraphQL APIs."
+		},
+		"technical_consulting": {
+			"title": "Technical Consulting",
+			"description": "Code audit, performance optimization and technical architecture."
+		},
+		"cta_section": {
+			"title": "Ready to start your project?",
+			"description": "Let's discuss your needs and find the right solution.",
+			"button": "Contact me"
+		}
 	}
 }

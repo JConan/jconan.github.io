@@ -1,37 +1,46 @@
+<script lang="ts">
+	import * as m from '$lib/paraglide/messages';
+	import SEO from '$lib/components/SEO.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+</script>
+
+<SEO {...data.seo} />
+
 <div class="prose max-w-4xl mx-auto">
-	<h1>Services de Développement</h1>
+	<h1>{m['services.heading']()}</h1>
 
 	<p class="lead">
-		Développement d'applications web et mobile sur mesure pour transformer vos idées en solutions
-		performantes.
+		{m['services.lead_text']()}
 	</p>
 
 	<div class="grid md:grid-cols-2 gap-6 my-8">
 		<div class="card">
-			<h3>Applications Web</h3>
-			<p>Développement d'applications web modernes avec React, Svelte et Node.js.</p>
+			<h3>{m['services.web_apps.title']()}</h3>
+			<p>{m['services.web_apps.description']()}</p>
 		</div>
 
 		<div class="card">
-			<h3>Applications Mobile</h3>
-			<p>Applications mobiles performantes avec React Native et technologies hybrides.</p>
+			<h3>{m['services.mobile_apps.title']()}</h3>
+			<p>{m['services.mobile_apps.description']()}</p>
 		</div>
 
 		<div class="card">
-			<h3>Intégration API</h3>
-			<p>Intégration et développement d'APIs RESTful et GraphQL.</p>
+			<h3>{m['services.api_integration.title']()}</h3>
+			<p>{m['services.api_integration.description']()}</p>
 		</div>
 
 		<div class="card">
-			<h3>Consultation Technique</h3>
-			<p>Audit de code, optimisation de performance et architecture technique.</p>
+			<h3>{m['services.technical_consulting.title']()}</h3>
+			<p>{m['services.technical_consulting.description']()}</p>
 		</div>
 	</div>
 
 	<div class="cta-section">
-		<h2>Prêt à démarrer votre projet ?</h2>
-		<p>Discutons de vos besoins et trouvons la solution adaptée.</p>
-		<a href="/contact" class="btn btn-primary">Me contacter</a>
+		<h2>{m['services.cta_section.title']()}</h2>
+		<p>{m['services.cta_section.description']()}</p>
+		<a href="/contact" class="btn btn-primary">{m['services.cta_section.button']()}</a>
 	</div>
 </div>
 

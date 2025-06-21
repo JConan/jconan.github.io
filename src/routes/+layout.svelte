@@ -6,6 +6,7 @@
 	import { getSEOData } from '$lib/data/seo-data';
 	import { page } from '$app/state';
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
+	import { lang } from '$lib/utils/i18n.svelte';
 
 	const { children, data } = $props();
 
@@ -33,20 +34,20 @@
 
 <Navbar>
 	{#snippet brand()}
-		<a class="btn btn-ghost text-xl" href="/"> Johan Chan </a>
+		<a class="btn btn-ghost text-xl" href="/">{lang().navigation_brand()}</a>
 	{/snippet}
 
-	<Link href="/">Accueil</Link>
-	<Link href="/journey" preload="off">Parcours d'Apprentissage</Link>
-	<Link href="/contact">Contact</Link>
+	<Link href="/">{lang().navigation_home()}</Link>
+	<Link href="/journey" preload="off">{lang().navigation_journey()}</Link>
+	<Link href="/contact">{lang().navigation_contact()}</Link>
 
 	<!-- Development-only additional pages -->
 	{#if data.env === 'development'}
-		<Link href="/services">Services</Link>
-		<Link href="/blog">Blog</Link>
+		<Link href="/services">{lang().navigation_services()}</Link>
+		<Link href="/blog">{lang().navigation_blog()}</Link>
 	{/if}
 
-	<Link href="/about">À propos</Link>
+	<Link href="/about">{lang().navigation_about()}</Link>
 </Navbar>
 
 <main class="content-grid p-4">

@@ -33,18 +33,23 @@ import { lang } from '$lib/utils/i18n.svelte';
 
 ```svelte
 <!-- IMPORTANT: Always call the message functions! -->
-<h1>{lang().nav.home()}</h1>
-<p>{lang().pages.home.title()}</p>
-<button>{lang().common.submit()}</button>
+<!-- Paraglide flattens nested objects to dot notation -->
+<h1>{lang()['nav.home']()}</h1>
+<p>{lang()['pages.home.title']()}</p>
+<button>{lang()['common.submit']()}</button>
 ```
 
 ### 2. With parameters
 
 ```svelte
-<p>{lang().common.welcome({ name: 'Johan' })}</p>
+<p>{lang()['common.welcome']({ name: 'Johan' })}</p>
 ```
 
-## Message Organization (Nested Objects)
+## Message Organization Options
+
+**CRITICAL**: Paraglide automatically flattens nested JSON objects into dot-notation keys at runtime. You have two approaches:
+
+### Option A: Nested Objects (Better for maintenance)
 
 **[`messages/fr.json`](messages/fr.json)**:
 
@@ -71,62 +76,74 @@ import { lang } from '$lib/utils/i18n.svelte';
 }
 ```
 
-**[`messages/en.json`](messages/en.json)**:
+**Usage**: `{lang()["nav.home"]()}` (bracket notation required)
+
+### Option B: Flat Keys (Simpler access)
+
+**[`messages/fr.json`](messages/fr.json)**:
 
 ```json
 {
-	"nav": {
-		"home": "Home",
-		"contact": "Contact",
-		"about": "About"
-	},
-	"pages": {
-		"home": {
-			"title": "Johan Chan - Freelance Developer"
-		},
-		"contact": {
-			"title": "Contact me"
-		}
-	},
-	"common": {
-		"submit": "Send",
-		"loading": "Loading...",
-		"welcome": "Welcome {name}"
-	}
+	"nav_home": "Accueil",
+	"nav_contact": "Contact",
+	"nav_about": "À propos",
+	"pages_home_title": "Johan Chan - Développeur Freelance",
+	"pages_contact_title": "Contactez-moi",
+	"common_submit": "Envoyer",
+	"common_loading": "Chargement...",
+	"common_welcome": "Bienvenue {name}"
 }
 ```
 
+**Usage**: `{lang().nav_home()}` (direct access)
+
 ## Usage Examples
+
+### With Nested Objects (Recommended for maintenance)
 
 ```svelte
 <!-- Navigation -->
-<Link href="/">{lang().nav.home()}</Link>
+<Link href="/">{lang()['nav.home']()}</Link>
 
 <!-- Page content -->
-<h1>{lang().pages.home.title()}</h1>
+<h1>{lang()['pages.home.title']()}</h1>
 
 <!-- Common elements -->
-<button>{lang().common.submit()}</button>
-<div>{lang().common.loading()}</div>
+<button>{lang()['common.submit']()}</button>
+<div>{lang()['common.loading']()}</div>
+```
+
+### With Flat Keys (Simpler syntax)
+
+```svelte
+<!-- Navigation -->
+<Link href="/">{lang().nav_home()}</Link>
+
+<!-- Page content -->
+<h1>{lang().pages_home_title()}</h1>
+
+<!-- Common elements -->
+<button>{lang().common_submit()}</button>
+<div>{lang().common_loading()}</div>
 ```
 
 ## Organization Rules (MANDATORY)
 
-1. **CRITICAL: Always call functions**: `lang().nav.home()` not `lang().nav.home`
-2. **Nested structure**: Group by category (`nav`, `pages`, `common`)
-3. **camelCase keys**: Use camelCase for nested object keys
+1. **CRITICAL: Always call functions**: `lang()["nav.home"]()` or `lang().nav_home()` not `lang().nav.home`
+2. **Paraglide flattens nested objects**: Nested JSON becomes dot-notation keys at runtime
+3. **Choose your approach**: Nested objects (better maintenance) vs flat keys (simpler access)
 4. **Both files**: Always update both `en.json` and `fr.json`
-5. **Same structure**: Keep identical nesting in both language files
+5. **Same structure**: Keep identical organization in both language files
 6. **No hardcoded text**: All user-facing text must use `lang()` function
 
 ## Organization Categories
 
-- `nav` - Navigation links
-- `pages` - Page-specific content organized by page name
-- `common` - Shared messages across the app
-- `forms` - Form elements (labels, placeholders, buttons)
-- `buttons` - Reusable button texts
-- `seo` - SEO-related content
+- `nav` / `nav_*` - Navigation links
+- `pages` / `pages_*` - Page-specific content organized by page name
+- `common` / `common_*` - Shared messages across the app
+- `forms` / `forms_*` - Form elements (labels, placeholders, buttons)
+- `buttons` / `buttons_*` - Reusable button texts
+- `seo` / `seo_*` - SEO-related content
 
 ## Validation Commands (EXECUTE AFTER CHANGES)
 
@@ -167,7 +184,7 @@ Error: Hardcoded text found in component
 ### Function Call Missing Error
 
 ```
-Error: Expected function call lang().key() not lang().key
+Error: Expected function call lang()["key"]() not lang().key
 ```
 
 **Fix**: Add parentheses to call the message function
@@ -176,10 +193,10 @@ Error: Expected function call lang().key() not lang().key
 
 ### Do's ✅
 
-- Use nested object structure for organization
-- Call message functions: `lang().nav.home()`
+- Choose between nested objects (maintenance) or flat keys (simplicity)
+- Call message functions: `lang()["nav.home"]()` or `lang().nav_home()`
 - Keep message files synchronized
-- Use camelCase for nested keys
+- Use camelCase for nested keys, snake_case for flat keys
 - Test both languages during development
 - Use parameters for dynamic content
 
@@ -188,7 +205,7 @@ Error: Expected function call lang().key() not lang().key
 - Mix hardcoded text with message functions
 - Forget to call message functions (missing parentheses)
 - Break structure consistency between languages
-- Use flat key structure with prefixes
+- Use object notation for nested keys (`lang().nav.home()` won't work)
 
 ## Integration with Existing Rules
 
@@ -206,6 +223,8 @@ Error: Expected function call lang().key() not lang().key
 
 **CRITICAL REMINDER**: These i18n rules MUST be followed whenever working with user-facing text. No hardcoded content allowed in components.
 
+**Key Insight**: Paraglide flattens nested JSON objects to dot-notation keys at runtime, requiring bracket notation or flat key structure.
+
 **Last Updated**: June 22, 2025
-**Version**: 1.0
+**Version**: 2.0
 **Auto-Trigger**: ON

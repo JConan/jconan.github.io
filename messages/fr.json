@@ -1,6 +1,13 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"hello_world": "Hello, {name} from fr!",
+	"navigation_brand": "Johan Chan",
+	"navigation_home": "Accueil",
+	"navigation_journey": "Parcours d'Apprentissage",
+	"navigation_contact": "Contact",
+	"navigation_services": "Services",
+	"navigation_blog": "Blog",
+	"navigation_about": "À propos",
 	"error_404_title": "Page introuvable",
 	"error_404_subtitle": "Erreur 404",
 	"error_404_message": "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",

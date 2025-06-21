@@ -12,6 +12,15 @@
 		"blog": "Blog",
 		"about": "About"
 	},
+	"homepage": {
+		"availability_badge": "Available for projects!",
+		"hero_title": "I'm {name}, custom application developer.",
+		"hero_description": "Specialized in web and mobile development with React, Svelte and Node.js. Your Swiss Army knife for development to transform your ideas into high-performance applications.",
+		"cta_section_title": "Let's work together",
+		"cta_section_description": "Ready to create your application? Contact me to discuss your project.",
+		"linkedin_aria_label": "Johan Chan's LinkedIn profile",
+		"malt_aria_label": "Johan Chan's Malt profile"
+	},
 	"error": {
 		"404": {
 			"title": "Page not found",

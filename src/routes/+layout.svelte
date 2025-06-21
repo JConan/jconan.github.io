@@ -6,7 +6,7 @@
 	import { getSEOData } from '$lib/data/seo-data';
 	import { page } from '$app/state';
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
-	import { lang } from '$lib/utils/i18n.svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	const { children, data } = $props();
 
@@ -34,20 +34,20 @@
 
 <Navbar>
 	{#snippet brand()}
-		<a class="btn btn-ghost text-xl" href="/">{lang()['navigation.brand']()}</a>
+		<a class="btn btn-ghost text-xl" href="/">{m['navigation.brand']()}</a>
 	{/snippet}
 
-	<Link href="/">{lang()['navigation.home']()}</Link>
-	<Link href="/journey" preload="off">{lang()['navigation.journey']()}</Link>
-	<Link href="/contact">{lang()['navigation.contact']()}</Link>
+	<Link href="/">{m['navigation.home']()}</Link>
+	<Link href="/journey" preload="off">{m['navigation.journey']()}</Link>
+	<Link href="/contact">{m['navigation.contact']()}</Link>
 
 	<!-- Development-only additional pages -->
 	{#if data.env === 'development'}
-		<Link href="/services">{lang()['navigation.services']()}</Link>
-		<Link href="/blog">{lang()['navigation.blog']()}</Link>
+		<Link href="/services">{m['navigation.services']()}</Link>
+		<Link href="/blog">{m['navigation.blog']()}</Link>
 	{/if}
 
-	<Link href="/about">{lang()['navigation.about']()}</Link>
+	<Link href="/about">{m['navigation.about']()}</Link>
 </Navbar>
 
 <main class="content-grid p-4">

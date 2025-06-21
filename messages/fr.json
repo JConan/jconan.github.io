@@ -12,6 +12,15 @@
 		"blog": "Blog",
 		"about": "À propos"
 	},
+	"homepage": {
+		"availability_badge": "Disponible pour vos projets!",
+		"hero_title": "Je suis {name}, développeur d'applications sur mesure.",
+		"hero_description": "Spécialisé en création d'applications web et mobile avec React, Svelte et Node.js. Votre couteau suisse du développement pour transformer vos idées en applications performantes.",
+		"cta_section_title": "Travaillons ensemble",
+		"cta_section_description": "Prêt à créer votre application ? Contactez-moi pour discuter de votre projet.",
+		"linkedin_aria_label": "Profil LinkedIn de Johan Chan",
+		"malt_aria_label": "Profil Malt de Johan Chan"
+	},
 	"error": {
 		"404": {
 			"title": "Page introuvable",

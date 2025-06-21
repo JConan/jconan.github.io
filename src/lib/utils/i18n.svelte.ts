@@ -7,4 +7,4 @@ const _lang = $derived(() => {
 	return m;
 });
 
-export const lang = () => _lang();
+export const lang = () => _lang;

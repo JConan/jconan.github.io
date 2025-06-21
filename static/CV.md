@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="cv-photo-container">
-        <img class="cv-photo" src="./my-photo.png" alt="Johan CHAN" />
+        <img class="cv-photo" src="/my-photo.png" alt="Johan CHAN" />
     </div>
 </div>
 

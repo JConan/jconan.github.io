@@ -40,21 +40,21 @@
 			</div>
 
 			<div class="error-text">
-				<h1 class="error-title">{lang()['error.404.title']()}</h1>
-				<p class="error-subtitle">{lang()['error.404.subtitle']()}</p>
-				<p class="error-message">{lang()['error.404.message']()}</p>
-				<p class="error-suggestion">{lang()['error.404.suggestion']()}</p>
+				<h1 class="error-title">{m['error.404.title']()}</h1>
+				<p class="error-subtitle">{m['error.404.subtitle']()}</p>
+				<p class="error-message">{m['error.404.message']()}</p>
+				<p class="error-suggestion">{m['error.404.suggestion']()}</p>
 			</div>
 
 			<div class="error-actions">
 				<a href="/" class="btn btn-primary">
-					{lang()['error.404.homeButton']()}
+					{m['error.404.homeButton']()}
 				</a>
 				<a href="/journey" class="btn btn-secondary">
-					{lang()['error.404.journeyButton']()}
+					{m['error.404.journeyButton']()}
 				</a>
 				<a href="/contact" class="btn btn-outline">
-					{lang()['error.404.contactButton']()}
+					{m['error.404.contactButton']()}
 				</a>
 			</div>
 		</div>

@@ -21,28 +21,28 @@ This project uses **Paraglide JS** with **Svelte 5** for internationalization:
 - **Base locale**: French (`fr`) - no URL prefix
 - **Secondary locale**: English (`en`) - uses `/en/` URL prefix
 - **Message files**: [`messages/en.json`](messages/en.json) and [`messages/fr.json`](messages/fr.json)
-- **Reactive utility**: [`src/lib/utils/i18n.svelte.ts`](src/lib/utils/i18n.svelte.ts) exports `lang` function
+- **Direct Paraglide import**: Use `import { m } from '$lib/paraglide/messages';`
 
 ## How to Use Translations
 
 ### 1. Import and use in components
 
 ```typescript
-import { lang } from '$lib/utils/i18n.svelte';
+import { m } from '$lib/paraglide/messages';
 ```
 
 ```svelte
 <!-- IMPORTANT: Always call the message functions! -->
 <!-- Paraglide flattens nested objects to dot notation -->
-<h1>{lang()['nav.home']()}</h1>
-<p>{lang()['pages.home.title']()}</p>
-<button>{lang()['common.submit']()}</button>
+<h1>{m['nav.home']()}</h1>
+<p>{m['pages.home.title']()}</p>
+<button>{m['common.submit']()}</button>
 ```
 
 ### 2. With parameters
 
 ```svelte
-<p>{lang()['common.welcome']({ name: 'Johan' })}</p>
+<p>{m['common.welcome']({ name: 'Johan' })}</p>
 ```
 
 ## Message Organization Options
@@ -76,7 +76,7 @@ import { lang } from '$lib/utils/i18n.svelte';
 }
 ```
 
-**Usage**: `{lang()["nav.home"]()}` (bracket notation required)
+**Usage**: `{m["nav.home"]()}` (bracket notation required)
 
 ### Option B: Flat Keys (Simpler access)
 
@@ -95,7 +95,7 @@ import { lang } from '$lib/utils/i18n.svelte';
 }
 ```
 
-**Usage**: `{lang().nav_home()}` (direct access)
+**Usage**: `{m.nav_home()}` (direct access)
 
 ## Usage Examples
 
@@ -103,38 +103,38 @@ import { lang } from '$lib/utils/i18n.svelte';
 
 ```svelte
 <!-- Navigation -->
-<Link href="/">{lang()['nav.home']()}</Link>
+<Link href="/">{m['nav.home']()}</Link>
 
 <!-- Page content -->
-<h1>{lang()['pages.home.title']()}</h1>
+<h1>{m['pages.home.title']()}</h1>
 
 <!-- Common elements -->
-<button>{lang()['common.submit']()}</button>
-<div>{lang()['common.loading']()}</div>
+<button>{m['common.submit']()}</button>
+<div>{m['common.loading']()}</div>
 ```
 
 ### With Flat Keys (Simpler syntax)
 
 ```svelte
 <!-- Navigation -->
-<Link href="/">{lang().nav_home()}</Link>
+<Link href="/">{m.nav_home()}</Link>
 
 <!-- Page content -->
-<h1>{lang().pages_home_title()}</h1>
+<h1>{m.pages_home_title()}</h1>
 
 <!-- Common elements -->
-<button>{lang().common_submit()}</button>
-<div>{lang().common_loading()}</div>
+<button>{m.common_submit()}</button>
+<div>{m.common_loading()}</div>
 ```
 
 ## Organization Rules (MANDATORY)
 
-1. **CRITICAL: Always call functions**: `lang()["nav.home"]()` or `lang().nav_home()` not `lang().nav.home`
+1. **CRITICAL: Always call functions**: `m["nav.home"]()` or `m.nav_home()` not `m.nav.home`
 2. **Paraglide flattens nested objects**: Nested JSON becomes dot-notation keys at runtime
 3. **Choose your approach**: Nested objects (better maintenance) vs flat keys (simpler access)
 4. **Both files**: Always update both `en.json` and `fr.json`
 5. **Same structure**: Keep identical organization in both language files
-6. **No hardcoded text**: All user-facing text must use `lang()` function
+6. **No hardcoded text**: All user-facing text must use `m` function calls
 
 ## Organization Categories
 
@@ -179,12 +179,12 @@ Error: Property 'nonexistent_key' does not exist
 Error: Hardcoded text found in component
 ```
 
-**Fix**: Replace with appropriate `lang()` function call
+**Fix**: Replace with appropriate `m` function call
 
 ### Function Call Missing Error
 
 ```
-Error: Expected function call lang()["key"]() not lang().key
+Error: Expected function call m["key"]() not m.key
 ```
 
 **Fix**: Add parentheses to call the message function
@@ -194,7 +194,7 @@ Error: Expected function call lang()["key"]() not lang().key
 ### Do's ✅
 
 - Choose between nested objects (maintenance) or flat keys (simplicity)
-- Call message functions: `lang()["nav.home"]()` or `lang().nav_home()`
+- Call message functions: `m["nav.home"]()` or `m.nav_home()`
 - Keep message files synchronized
 - Use camelCase for nested keys, snake_case for flat keys
 - Test both languages during development
@@ -205,7 +205,7 @@ Error: Expected function call lang()["key"]() not lang().key
 - Mix hardcoded text with message functions
 - Forget to call message functions (missing parentheses)
 - Break structure consistency between languages
-- Use object notation for nested keys (`lang().nav.home()` won't work)
+- Use object notation for nested keys (`m.nav.home()` won't work)
 
 ## Integration with Existing Rules
 

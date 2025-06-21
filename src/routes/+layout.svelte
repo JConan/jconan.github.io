@@ -5,18 +5,12 @@
 	import SEO from '$lib/components/SEO.svelte';
 	import { getSEOData } from '$lib/data/seo-data';
 	import { page } from '$app/state';
-	import { locales, localizeHref, getLocale } from '$lib/paraglide/runtime';
+	import { locales, localizeHref } from '$lib/paraglide/runtime';
 
 	const { children, data } = $props();
 
 	// Get SEO data for current page
 	const seoData = $derived(getSEOData(page.url.pathname));
-
-	$effect(() => {
-		if (page.url) {
-			console.log({ local: getLocale() });
-		}
-	});
 </script>
 
 <!-- Paraglide static generation strategy -->

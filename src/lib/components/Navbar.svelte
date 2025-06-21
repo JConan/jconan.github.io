@@ -2,12 +2,16 @@
 	import type { Snippet } from 'svelte';
 	import HamburgerButton from './HamburgerButton.svelte';
 	import ThemeButton from './ThemeButton.svelte';
+	import { page } from '$app/state';
+	import { getLocale, locales, localizeHref } from '$lib/paraglide/runtime';
+	import { goto } from '$app/navigation';
 
 	interface Props {
 		brand?: Snippet;
 		children: Snippet;
 	}
 	const { brand, children }: Props = $props();
+	let pathname = $derived(page.url.pathname);
 </script>
 
 <header class="sticky top-0 z-50">
@@ -36,6 +40,18 @@
 
 		<div class="navbar-end">
 			<ThemeButton />
+			<details class="dropdown">
+				<summary class="btn m-1">{getLocale()}</summary>
+				<ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+					{#each locales as locale}
+						<li>
+							<button onclick={() => goto(localizeHref(page.url.pathname, { locale }))}
+								>{locale.toUpperCase()}</button
+							>
+						</li>
+					{/each}
+				</ul>
+			</details>
 		</div>
 	</nav>
 </header>

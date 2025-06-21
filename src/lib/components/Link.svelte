@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
+	import { deLocalizeUrl, localizeHref, localizeUrl } from '$lib/paraglide/runtime';
 	import type { KIT_ROUTES } from '$lib/ROUTES';
 	import type { Snippet } from 'svelte';
 
@@ -13,9 +14,10 @@
 
 	const { href, preload = $bindable('hover'), children }: Props = $props();
 
-	let currentPath = $state('');
-	$effect(() => {
-		currentPath = $page.url.pathname;
+	let currentPath = $derived(deLocalizeUrl(page.url).pathname);
+	let targetHref = $derived(() => {
+		page.url;
+		return localizeHref(href);
 	});
 </script>
 
@@ -24,7 +26,7 @@
 	class="menu menu-horizontal hover:text-blue-600 hover:bg-blue-100 transition flex py-2 px-4 rounded-md"
 	class:active={(href === '/' && href === currentPath) ||
 		(href !== '/' && currentPath.startsWith(href))}
-	{href}
+	href={targetHref()}
 >
 	{@render children()}
 </a>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import MaltLogo from '$lib/assets/icons/malt-logo.svelte';
-	import { m } from '$lib/paraglide/messages';
 	import Icon from '@iconify/svelte';
 </script>
 
@@ -16,7 +15,6 @@
 			Spécialisé en création d'applications web et mobile avec React, Svelte et Node.js. Votre
 			couteau suisse du développement pour transformer vos idées en applications performantes.
 		</p>
-		<p>{m.hello_world({ name: 'johan' })}</p>
 	</div>
 
 	<div class="hero row-start-2 relative">

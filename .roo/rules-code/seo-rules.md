@@ -33,6 +33,8 @@
 
 **File**: `src/lib/data/seo-data.ts`
 
+**PREFERRED APPROACH**: Use centralized SEO data configuration for consistency and maintainability.
+
 **IF** route missing from seoData object:
 
 ```typescript
@@ -50,6 +52,12 @@
 - Description: 150-160 characters optimal
 - Keywords: French-focused, comma-separated
 - Type: 'website', 'article', or 'profile'
+
+**SEO ARCHITECTURE RULE**:
+
+- **PREFER**: Centralized SEO data in `seo-data.ts` over inline SEO components
+- **AVOID**: Duplicate SEO definitions (both centralized and inline)
+- **EXCEPTION**: Only use inline SEO for highly specialized layouts with unique requirements
 
 ### Step 3: Sitemap Update
 
@@ -70,7 +78,7 @@
 
 - 1.0: Homepage (/)
 - 0.9: CV (/cv)
-- 0.8: Portfolio (/portfolio), Services (/services)
+- 0.8: Journey (/journey), Services (/services)
 - 0.7: Contact (/contact)
 - 0.6: Blog (/blog)
 - 0.5: Individual blog posts, project pages
@@ -78,7 +86,7 @@
 **Changefreq Guidelines**:
 
 - daily: Blog posts, dynamic content
-- weekly: Homepage, Portfolio
+- weekly: Homepage, Journey
 - monthly: Services, CV, Contact, static pages
 
 ### Step 4: Route Type Detection & Special Handling
@@ -96,11 +104,11 @@
 - Priority: 0.8
 - Keywords: Include "services, développement, freelance"
 
-**Portfolio Routes** (`/portfolio/*`):
+**Journey Routes** (`/journey/*`):
 
 - Type: 'website'
-- Priority: 0.7
-- Keywords: Include "portfolio, projets, réalisations"
+- Priority: 0.8
+- Keywords: Include "parcours apprentissage, learning journey, défis coding, Frontend Mentor"
 
 ### Step 5: TypeScript Route Validation
 
@@ -132,7 +140,7 @@ export const load: PageLoad = async () => {
 
 ### Files to NEVER Change:
 
-- `src/routes/portfolio/+layout.ts` - External demo links (GitHub Pages)
+- `src/routes/journey/+layout.ts` - External demo links (GitHub Pages)
 - `.svelte-kit/**/*` - Build outputs
 - `build/**/*` - Build outputs
 - `node_modules/**/*` - Dependencies
@@ -215,14 +223,14 @@ Error: Type errors in route files
 ### Meta Description Templates:
 
 - **Services**: "Services de développement [TECHNOLOGY] par Johan Chan, développeur freelance. [SPECIFIC_BENEFIT] pour vos projets."
-- **Portfolio**: "Découvrez [PROJECT_TYPE] créé par Johan Chan. Projet [TECHNOLOGY] avec [KEY_FEATURES]."
+- **Journey**: "Découvrez le parcours d'apprentissage de Johan Chan à travers [PROJECT_TYPE]. Projet éducatif [TECHNOLOGY] avec [KEY_FEATURES]."
 - **Blog**: "Article technique sur [TOPIC]. Guide pratique pour [TARGET_AUDIENCE] par Johan Chan, développeur freelance."
 
 ### Title Tag Templates:
 
 - **Pages**: "[PAGE_TOPIC] | Johan Chan - Développeur Freelance"
 - **Blog**: "[ARTICLE_TITLE] | Blog Technique Johan Chan"
-- **Projects**: "[PROJECT_NAME] - Portfolio Johan Chan"
+- **Projects**: "[PROJECT_NAME] - Parcours d'Apprentissage Johan Chan"
 
 ## Monitoring & Maintenance
 

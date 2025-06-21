@@ -1,13 +1,3 @@
-<script lang="ts">
-	import SEO from '$lib/components/SEO.svelte';
-</script>
-
-<SEO
-	title="Services de Développement | Johan Chan"
-	description="Services de développement d'applications web et mobile sur mesure avec React, Svelte et Node.js."
-	keywords="services développement, applications web, applications mobile, React, Svelte, freelance"
-/>
-
 <div class="prose max-w-4xl mx-auto">
 	<h1>Services de Développement</h1>
 

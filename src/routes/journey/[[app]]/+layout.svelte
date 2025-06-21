@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import { route } from '$lib/ROUTES.js';
 	import Icon from '@iconify/svelte';
-	import SEO from '$lib/components/SEO.svelte';
 	import type { Project } from '$lib/types/portfolio.js';
 
 	interface Props {
@@ -38,12 +37,12 @@
 
 	// Navigate to project
 	function navigateToProject(project: Project) {
-		window.location.href = `/portfolio/${project.slug}`;
+		window.location.href = `/journey/${project.slug}`;
 	}
 
 	// Navigate to tab
 	function navigateToTab(tab: 'description' | 'demo' | 'github') {
-		const baseUrl = `/portfolio/${selectedProject.slug}`;
+		const baseUrl = `/journey/${selectedProject.slug}`;
 		switch (tab) {
 			case 'description':
 				window.location.href = baseUrl;
@@ -57,12 +56,6 @@
 		}
 	}
 </script>
-
-<SEO
-	title="Portfolio | Johan Chan"
-	description="Découvrez les projets et réalisations de Johan Chan, développeur freelance spécialisé en applications web modernes."
-	keywords="portfolio, projets web, développeur freelance, React, Svelte, applications"
-/>
 
 <div class="portfolio-container">
 	<!-- Project Navigation Sidebar -->

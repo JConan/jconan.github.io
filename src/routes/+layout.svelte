@@ -29,7 +29,7 @@
 	{/snippet}
 
 	<Link href="/">Accueil</Link>
-	<Link href="/portfolio" preload="off">Portfolio</Link>
+	<Link href="/journey" preload="off">Parcours d'Apprentissage</Link>
 	<Link href="/cv">CV</Link>
 	<Link href="/contact">Contact</Link>
 

@@ -1,13 +1,3 @@
-<script lang="ts">
-	import SEO from '$lib/components/SEO.svelte';
-</script>
-
-<SEO
-	title="Blog Technique | Johan Chan"
-	description="Articles et tutoriels sur le développement web, React, Svelte, Node.js et les meilleures pratiques de développement."
-	keywords="blog développement, tutoriels web, React, Svelte, Node.js, JavaScript, TypeScript"
-/>
-
 <div class="prose max-w-4xl mx-auto">
 	<h1>Blog Technique</h1>
 

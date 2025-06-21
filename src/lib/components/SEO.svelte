@@ -23,7 +23,7 @@
 		author = 'Johan Chan'
 	}: SEOProps = $props();
 
-	const siteUrl = 'https://jconan.github.io';
+	const siteUrl = 'https://www.johan-chan.fr';
 	const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 	const fullCanonical = canonical || `${siteUrl}${$page.url.pathname}`;
 </script>

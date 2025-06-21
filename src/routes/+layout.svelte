@@ -25,20 +25,19 @@
 
 <Navbar>
 	{#snippet brand()}
-		<a class="btn btn-ghost text-xl" href="/">
-			{' '}
-			Blog
-		</a>
+		<a class="btn btn-ghost text-xl" href="/"> Johan Chan </a>
 	{/snippet}
 
-	<Link href="/">Blog</Link>
+	<Link href="/">Accueil</Link>
 	<Link href="/portfolio" preload="off">Portfolio</Link>
 	<Link href="/cv">CV</Link>
 	<Link href="/contact">Contact</Link>
 
-	<!-- public link -->
-	<!-- {#if data.env === 'development'}
-	{/if} -->
+	<!-- Development-only additional pages -->
+	{#if data.env === 'development'}
+		<Link href="/services">Services</Link>
+		<Link href="/blog">Blog</Link>
+	{/if}
 </Navbar>
 
 <main class="content-grid p-4">

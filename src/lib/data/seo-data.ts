@@ -48,6 +48,22 @@ export const seoData: Record<string, SEOData> = {
 		keywords:
 			'contact développeur freelance, devis développement, projet application, développeur React disponible',
 		type: 'website'
+	},
+	'/services': {
+		title: 'Services de Développement - Applications Web & Mobile | Johan Chan',
+		description:
+			'Services de développement sur mesure : applications web React/Svelte, applications mobiles, APIs, consultation technique. Freelance disponible.',
+		keywords:
+			'services développement, applications web, applications mobile, React, Svelte, API, consultation technique, freelance',
+		type: 'website'
+	},
+	'/blog': {
+		title: 'Blog Technique - Développement Web & Mobile | Johan Chan',
+		description:
+			"Articles techniques sur le développement web moderne, React, Svelte, Node.js, meilleures pratiques et retours d'expérience.",
+		keywords:
+			'blog développement, tutoriels web, React, Svelte, Node.js, JavaScript, TypeScript, meilleures pratiques',
+		type: 'website'
 	}
 };
 

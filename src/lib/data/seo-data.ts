@@ -25,12 +25,12 @@ export const seoData: Record<string, SEOData> = {
 			'développeur freelance, création application, développement sur mesure, React, Svelte, Node.js, application mobile',
 		type: 'website'
 	},
-	'/cv': {
-		title: 'CV Johan Chan - Développeur Freelance | Expérience React, Svelte, Node.js',
+	'/about': {
+		title: 'À propos de Johan Chan - Développeur Freelance | Expérience & Expertise',
 		description:
-			'Consultez le CV de Johan Chan, développeur freelance spécialisé en applications web et mobile. Compétences React, Svelte, TypeScript.',
+			"Découvrez l'expérience et l'expertise de Johan Chan, développeur freelance spécialisé en applications web et mobile sur mesure. Projets React, Svelte, Node.js.",
 		keywords:
-			'CV développeur freelance, expérience React, compétences Svelte, développeur fullstack, portfolio technique',
+			'à propos développeur freelance, expérience développement, expertise React, compétences Svelte, développeur fullstack, portfolio professionnel',
 		type: 'profile'
 	},
 	'/journey': {

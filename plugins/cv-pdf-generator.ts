@@ -23,9 +23,9 @@ interface CVPDFGeneratorOptions {
 const defaultOptions: Required<CVPDFGeneratorOptions> = {
 	sourceFiles: [
 		'static/CV.md',
-		'src/routes/cv/+page.svelte',
-		'src/routes/cv/+page.ts',
-		'src/routes/cv/cv.css',
+		'src/routes/about/+page.svelte',
+		'src/routes/about/+page.ts',
+		'src/routes/about/cv.css',
 		'src/app.css',
 		'plugins/cv-pdf-generator.ts'
 	],
@@ -33,7 +33,7 @@ const defaultOptions: Required<CVPDFGeneratorOptions> = {
 	port: 4173,
 	devPort: 5173,
 	devPortFile: '.dev-server-port',
-	route: '/cv'
+	route: '/about'
 };
 
 async function calculateHash(files: string[]): Promise<string> {

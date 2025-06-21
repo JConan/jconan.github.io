@@ -30,7 +30,6 @@
 
 	<Link href="/">Accueil</Link>
 	<Link href="/journey" preload="off">Parcours d'Apprentissage</Link>
-	<Link href="/cv">CV</Link>
 	<Link href="/contact">Contact</Link>
 
 	<!-- Development-only additional pages -->
@@ -38,6 +37,8 @@
 		<Link href="/services">Services</Link>
 		<Link href="/blog">Blog</Link>
 	{/if}
+
+	<Link href="/about">À propos</Link>
 </Navbar>
 
 <main class="content-grid p-4">

@@ -1,18 +1,26 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from en!",
-	"navigation_brand": "Johan Chan",
-	"navigation_home": "Home",
-	"navigation_journey": "Learning Journey",
-	"navigation_contact": "Contact",
-	"navigation_services": "Services",
-	"navigation_blog": "Blog",
-	"navigation_about": "About",
-	"error_404_title": "Page not found",
-	"error_404_subtitle": "Error 404",
-	"error_404_message": "Sorry, the page you are looking for does not exist or has been moved.",
-	"error_404_suggestion": "You can return to the homepage or explore other sections of the site.",
-	"error_404_home_button": "Back to home",
-	"error_404_contact_button": "Contact me",
-	"error_404_journey_button": "View my journey"
+	"hello": {
+		"world": "Hello, {name} from en!"
+	},
+	"navigation": {
+		"brand": "Johan Chan",
+		"home": "Home",
+		"journey": "Learning Journey",
+		"contact": "Contact",
+		"services": "Services",
+		"blog": "Blog",
+		"about": "About"
+	},
+	"error": {
+		"404": {
+			"title": "Page not found",
+			"subtitle": "Error 404",
+			"message": "Sorry, the page you are looking for does not exist or has been moved.",
+			"suggestion": "You can return to the homepage or explore other sections of the site.",
+			"homeButton": "Back to home",
+			"contactButton": "Contact me",
+			"journeyButton": "View my journey"
+		}
+	}
 }

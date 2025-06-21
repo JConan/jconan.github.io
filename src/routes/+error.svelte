@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as m from '$lib/paraglide/messages';
+	import { lang } from '$lib/utils/i18n.svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import { getSEOData } from '$lib/data/seo-data';
 	import { page } from '$app/state';
@@ -40,21 +40,21 @@
 			</div>
 
 			<div class="error-text">
-				<h1 class="error-title">{m.error_404_title()}</h1>
-				<p class="error-subtitle">{m.error_404_subtitle()}</p>
-				<p class="error-message">{m.error_404_message()}</p>
-				<p class="error-suggestion">{m.error_404_suggestion()}</p>
+				<h1 class="error-title">{lang()['error.404.title']()}</h1>
+				<p class="error-subtitle">{lang()['error.404.subtitle']()}</p>
+				<p class="error-message">{lang()['error.404.message']()}</p>
+				<p class="error-suggestion">{lang()['error.404.suggestion']()}</p>
 			</div>
 
 			<div class="error-actions">
 				<a href="/" class="btn btn-primary">
-					{m.error_404_home_button()}
+					{lang()['error.404.homeButton']()}
 				</a>
 				<a href="/journey" class="btn btn-secondary">
-					{m.error_404_journey_button()}
+					{lang()['error.404.journeyButton']()}
 				</a>
 				<a href="/contact" class="btn btn-outline">
-					{m.error_404_contact_button()}
+					{lang()['error.404.contactButton']()}
 				</a>
 			</div>
 		</div>

@@ -12,6 +12,12 @@ This folder contains the complete SEO optimization strategy and implementation p
 - [`06-content-guidelines.md`](06-content-guidelines.md) - Content optimization guidelines
 - [`07-monitoring.md`](07-monitoring.md) - SEO monitoring and analytics setup
 
+### Maintenance & Operations
+
+- [`domain-change-checklist.md`](domain-change-checklist.md) - **Critical checklist for domain changes and SEO updates**
+- [`social-media-optimization-guide.md`](social-media-optimization-guide.md) - Social media optimization implementation
+- [`technical-foundation-guide.md`](technical-foundation-guide.md) - Technical SEO foundation setup
+
 ## 🎯 Primary Goal
 
 Optimize the site for **freelance application development opportunities** targeting:
@@ -33,6 +39,12 @@ Optimize the site for **freelance application development opportunities** target
 2. Review the [Strategy](02-strategy.md) for overall approach
 3. Follow the [Implementation Plan](03-implementation-plan.md) step by step
 4. Use [Technical SEO](05-technical-seo.md) for code examples
+
+## 🛠️ Maintenance
+
+- **Domain Changes**: Use [Domain Change Checklist](domain-change-checklist.md) for any domain updates
+- **New Routes**: Follow the route addition process in the checklist
+- **SEO Updates**: Reference the maintenance workflow documentation
 
 ---
 

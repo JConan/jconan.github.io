@@ -1,27 +1,30 @@
+<script>
+	import * as m from '$lib/paraglide/messages';
+</script>
+
 <div class="prose max-w-4xl mx-auto">
-	<h1>Blog Technique</h1>
+	<h1>{m['blog.heading']()}</h1>
 
 	<p class="lead">
-		Articles et retours d'expérience sur le développement web moderne, les frameworks JavaScript et
-		les meilleures pratiques.
+		{m['blog.lead_text']()}
 	</p>
 
 	<div class="coming-soon">
 		<div class="icon">📝</div>
-		<h2>Contenu en cours de préparation</h2>
-		<p>Je prépare actuellement une série d'articles techniques sur :</p>
+		<h2>{m['blog.coming_soon.heading']()}</h2>
+		<p>{m['blog.coming_soon.description']()}</p>
 		<ul class="topics-list">
-			<li>Migration de React vers Svelte 5</li>
-			<li>Optimisation des performances web</li>
-			<li>Architecture d'applications SvelteKit</li>
-			<li>Intégration continue et déploiement</li>
-			<li>Bonnes pratiques TypeScript</li>
+			<li>{m['blog.coming_soon.topics.react_to_svelte']()}</li>
+			<li>{m['blog.coming_soon.topics.performance_optimization']()}</li>
+			<li>{m['blog.coming_soon.topics.sveltekit_architecture']()}</li>
+			<li>{m['blog.coming_soon.topics.ci_cd']()}</li>
+			<li>{m['blog.coming_soon.topics.typescript_best_practices']()}</li>
 		</ul>
 
 		<div class="cta">
-			<p>En attendant, n'hésitez pas à consulter mes projets de parcours :</p>
+			<p>{m['blog.coming_soon.cta_text']()}</p>
 			<a href="/journey" class="btn btn-primary" data-sveltekit-preload-data="off"
-				>Voir le Portfolio</a
+				>{m['blog.coming_soon.cta_button']()}</a
 			>
 		</div>
 	</div>

@@ -73,5 +73,25 @@
 			"description": "Let's discuss your needs and find the right solution.",
 			"button": "Contact me"
 		}
+	},
+	"blog": {
+		"page_title": "Technical Blog | Johan Chan",
+		"page_description": "Articles and experience feedback on modern web development, JavaScript frameworks and best practices by Johan Chan.",
+		"page_keywords": "technical blog, web development, JavaScript, React, Svelte, best practices, experience feedback",
+		"heading": "Technical Blog",
+		"lead_text": "Articles and experience feedback on modern web development, JavaScript frameworks and best practices.",
+		"coming_soon": {
+			"heading": "Content in preparation",
+			"description": "I'm currently preparing a series of technical articles on:",
+			"topics": {
+				"react_to_svelte": "Migration from React to Svelte 5",
+				"performance_optimization": "Web performance optimization",
+				"sveltekit_architecture": "SvelteKit application architecture",
+				"ci_cd": "Continuous integration and deployment",
+				"typescript_best_practices": "TypeScript best practices"
+			},
+			"cta_text": "In the meantime, feel free to check out my learning journey projects:",
+			"cta_button": "View Portfolio"
+		}
 	}
 }

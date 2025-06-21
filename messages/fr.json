@@ -93,5 +93,9 @@
 			"cta_text": "En attendant, n'hésitez pas à consulter mes projets de parcours :",
 			"cta_button": "Voir le Portfolio"
 		}
+	},
+	"cv": {
+		"print_button": "Imprimer",
+		"download_button": "Télécharger PDF"
 	}
 }

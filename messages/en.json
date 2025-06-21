@@ -93,5 +93,9 @@
 			"cta_text": "In the meantime, feel free to check out my learning journey projects:",
 			"cta_button": "View Portfolio"
 		}
+	},
+	"cv": {
+		"print_button": "Print",
+		"download_button": "Download PDF"
 	}
 }

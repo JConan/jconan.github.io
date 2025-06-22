@@ -2,6 +2,7 @@ import type { LayoutLoad } from './$types';
 import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import type { Project } from '$lib/types/portfolio.js';
+import type { Locale } from '$lib/paraglide/runtime';
 
 const projects: Project[] = [
 	{
@@ -9,8 +10,8 @@ const projects: Project[] = [
 		slug: 'fm-memory-game-challenge',
 		shortDescription: 'Jeu de mémoire interactif avec deux niveaux de difficulté',
 		demoLink: 'https://jconan.github.io/fm-memory-game-challenge/',
-		descriptionLink:
-			'https://raw.githubusercontent.com/JConan/fm-memory-game-challenge/main/DESCRIPTION.md',
+		descriptionLink: (locale: Locale) =>
+			`https://raw.githubusercontent.com/JConan/fm-memory-game-challenge/main/DESCRIPTION.${locale}.md`,
 		source: 'https://github.com/JConan/fm-memory-game-challenge/',
 		iframeHeight: {
 			desktop: 780,
@@ -22,7 +23,8 @@ const projects: Project[] = [
 		slug: 'fm-tic-tac-toe',
 		shortDescription: 'Jeu Tic Tac Toe construit avec Svelte',
 		demoLink: 'https://jconan.github.io/fm-tic-tac-toe/',
-		descriptionLink: 'https://raw.githubusercontent.com/JConan/fm-tic-tac-toe/main/DESCRIPTION.md',
+		descriptionLink: (locale: Locale) =>
+			`https://raw.githubusercontent.com/JConan/fm-tic-tac-toe/main/DESCRIPTION.${locale}.md`,
 		source: 'https://github.com/JConan/fm-tic-tac-toe/',
 		iframeHeight: {
 			desktop: 720,

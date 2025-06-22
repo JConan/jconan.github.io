@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import Icon from '@iconify/svelte';
 	import type { Project } from '$lib/types/portfolio.js';
-	import { locales, localizeHref } from '$lib/paraglide/runtime.js';
+	import { locales, localizeHref, localizeUrl } from '$lib/paraglide/runtime.js';
 
 	let { data, children } = $props();
 
@@ -29,7 +29,7 @@
 
 	// Navigate to project
 	function navigateToProject(project: Project) {
-		window.location.href = `/journey/${project.slug}`;
+		window.location.href = localizeHref(`/journey/${project.slug}`);
 	}
 
 	// Navigate to tab

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { marked } from 'marked';
 	import type { Project } from '$lib/types/portfolio.js';
+	import { getLocale } from '$lib/paraglide/runtime';
 
 	interface Props {
 		data: {
@@ -28,7 +29,11 @@
 		error = '';
 
 		try {
-			const response = await fetch(project.descriptionLink);
+			const response = await fetch(
+				typeof project.descriptionLink === 'string'
+					? project.descriptionLink
+					: project.descriptionLink(getLocale())
+			);
 			if (!response.ok) {
 				throw new Error(`Failed to fetch description: ${response.status}`);
 			}

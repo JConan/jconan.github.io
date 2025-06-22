@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import Icon from '@iconify/svelte';
 	import type { Project } from '$lib/types/portfolio.js';
+	import { locales, localizeHref } from '$lib/paraglide/runtime.js';
 
 	let { data, children } = $props();
 
@@ -16,7 +17,7 @@
 
 	// Determine current tab based on URL
 	$effect(() => {
-		const pathname = $page.url.pathname;
+		const pathname = page.url.pathname;
 		if (pathname.includes('/demo')) {
 			currentTab = 'demo';
 		} else if (pathname.includes('/github')) {
@@ -48,6 +49,15 @@
 	}
 </script>
 
+<!-- static generation strategy -->
+<div style="display:none">
+	{#each data.projects as project}
+		{#each locales as locale}
+			<a href={localizeHref(`/journey/${project.slug}`, { locale })}>{locale}</a>
+			<a href={localizeHref(`/journey/${project.slug}/demo`, { locale })}>{locale}</a>
+		{/each}
+	{/each}
+</div>
 <div class="portfolio-container">
 	<!-- Project Navigation Sidebar -->
 	<aside class="project-sidebar">

@@ -8,5 +8,31 @@
     "src/routes/cv/cv.css",
     "src/app.css",
     "plugins/cv-pdf-generator.ts"
-  ]
+  ],
+  "en": {
+    "lastHash": "229207aa",
+    "generated": "2025-06-21T23:59:09.539Z",
+    "sourceFiles": [
+      "static/CV.en.md",
+      "src/routes/about/+page.svelte",
+      "src/routes/about/+page.ts",
+      "src/routes/about/cv.css",
+      "src/app.css",
+      "plugins/cv-pdf-generator.ts"
+    ],
+    "pdfPath": "static/CV.en.pdf"
+  },
+  "fr": {
+    "lastHash": "8aab647e",
+    "generated": "2025-06-21T23:59:11.468Z",
+    "sourceFiles": [
+      "static/CV.fr.md",
+      "src/routes/about/+page.svelte",
+      "src/routes/about/+page.ts",
+      "src/routes/about/cv.css",
+      "src/app.css",
+      "plugins/cv-pdf-generator.ts"
+    ],
+    "pdfPath": "static/CV.fr.pdf"
+  }
 }

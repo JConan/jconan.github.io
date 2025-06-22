@@ -1,16 +1,16 @@
 import { generateCVPDFFromDev } from '../plugins/cv-pdf-generator.js';
 
 async function main() {
-	const devPort = process.argv[2] ? parseInt(process.argv[2]) : 5173;
-
-	try {
-		console.log(`🚀 Generating CV PDF using dev server on port ${devPort}...`);
-		await generateCVPDFFromDev(devPort);
-		console.log('✅ CV PDF generation completed successfully!');
-	} catch (error) {
-		console.error('❌ Failed to generate CV PDF:', error);
-		process.exit(1);
-	}
+	console.log('⚠️  Manual PDF generation is deprecated.');
+	console.log('📄 PDFs are now generated automatically during the build process.');
+	console.log('🚀 To generate PDFs, run: pnpm build');
+	console.log('');
+	console.log('ℹ️  This will generate both:');
+	console.log('   • CV.en.pdf (English version from /en/about)');
+	console.log('   • CV.fr.pdf (French version from /fr/about)');
+	console.log('');
+	console.log('🔍 PDFs will only be regenerated if source files have changed.');
+	console.log('📋 Check static/CV.manifest.json for generation status.');
 }
 
 main();

@@ -19,7 +19,7 @@
 		// Download the static PDF file
 		const lang = extractLocaleFromUrl(page.url) || 'fr';
 		const link = document.createElement('a');
-		link.href = `/CV.${lang}.md`;
+		link.href = `/CV.${lang}.pdf`;
 		link.download = 'CV-Johan-CHAN.pdf';
 		link.click();
 	}

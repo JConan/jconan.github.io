@@ -1,1 +1,0 @@
-import{g as n}from"./B3SJDGul.js";const c=()=>"Imprimer",e=()=>"Print",_=(o={},t={})=>(t.locale??n())==="fr"?c():e(),l=()=>"Télécharger PDF",a=()=>"Download PDF",s=(o={},t={})=>(t.locale??n())==="fr"?l():a();export{_ as a,s as c};

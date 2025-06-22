@@ -13,7 +13,7 @@ Allow: /*.css
 Allow: /*.js
 
 # Sitemap location
-Sitemap: https://jconan.github.io/sitemap.xml
+Sitemap: https://www.johan-chan.fr/sitemap.xml
 
 # Crawl delay (optional - respectful to search engines)
 Crawl-delay: 1

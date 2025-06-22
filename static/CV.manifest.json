@@ -10,8 +10,8 @@
     "plugins/cv-pdf-generator.ts"
   ],
   "en": {
-    "lastHash": "229207aa",
-    "generated": "2025-06-21T23:59:09.539Z",
+    "lastHash": "40598370",
+    "generated": "2025-06-22T00:16:13.480Z",
     "sourceFiles": [
       "static/CV.en.md",
       "src/routes/about/+page.svelte",
@@ -23,8 +23,8 @@
     "pdfPath": "static/CV.en.pdf"
   },
   "fr": {
-    "lastHash": "8aab647e",
-    "generated": "2025-06-21T23:59:11.468Z",
+    "lastHash": "5d7b761a",
+    "generated": "2025-06-22T00:16:15.433Z",
     "sourceFiles": [
       "static/CV.fr.md",
       "src/routes/about/+page.svelte",

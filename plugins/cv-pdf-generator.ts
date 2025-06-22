@@ -282,31 +282,41 @@ export function cvPDFGenerator(options: CVPDFGeneratorOptions = {}): Plugin {
 			// Ensure output directory exists
 			await fs.mkdir(opts.outputDir, { recursive: true });
 
-			// Check for dev server first, then fallback to preview server
+			// Check if developer has intentionally enabled PDF generation
 			const devServerPort = await getDevServerPort(opts.devPortFile);
+
+			if (!devServerPort) {
+				console.log(`ℹ️  No .dev-server-port file found - skipping PDF generation`);
+				console.log(
+					`💡 To enable PDF generation, create a .dev-server-port file with your dev server port`
+				);
+				return;
+			}
+
 			let useDevServer = false;
 			let serverProcess: any = null;
 			let targetPort = opts.port;
 
-			if (devServerPort) {
-				// Test if dev server is running
-				console.log(`🔍 Checking if dev server is running on port ${devServerPort}...`);
-				try {
-					const response = await fetch(`http://localhost:${devServerPort}/en/about`).catch(
-						() => null
-					);
-					if (response && response.ok) {
-						console.log(`✅ Using dev server at port ${devServerPort}`);
-						useDevServer = true;
-						targetPort = devServerPort;
-					}
-				} catch {
-					// Dev server not available, continue with preview server
+			// Dev server port file exists - check if dev server is running
+			console.log(`🔍 Dev server port file found, checking server on port ${devServerPort}...`);
+			try {
+				const response = await fetch(`http://localhost:${devServerPort}/en/about`).catch(
+					() => null
+				);
+				if (response && response.ok) {
+					console.log(`✅ Using dev server at port ${devServerPort}`);
+					useDevServer = true;
+					targetPort = devServerPort;
+				} else {
+					console.log(`⚠️  Dev server not responding on port ${devServerPort}`);
+					console.log(`🚀 Starting preview server on port ${opts.port} instead...`);
 				}
+			} catch {
+				console.log(`⚠️  Dev server not available on port ${devServerPort}`);
+				console.log(`🚀 Starting preview server on port ${opts.port} instead...`);
 			}
 
 			if (!useDevServer) {
-				console.log(`🚀 Starting preview server on port ${opts.port}...`);
 				serverProcess = await startPreviewServer(opts.port);
 				targetPort = opts.port;
 			}

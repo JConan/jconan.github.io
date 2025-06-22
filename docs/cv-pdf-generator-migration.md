@@ -59,12 +59,30 @@ The CV PDF generator has been updated to support internationalization and automa
 pnpm build
 ```
 
-This command will:
+**IMPORTANT**: PDF generation only occurs if a `.dev-server-port` file exists, indicating intentional developer action.
+
+#### With PDF Generation (when `.dev-server-port` exists):
 
 1. Check for changes in source files for each language
 2. Generate PDFs only for languages with changes
 3. Update the manifest with generation timestamps
 4. Output both `CV.en.pdf` and `CV.fr.pdf` in the `static/` directory
+
+#### Without PDF Generation (no `.dev-server-port` file):
+
+- Plugin skips PDF generation entirely
+- Build completes normally without PDFs
+- Useful for production builds where PDF generation isn't needed
+
+#### Enabling PDF Generation:
+
+```bash
+# Create the port file with your dev server port
+echo "5173" > .dev-server-port
+
+# Then run build
+pnpm build
+```
 
 ### Manual Scripts (Deprecated)
 

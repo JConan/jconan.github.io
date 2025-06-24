@@ -38,15 +38,15 @@
 	{/snippet}
 
 	<Link href="/">{m['navigation.home']()}</Link>
-	<Link href="/journey" preload="off">{m['navigation.journey']()}</Link>
+	<Link href="/services">{m['navigation.services']()}</Link>
 	<Link href="/contact">{m['navigation.contact']()}</Link>
 
 	<!-- Development-only additional pages -->
 	{#if data.env === 'development'}
-		<Link href="/services">{m['navigation.services']()}</Link>
 		<Link href="/blog">{m['navigation.blog']()}</Link>
 	{/if}
 
+	<Link href="/journey" preload="off">{m['navigation.journey']()}</Link>
 	<Link href="/about">{m['navigation.about']()}</Link>
 </Navbar>
 

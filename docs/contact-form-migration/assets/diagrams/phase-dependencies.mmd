@@ -1,0 +1,56 @@
+%%{init: {'theme':'dark', 'themeVariables': { 'primaryColor': '#1f2937', 'primaryTextColor': '#f9fafb', 'primaryBorderColor': '#374151', 'lineColor': '#6b7280', 'secondaryColor': '#374151', 'tertiaryColor': '#111827', 'background': '#111827', 'mainBkg': '#1f2937', 'secondBkg': '#374151'}}}%%
+graph TD
+    subgraph "Foundation Layer"
+        P1[📧 Phase 1<br/>Mailpit Setup]
+        P2[🔧 Phase 2<br/>Email Service]
+        P3[✅ Phase 3<br/>Validation Schema]
+    end
+    
+    subgraph "Core Layer"
+        P4[⚡ Phase 4<br/>Server Actions]
+        P5[🎨 Phase 5<br/>Frontend Integration]
+    end
+    
+    subgraph "Production Layer"
+        P6[🔐 Phase 6<br/>DKIM & Production]
+        P7[✨ Phase 7<br/>UX Enhancement]
+    end
+    
+    subgraph "Parallel Development"
+        T1[🧪 Unit Testing]
+        T2[🔗 Integration Testing]
+        T3[🌐 E2E Testing]
+    end
+    
+    %% Dependencies
+    P1 --> P2
+    P1 --> P4
+    P2 --> P4
+    P3 --> P4
+    P4 --> P5
+    P5 --> P6
+    P6 --> P7
+    
+    %% Testing Dependencies
+    P1 --> T1
+    P2 --> T1
+    P3 --> T1
+    P2 --> T2
+    P4 --> T2
+    P5 --> T3
+    
+    %% Parallel Opportunities
+    P2 -.-> P3
+    T1 -.-> T2
+    T2 -.-> T3
+    
+    style P1 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+    style P2 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+    style P3 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+    style P4 fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#f9fafb
+    style P5 fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#f9fafb
+    style P6 fill:#1f2937,stroke:#f59e0b,stroke-width:2px,color:#f9fafb
+    style P7 fill:#1f2937,stroke:#f59e0b,stroke-width:2px,color:#f9fafb
+    style T1 fill:#1f2937,stroke:#8b5cf6,stroke-width:2px,color:#f9fafb
+    style T2 fill:#1f2937,stroke:#8b5cf6,stroke-width:2px,color:#f9fafb
+    style T3 fill:#1f2937,stroke:#8b5cf6,stroke-width:2px,color:#f9fafb

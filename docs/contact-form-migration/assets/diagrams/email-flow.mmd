@@ -1,0 +1,44 @@
+%%{init: {'theme':'dark', 'themeVariables': { 'primaryColor': '#1f2937', 'primaryTextColor': '#f9fafb', 'primaryBorderColor': '#374151', 'lineColor': '#6b7280', 'secondaryColor': '#374151', 'tertiaryColor': '#111827', 'background': '#111827', 'mainBkg': '#1f2937', 'secondBkg': '#374151'}}}%%
+sequenceDiagram
+    participant U as User
+    participant F as Frontend Form
+    participant SA as Server Action
+    participant V as Validator
+    participant ES as Email Service
+    participant T as Templates
+    participant SMTP as SMTP/Mailpit
+    participant R as Recipient
+    
+    Note over U,R: Contact Form Submission Flow
+    
+    U->>F: Fill Form & Submit
+    F->>SA: POST Form Data
+    
+    SA->>V: Validate Input
+    alt Valid Data
+        V->>SA: ✅ Validation Success
+        SA->>ES: Send Email Request
+        ES->>T: Generate Templates
+        T->>ES: HTML & Text Templates
+        ES->>SMTP: Send via Nodemailer
+        
+        alt Development
+            SMTP->>SMTP: Store in Mailpit
+            Note over SMTP: View at localhost:8025
+        else Production
+            SMTP->>R: Deliver Email
+            Note over SMTP,R: With DKIM Signature
+        end
+        
+        SMTP->>ES: ✅ Delivery Confirmation
+        ES->>SA: ✅ Success Response
+        SA->>F: ✅ Success State
+        F->>U: ✅ Success Message
+        
+    else Invalid Data
+        V->>SA: ❌ Validation Errors
+        SA->>F: ❌ Error Response
+        F->>U: ❌ Show Errors
+    end
+    
+    Note over U,F: User Stays on Site

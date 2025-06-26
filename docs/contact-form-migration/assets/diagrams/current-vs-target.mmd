@@ -1,0 +1,64 @@
+%%{init: {'theme':'dark', 'themeVariables': { 'primaryColor': '#1f2937', 'primaryTextColor': '#f9fafb', 'primaryBorderColor': '#374151', 'lineColor': '#6b7280', 'secondaryColor': '#374151', 'tertiaryColor': '#111827', 'background': '#111827', 'mainBkg': '#1f2937', 'secondBkg': '#374151'}}}%%
+graph TB
+    subgraph "Current Implementation"
+        A1[User Fills Form]
+        A2[HTML5 Validation]
+        A3[FormSubmit.co Service]
+        A4[External Redirect]
+        A5[Email Delivery]
+        A6[User Lost from Site]
+        
+        A1 --> A2
+        A2 --> A3
+        A3 --> A4
+        A4 --> A5
+        A3 --> A6
+        
+        style A1 fill:#374151,stroke:#6b7280,stroke-width:2px,color:#f9fafb
+        style A2 fill:#374151,stroke:#6b7280,stroke-width:2px,color:#f9fafb
+        style A3 fill:#374151,stroke:#ef4444,stroke-width:2px,color:#f9fafb
+        style A4 fill:#374151,stroke:#ef4444,stroke-width:2px,color:#f9fafb
+        style A5 fill:#374151,stroke:#6b7280,stroke-width:2px,color:#f9fafb
+        style A6 fill:#374151,stroke:#ef4444,stroke-width:2px,color:#f9fafb
+    end
+    
+    subgraph "Target Implementation"
+        B1[User Fills Form]
+        B2[Progressive Validation]
+        B3[SvelteKit Server Action]
+        B4[Zod Schema Validation]
+        B5[Email Service]
+        B6[Success Feedback]
+        B7[User Stays on Site]
+        
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+        B4 --> B5
+        B5 --> B6
+        B6 --> B7
+        
+        style B1 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+        style B2 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+        style B3 fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#f9fafb
+        style B4 fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#f9fafb
+        style B5 fill:#1f2937,stroke:#f59e0b,stroke-width:2px,color:#f9fafb
+        style B6 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+        style B7 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+    end
+    
+    subgraph "Key Improvements"
+        C1[🏠 User Retention]
+        C2[🔧 Full Control]
+        C3[✅ Better Validation]
+        C4[📧 Custom Email Templates]
+        C5[🛡️ Enhanced Security]
+        C6[📊 Analytics Ready]
+        
+        style C1 fill:#1f2937,stroke:#10b981,stroke-width:2px,color:#f9fafb
+        style C2 fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#f9fafb
+        style C3 fill:#1f2937,stroke:#8b5cf6,stroke-width:2px,color:#f9fafb
+        style C4 fill:#1f2937,stroke:#f59e0b,stroke-width:2px,color:#f9fafb
+        style C5 fill:#1f2937,stroke:#ef4444,stroke-width:2px,color:#f9fafb
+        style C6 fill:#1f2937,stroke:#06b6d4,stroke-width:2px,color:#f9fafb
+    end

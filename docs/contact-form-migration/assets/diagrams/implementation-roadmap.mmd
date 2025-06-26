@@ -1,0 +1,24 @@
+%%{init: {'theme':'dark', 'themeVariables': { 'primaryColor': '#1f2937', 'primaryTextColor': '#f9fafb', 'primaryBorderColor': '#374151', 'lineColor': '#6b7280', 'secondaryColor': '#374151', 'tertiaryColor': '#111827', 'background': '#111827', 'mainBkg': '#1f2937', 'secondBkg': '#374151'}}}%%
+gantt
+    title Contact Form Migration Implementation Roadmap
+    dateFormat X
+    axisFormat %s
+    
+    section 🏗️ Foundation
+    Phase 1: Mailpit Setup           :active, phase1, 0, 2
+    Phase 2: Email Service          :phase2, after phase1, 2
+    Phase 3: Validation Schema      :phase3, after phase1, 2
+    
+    section ⚡ Core Implementation
+    Phase 4: Server Actions         :phase4, after phase2 phase3, 2
+    Phase 5: Frontend Integration   :phase5, after phase4, 2
+    
+    section 🚀 Production Ready
+    Phase 6: DKIM & Production     :phase6, after phase5, 2
+    Phase 7: UX Enhancement        :phase7, after phase6, 2
+    
+    section 🧪 Testing & Validation
+    Unit Testing                   :testing1, 0, 14
+    Integration Testing            :testing2, after phase2, 10
+    E2E Testing                    :testing3, after phase5, 6
+    Production Testing             :testing4, after phase6, 2

@@ -2,6 +2,15 @@
 	import Icon from '@iconify/svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import { m } from '$lib/paraglide/messages';
+	import { enhance } from '$app/forms';
+	import type { ActionData } from './$types';
+
+	interface Props {
+		form?: ActionData;
+	}
+
+	let { form }: Props = $props();
+	let submitting = $state(false);
 </script>
 
 <SEO
@@ -14,16 +23,23 @@
 	label,
 	name,
 	placeholder,
-	type = 'text'
+	type = 'text',
+	value = '',
+	error
 }: {
 	label: string;
 	name: string;
 	placeholder: string;
 	type?: string;
+	value?: string;
+	error?: string;
 })}
 	<label>
 		<span>{label}</span>
-		<input class="form-input" {name} {type} {placeholder} required />
+		<input class="form-input" {name} {type} {placeholder} {value} required />
+		{#if error}
+			<span class="field-error">{error}</span>
+		{/if}
 	</label>
 {/snippet}
 
@@ -35,21 +51,44 @@
 	</p>
 
 	<div class="contact-form">
+		{#if form?.success}
+			<div class="success-message" role="alert">
+				<Icon icon="mdi:check-circle" />
+				<span>{m['contact.success_message']()}</span>
+			</div>
+		{/if}
+
+		{#if form?.error}
+			<div class="error-message" role="alert">
+				<Icon icon="mdi:alert-circle" />
+				<span>{form.error}</span>
+			</div>
+		{/if}
+
 		<form
-			target="_blank"
-			action="https://formsubmit.co/formsubmit@mojojo.mozmail.com"
 			method="POST"
+			use:enhance={() => {
+				submitting = true;
+				return async ({ update }) => {
+					await update();
+					submitting = false;
+				};
+			}}
 		>
 			{@render textInput({
 				label: m['contact.form_name_label'](),
 				name: 'name',
-				placeholder: m['contact.form_name_placeholder']()
+				placeholder: m['contact.form_name_placeholder'](),
+				value: form?.data?.name || '',
+				error: form?.errors?.name
 			})}
 			{@render textInput({
 				label: m['contact.form_email_label'](),
 				name: 'email',
 				type: 'email',
-				placeholder: m['contact.form_email_placeholder']()
+				placeholder: m['contact.form_email_placeholder'](),
+				value: form?.data?.email || '',
+				error: form?.errors?.email
 			})}
 
 			<label>
@@ -58,11 +97,22 @@
 					class="form-textarea"
 					placeholder={m['contact.form_message_placeholder']()}
 					name="message"
+					value={form?.data?.message || ''}
 					required
 				></textarea>
+				{#if form?.errors?.message}
+					<span class="field-error">{form.errors.message}</span>
+				{/if}
 			</label>
 
-			<button type="submit" class="btn btn-primary">{m['contact.form_submit_button']()}</button>
+			<button type="submit" class="btn btn-primary" disabled={submitting}>
+				{#if submitting}
+					<Icon icon="mdi:loading" class="animate-spin" />
+					{m['contact.form_submitting']()}
+				{:else}
+					{m['contact.form_submit_button']()}
+				{/if}
+			</button>
 		</form>
 	</div>
 </div>
@@ -123,5 +173,32 @@
 
 	.btn {
 		@apply btn btn-primary btn-lg w-full;
+	}
+
+	.success-message,
+	.error-message {
+		@apply flex items-center gap-3 p-4 rounded-lg mb-6;
+	}
+
+	.success-message {
+		@apply bg-success/10 text-success border border-success/20;
+	}
+
+	.error-message {
+		@apply bg-error/10 text-error border border-error/20;
+	}
+
+	.field-error {
+		@apply text-error text-sm mt-1;
+	}
+
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
 	}
 </style>

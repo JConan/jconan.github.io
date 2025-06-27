@@ -1,0 +1,482 @@
+name: 🧪 Comprehensive Testing Suite
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8'
+
+jobs:
+  # Job 1: Validate Testing Infrastructure
+  validate-infrastructure:
+    name: 🔍 Validate Testing Infrastructure
+    runs-on: ubuntu-latest
+    outputs:
+      infrastructure-valid: ${{ steps.validate.outputs.valid }}
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔍 Validate testing infrastructure
+        id: validate
+        run: |
+          tsx scripts/validate-testing-infrastructure.ts
+          echo "valid=true" >> $GITHUB_OUTPUT
+
+  # Job 2: Unit Tests
+  unit-tests:
+    name: 🧪 Unit Tests
+    runs-on: ubuntu-latest
+    needs: validate-infrastructure
+    if: needs.validate-infrastructure.outputs.infrastructure-valid == 'true'
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧪 Run unit tests with coverage
+        run: pnpm test:unit:coverage
+
+      - name: 📊 Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          flags: unit-tests
+          name: unit-test-coverage
+
+      - name: 📁 Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-coverage
+          path: coverage/
+          retention-days: 30
+
+  # Job 3: Integration Tests
+  integration-tests:
+    name: 🔗 Integration Tests
+    runs-on: ubuntu-latest
+    needs: validate-infrastructure
+    if: needs.validate-infrastructure.outputs.infrastructure-valid == 'true'
+
+    services:
+      mailpit:
+        image: axllent/mailpit:latest
+        ports:
+          - 8025:8025
+          - 1025:1025
+        options: >-
+          --health-cmd "wget --no-verbose --tries=1 --spider http://localhost:8025/api/v1/info || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔗 Run integration tests
+        run: pnpm test:integration
+        env:
+          MAILPIT_URL: http://localhost:8025
+          MAILPIT_SMTP_PORT: 1025
+
+      - name: 📁 Upload integration test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-test-results
+          path: test-results/
+          retention-days: 30
+
+  # Job 4: End-to-End Tests
+  e2e-tests:
+    name: 🌐 E2E Tests
+    runs-on: ubuntu-latest
+    needs: validate-infrastructure
+    if: needs.validate-infrastructure.outputs.infrastructure-valid == 'true'
+
+    services:
+      mailpit:
+        image: axllent/mailpit:latest
+        ports:
+          - 8025:8025
+          - 1025:1025
+        options: >-
+          --health-cmd "wget --no-verbose --tries=1 --spider http://localhost:8025/api/v1/info || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit]
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🎭 Install Playwright browsers
+        run: pnpm exec playwright install --with-deps ${{ matrix.project }}
+
+      - name: 🌐 Run E2E tests (${{ matrix.project }})
+        run: pnpm test:e2e --project=${{ matrix.project }}
+        env:
+          MAILPIT_URL: http://localhost:8025
+          MAILPIT_SMTP_PORT: 1025
+
+      - name: 📁 Upload E2E test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-test-results-${{ matrix.project }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 30
+
+  # Job 5: Mobile E2E Tests
+  mobile-e2e-tests:
+    name: 📱 Mobile E2E Tests
+    runs-on: ubuntu-latest
+    needs: validate-infrastructure
+    if: needs.validate-infrastructure.outputs.infrastructure-valid == 'true'
+
+    services:
+      mailpit:
+        image: axllent/mailpit:latest
+        ports:
+          - 8025:8025
+          - 1025:1025
+        options: >-
+          --health-cmd "wget --no-verbose --tries=1 --spider http://localhost:8025/api/v1/info || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🎭 Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium webkit
+
+      - name: 📱 Run mobile E2E tests
+        run: pnpm test:e2e:mobile
+        env:
+          MAILPIT_URL: http://localhost:8025
+          MAILPIT_SMTP_PORT: 1025
+
+      - name: 📁 Upload mobile E2E test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobile-e2e-test-results
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 30
+
+  # Job 6: Performance Tests
+  performance-tests:
+    name: ⚡ Performance Tests
+    runs-on: ubuntu-latest
+    needs: validate-infrastructure
+    if: needs.validate-infrastructure.outputs.infrastructure-valid == 'true'
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 📦 Install k6
+        run: |
+          sudo gpg -k
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
+          sudo apt-get install k6
+
+      - name: 🏗️ Build application
+        run: pnpm build
+
+      - name: 🚀 Start application
+        run: pnpm preview &
+        env:
+          PORT: 4173
+
+      - name: ⏳ Wait for application to start
+        run: |
+          timeout 60 bash -c 'until curl -f http://localhost:4173; do sleep 2; done'
+
+      - name: ⚡ Run performance tests
+        run: k6 run tests/performance/contact-form.js
+        env:
+          BASE_URL: http://localhost:4173
+
+      - name: 📁 Upload performance test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-test-results
+          path: |
+            k6-results.json
+            performance-report.html
+          retention-days: 30
+
+  # Job 7: Code Quality and Security
+  code-quality:
+    name: 🔍 Code Quality & Security
+    runs-on: ubuntu-latest
+    needs: validate-infrastructure
+    if: needs.validate-infrastructure.outputs.infrastructure-valid == 'true'
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔍 Run linting
+        run: pnpm lint
+
+      - name: 🔍 Run type checking
+        run: pnpm check
+
+      - name: 🔒 Run security audit
+        run: pnpm audit --audit-level moderate
+
+      - name: 🏗️ Test build
+        run: pnpm build
+
+  # Job 8: Test Summary and Reporting
+  test-summary:
+    name: 📊 Test Summary
+    runs-on: ubuntu-latest
+    needs:
+      [unit-tests, integration-tests, e2e-tests, mobile-e2e-tests, performance-tests, code-quality]
+    if: always()
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📥 Download all test artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-artifacts/
+
+      - name: 📊 Generate test summary
+        run: |
+          echo "# 🧪 Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Unit Tests
+          if [ "${{ needs.unit-tests.result }}" == "success" ]; then
+            echo "✅ **Unit Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Unit Tests**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Integration Tests
+          if [ "${{ needs.integration-tests.result }}" == "success" ]; then
+            echo "✅ **Integration Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Integration Tests**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # E2E Tests
+          if [ "${{ needs.e2e-tests.result }}" == "success" ]; then
+            echo "✅ **E2E Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **E2E Tests**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Mobile E2E Tests
+          if [ "${{ needs.mobile-e2e-tests.result }}" == "success" ]; then
+            echo "✅ **Mobile E2E Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Mobile E2E Tests**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Performance Tests
+          if [ "${{ needs.performance-tests.result }}" == "success" ]; then
+            echo "✅ **Performance Tests**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Performance Tests**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Code Quality
+          if [ "${{ needs.code-quality.result }}" == "success" ]; then
+            echo "✅ **Code Quality**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Code Quality**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 Unit Test Coverage" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 Integration Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 E2E Test Reports" >> $GITHUB_STEP_SUMMARY
+          echo "- 📱 Mobile Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "- ⚡ Performance Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All test artifacts are available for download from this workflow run." >> $GITHUB_STEP_SUMMARY
+
+      - name: 📁 Upload consolidated test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: consolidated-test-report
+          path: test-artifacts/
+          retention-days: 90
+
+  # Job 9: Deployment (only on main branch success)
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs:
+      [unit-tests, integration-tests, e2e-tests, mobile-e2e-tests, performance-tests, code-quality]
+    if: github.ref == 'refs/heads/main' && success()
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build application
+        run: pnpm build
+
+      - name: 📄 Generate CV PDFs
+        run: pnpm generate-cv-pdf
+
+      - name: 📦 Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📁 Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

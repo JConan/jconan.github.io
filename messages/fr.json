@@ -33,7 +33,9 @@
 		"form_email_placeholder": "A quelle adresse électronique te contacter ?",
 		"form_message_label": "Message",
 		"form_message_placeholder": "Décrivez votre projet ou votre demande",
-		"form_submit_button": "Envoyer"
+		"form_submit_button": "Envoyer",
+		"form_submitting": "Envoi en cours...",
+		"success_message": "Votre message a été envoyé avec succès ! Je vous répondrai dans les plus brefs délais."
 	},
 	"error": {
 		"404": {

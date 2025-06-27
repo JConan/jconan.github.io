@@ -26,9 +26,13 @@ This documentation covers the migration of the contact form from a static GitHub
 - [🧪 Testing Strategy](05-testing-strategy.md) - Testing approach and validation
 - [🚀 Deployment Guide](06-deployment-guide.md) - Vercel deployment instructions
 
-### Support & Enhancement
+### Testing & Quality
 
+- [🔬 Testing Setup Guide](09-testing-setup-guide.md) - Complete testing tools configuration
 - [🔧 Troubleshooting](07-troubleshooting.md) - Common issues and solutions
+
+### Enhancement & Planning
+
 - [🌟 Future Enhancements](08-future-enhancements.md) - Nice-to-have features and roadmap
 
 ### Implementation Phases

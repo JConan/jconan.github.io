@@ -1,1 +1,0 @@
-import{g as n}from"./RWeLrr_4.js";const c=()=>"Imprimer",e=()=>"Print",_=(o={},t={})=>(t.locale??n())==="fr"?c():e(),l=()=>"Télécharger PDF",a=()=>"Download PDF",s=(o={},t={})=>(t.locale??n())==="fr"?l():a();export{s as a,_ as c};

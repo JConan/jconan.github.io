@@ -169,6 +169,7 @@ export function createEmailConfigFromEnv(): EmailConfig | null {
 	const pass = process.env.SMTP_PASS;
 
 	if (!host || !from || !to) {
+		console.log({ host, from, to });
 		return null;
 	}
 

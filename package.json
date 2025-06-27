@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "dotenv-run --verbose -- vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"generate-cv-pdf": "tsx scripts/generate-cv-pdf.ts",
@@ -82,7 +82,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@dotenv-run/cli": "^1.3.6",
 		"@inlang/paraglide-js": "^2.1.0",
+		"@sveltejs/adapter-vercel": "^5.7.2",
 		"nodemailer": "^6.9.7",
 		"zod": "^3.22.4"
 	},

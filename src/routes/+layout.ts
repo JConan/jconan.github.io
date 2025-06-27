@@ -1,4 +1,4 @@
-export const prerender = true;
+// export const prerender = true;
 
 // paraglide glitch ?
-export const trailingSlash = 'always';
+// export const trailingSlash = 'always';

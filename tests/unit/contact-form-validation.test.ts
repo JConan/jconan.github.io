@@ -126,9 +126,12 @@ describe('Contact Form Validation', () => {
 		it('should respect custom configuration', () => {
 			const config: ValidationConfig = { messageMinLength: 5, messageMaxLength: 50 };
 			expect(validateMessage('Hi', config)).toBe('Message must be at least 5 characters long');
-			expect(validateMessage('This is a very long message that exceeds the limit', config)).toBe(
-				'Message must be no more than 50 characters long'
-			);
+			expect(
+				validateMessage(
+					'This is a very long message that definitely exceeds the fifty character limit',
+					config
+				)
+			).toBe('Message must be no more than 50 characters long');
 			expect(validateMessage('Valid message', config)).toBeNull();
 		});
 	});

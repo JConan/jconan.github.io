@@ -12,6 +12,11 @@ export interface EmailConfig {
 	};
 	from: string;
 	to: string;
+	dkim?: {
+		domainName: string;
+		keySelector: string;
+		privateKey: string;
+	};
 }
 
 export interface EmailData {
@@ -153,6 +158,23 @@ export function validateEmailConfig(config: EmailConfig): string[] {
 		}
 	}
 
+	if (config.dkim) {
+		if (!config.dkim.domainName || config.dkim.domainName.trim().length === 0) {
+			errors.push('DKIM domain name is required when DKIM is provided');
+		}
+		if (!config.dkim.keySelector || config.dkim.keySelector.trim().length === 0) {
+			errors.push('DKIM key selector is required when DKIM is provided');
+		}
+		if (!config.dkim.privateKey || config.dkim.privateKey.trim().length === 0) {
+			errors.push('DKIM private key is required when DKIM is provided');
+		} else if (
+			!config.dkim.privateKey.includes('BEGIN') ||
+			!config.dkim.privateKey.includes('END')
+		) {
+			errors.push('DKIM private key must be in PEM format');
+		}
+	}
+
 	return errors;
 }
 
@@ -167,6 +189,11 @@ export function createEmailConfigFromEnv(): EmailConfig | null {
 	const to = process.env.CONTACT_EMAIL_TO || '';
 	const user = process.env.SMTP_USER;
 	const pass = process.env.SMTP_PASS;
+
+	// DKIM configuration (optional)
+	const dkimDomain = process.env.DKIM_DOMAIN_NAME;
+	const dkimSelector = process.env.DKIM_KEY_SELECTOR;
+	const dkimPrivateKey = process.env.DKIM_PRIVATE_KEY;
 
 	if (!host || !from || !to) {
 		console.log({ host, from, to });
@@ -183,6 +210,15 @@ export function createEmailConfigFromEnv(): EmailConfig | null {
 
 	if (user && pass) {
 		config.auth = { user, pass };
+	}
+
+	// Add DKIM configuration if all required fields are present
+	if (dkimDomain && dkimSelector && dkimPrivateKey) {
+		config.dkim = {
+			domainName: dkimDomain,
+			keySelector: dkimSelector,
+			privateKey: dkimPrivateKey
+		};
 	}
 
 	return config;

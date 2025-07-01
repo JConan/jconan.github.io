@@ -176,6 +176,59 @@ describe('Email Service', () => {
 			const errors = validateEmailConfig(configWithAuth);
 			expect(errors).toEqual([]);
 		});
+
+		it('should validate DKIM configuration when provided', () => {
+			const configWithIncompleteDkim = {
+				...validConfig,
+				dkim: {
+					domainName: 'example.com',
+					keySelector: 'default',
+					privateKey: ''
+				}
+			};
+			const errors = validateEmailConfig(configWithIncompleteDkim);
+			expect(errors).toContain('DKIM private key is required when DKIM is provided');
+		});
+
+		it('should require valid PEM format for DKIM private key', () => {
+			const configWithInvalidDkim = {
+				...validConfig,
+				dkim: {
+					domainName: 'example.com',
+					keySelector: 'default',
+					privateKey: 'invalid-key-format'
+				}
+			};
+			const errors = validateEmailConfig(configWithInvalidDkim);
+			expect(errors).toContain('DKIM private key must be in PEM format');
+		});
+
+		it('should accept valid DKIM configuration', () => {
+			const configWithDkim = {
+				...validConfig,
+				dkim: {
+					domainName: 'example.com',
+					keySelector: 'default',
+					privateKey:
+						'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA...\n-----END RSA PRIVATE KEY-----'
+				}
+			};
+			const errors = validateEmailConfig(configWithDkim);
+			expect(errors).toEqual([]);
+		});
+
+		it('should require all DKIM fields when DKIM is provided', () => {
+			const configWithPartialDkim = {
+				...validConfig,
+				dkim: {
+					domainName: '',
+					keySelector: 'default',
+					privateKey: '-----BEGIN RSA PRIVATE KEY-----\ntest\n-----END RSA PRIVATE KEY-----'
+				}
+			};
+			const errors = validateEmailConfig(configWithPartialDkim);
+			expect(errors).toContain('DKIM domain name is required when DKIM is provided');
+		});
 	});
 
 	describe('createEmailConfigFromEnv', () => {
@@ -231,7 +284,9 @@ describe('Email Service', () => {
 
 		it('should return null when required variables are missing', () => {
 			process.env.SMTP_HOST = 'smtp.example.com';
-			// Missing CONTACT_EMAIL_FROM and CONTACT_EMAIL_TO
+			// Clear all email variables to ensure they're missing
+			delete process.env.CONTACT_EMAIL_FROM;
+			delete process.env.CONTACT_EMAIL_TO;
 
 			const config = createEmailConfigFromEnv();
 			expect(config).toBeNull();
@@ -253,6 +308,47 @@ describe('Email Service', () => {
 				to: 'recipient@example.com'
 			});
 			expect(config?.auth).toBeUndefined();
+		});
+
+		it('should include DKIM configuration when all DKIM variables are present', () => {
+			process.env.SMTP_HOST = 'smtp.example.com';
+			process.env.CONTACT_EMAIL_FROM = 'sender@example.com';
+			process.env.CONTACT_EMAIL_TO = 'recipient@example.com';
+			process.env.DKIM_DOMAIN_NAME = 'example.com';
+			process.env.DKIM_KEY_SELECTOR = 'default';
+			process.env.DKIM_PRIVATE_KEY =
+				'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA...\n-----END RSA PRIVATE KEY-----';
+
+			const config = createEmailConfigFromEnv();
+			expect(config?.dkim).toEqual({
+				domainName: 'example.com',
+				keySelector: 'default',
+				privateKey:
+					'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA...\n-----END RSA PRIVATE KEY-----'
+			});
+		});
+
+		it('should not include DKIM configuration when DKIM variables are missing', () => {
+			process.env.SMTP_HOST = 'smtp.example.com';
+			process.env.CONTACT_EMAIL_FROM = 'sender@example.com';
+			process.env.CONTACT_EMAIL_TO = 'recipient@example.com';
+			process.env.DKIM_DOMAIN_NAME = 'example.com';
+			// Missing DKIM_KEY_SELECTOR and DKIM_PRIVATE_KEY
+
+			const config = createEmailConfigFromEnv();
+			expect(config?.dkim).toBeUndefined();
+		});
+
+		it('should not include DKIM configuration when only some DKIM variables are present', () => {
+			process.env.SMTP_HOST = 'smtp.example.com';
+			process.env.CONTACT_EMAIL_FROM = 'sender@example.com';
+			process.env.CONTACT_EMAIL_TO = 'recipient@example.com';
+			process.env.DKIM_DOMAIN_NAME = 'example.com';
+			process.env.DKIM_KEY_SELECTOR = 'default';
+			// Missing DKIM_PRIVATE_KEY
+
+			const config = createEmailConfigFromEnv();
+			expect(config?.dkim).toBeUndefined();
 		});
 	});
 
@@ -393,7 +489,7 @@ describe('Email Service', () => {
 			expect(result.success).toBe(true);
 
 			const lastEmail = emailService.getLastSentEmail();
-			expect(lastEmail?.template.html).toContain('New contact form submission from ');
+			expect(lastEmail?.template.html).toContain('New Contact Form Submission');
 		});
 
 		it('should handle special characters in data', async () => {

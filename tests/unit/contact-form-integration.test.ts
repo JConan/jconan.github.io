@@ -17,8 +17,8 @@ describe('Contact Form Integration', () => {
 	const validEmailConfig: EmailConfig = {
 		host: 'localhost',
 		port: 1025,
-		from: 'test@localhost',
-		to: 'recipient@localhost'
+		from: 'test@example.com',
+		to: 'recipient@example.com'
 	};
 
 	beforeEach(() => {

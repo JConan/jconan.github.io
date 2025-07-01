@@ -48,7 +48,7 @@ export const actions: Actions = {
 			const template = createEmailTemplate(emailData);
 
 			// Create transporter
-			const transporter = nodemailer.createTransport({
+			const transporterConfig: any = {
 				host: emailConfig.host,
 				port: emailConfig.port,
 				secure: emailConfig.secure || false,
@@ -57,7 +57,18 @@ export const actions: Actions = {
 				tls: {
 					rejectUnauthorized: false
 				}
-			});
+			};
+
+			// Add DKIM configuration if available
+			if (emailConfig.dkim) {
+				transporterConfig.dkim = {
+					domainName: emailConfig.dkim.domainName,
+					keySelector: emailConfig.dkim.keySelector,
+					privateKey: emailConfig.dkim.privateKey
+				};
+			}
+
+			const transporter = nodemailer.createTransport(transporterConfig);
 
 			// Send email
 			const result = await transporter.sendMail({

@@ -1,6 +1,5 @@
 <script>
-	import * as m from '$lib/paraglide/messages';
-	import { formatDate } from '$lib/utils/blog';
+	import { formatDate } from '$lib/utils/blog-client';
 
 	const { data } = $props();
 	const { post, relatedPosts } = data;
@@ -23,7 +22,7 @@
 <article class="blog-post">
 	<header class="post-header">
 		<nav class="breadcrumb">
-			<a href="/blog">← Retour au blog</a>
+			<a href="/blogs">← Retour au blog</a>
 		</nav>
 		
 		<div class="post-meta">
@@ -57,7 +56,7 @@
 			<h3>Articles similaires</h3>
 			<div class="related-posts-grid">
 				{#each relatedPosts as relatedPost}
-					<a href="/blog/{relatedPost.slug}" class="related-post-card">
+					<a href="/blogs/{relatedPost.slug}" class="related-post-card">
 						<h4>{relatedPost.title}</h4>
 						<p>{relatedPost.excerpt}</p>
 						<div class="related-post-meta">

@@ -57,7 +57,7 @@ export const seoData: Record<string, SEOData> = {
 			'services développement, applications web, applications mobile, React, Svelte, API, consultation technique, freelance',
 		type: 'website'
 	},
-	'/blog': {
+	'/blogs': {
 		title: 'Blog Technique - Développement Web & Mobile | Johan Chan',
 		description:
 			"Articles techniques sur le développement web moderne, React, Svelte, Node.js, meilleures pratiques et retours d'expérience.",

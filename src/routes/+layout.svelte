@@ -43,7 +43,7 @@
 
 	<!-- Development-only additional pages -->
 	{#if data.env === 'development'}
-		<Link href="/blog">{m['navigation.blog']()}</Link>
+		<Link href="/blogs">{m['navigation.blog']()}</Link>
 	{/if}
 
 	<Link href="/journey" preload="off">{m['navigation.journey']()}</Link>

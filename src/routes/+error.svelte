@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { lang } from '$lib/utils/i18n.svelte';
 	import SEO from '$lib/components/SEO.svelte';
 	import { getSEOData } from '$lib/data/seo-data';
 	import { page } from '$app/state';
+	import * as m from '$lib/paraglide/messages';
 
 	const { error } = $props();
 

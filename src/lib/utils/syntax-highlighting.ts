@@ -23,7 +23,9 @@ export async function initHighlighter(): Promise<Highlighter> {
 			'yaml',
 			'markdown',
 			'jsx',
-			'tsx'
+			'tsx',
+			'toml',
+			'dockerfile'
 		]
 	});
 

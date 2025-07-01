@@ -5,6 +5,7 @@ import { error } from '@sveltejs/kit';
 import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { marked } from 'marked';
+import { createShikiRenderer } from '$lib/utils/syntax-highlighting';
 
 // Parse frontmatter from markdown content
 function parseFrontmatter(content: string): { metadata: any; content: string } {
@@ -55,6 +56,10 @@ async function loadBlogPost(slug: string): Promise<BlogPost | null> {
 		const fileContent = readFileSync(filePath, 'utf-8');
 
 		const { metadata, content } = parseFrontmatter(fileContent);
+
+		// Configure marked with Shiki renderer for syntax highlighting
+		const renderer = await createShikiRenderer();
+		marked.use({ renderer });
 
 		const post: BlogPost = {
 			slug,

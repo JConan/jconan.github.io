@@ -9,6 +9,7 @@ featured: true
 published: true
 excerpt: 'Guide étape par étape pour migrer de Svelte 4 vers Svelte 5, couvrant les runes, les changements majeurs et les bonnes pratiques pour le développement Svelte moderne.'
 readingTime: 8
+translation_id: 'svelte-5-migration-2024'
 ---
 
 # Migration vers Svelte 5 : Guide Complet

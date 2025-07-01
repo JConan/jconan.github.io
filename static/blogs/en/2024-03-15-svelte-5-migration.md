@@ -1,14 +1,15 @@
 ---
-title: "Migrating to Svelte 5: A Complete Guide"
-description: "Learn how to migrate your Svelte 4 project to Svelte 5 with runes, covering breaking changes and best practices"
-date: "2024-03-15"
-author: "Johan Conan"
-tags: ["Svelte", "Migration", "Web Development", "Runes"]
-category: "Web Development"
+title: 'Migrating to Svelte 5: A Complete Guide'
+description: 'Learn how to migrate your Svelte 4 project to Svelte 5 with runes, covering breaking changes and best practices'
+date: '2024-03-15'
+author: 'Johan Conan'
+tags: ['Svelte', 'Migration', 'Web Development', 'Runes']
+category: 'Web Development'
 featured: true
 published: true
-excerpt: "A step-by-step guide to migrating from Svelte 4 to Svelte 5, covering runes, breaking changes, and best practices for modern Svelte development."
+excerpt: 'A step-by-step guide to migrating from Svelte 4 to Svelte 5, covering runes, breaking changes, and best practices for modern Svelte development.'
 readingTime: 8
+translation_id: 'svelte-5-migration-2024'
 ---
 
 # Migrating to Svelte 5: A Complete Guide
@@ -22,6 +23,7 @@ Svelte 5 introduces significant changes with the new runes system, bringing impr
 The biggest change is the introduction of runes for reactive state management.
 
 #### State Management
+
 ```typescript
 // Svelte 4
 let count = 0;
@@ -33,6 +35,7 @@ let doubled = $derived(count * 2);
 ```
 
 #### Props
+
 ```typescript
 // Svelte 4
 export let title;
@@ -43,6 +46,7 @@ const { title, description = 'Default description' } = $props();
 ```
 
 #### Event Handling
+
 ```svelte
 <!-- Svelte 4 -->
 <button on:click={handleClick}>Click me</button>
@@ -86,11 +90,11 @@ Replace reactive declarations with `$state` and `$derived`:
 // Before
 let items = [];
 let filteredItems = [];
-$: filteredItems = items.filter(item => item.active);
+$: filteredItems = items.filter((item) => item.active);
 
 // After
 let items = $state([]);
-let filteredItems = $derived(items.filter(item => item.active));
+let filteredItems = $derived(items.filter((item) => item.active));
 ```
 
 ### Step 3: Update Props Usage
@@ -140,9 +144,9 @@ const { data, optional = 'default' } = $props();
 
 ```typescript
 interface Props {
-  title: string;
-  items: Item[];
-  onSelect?: (item: Item) => void;
+	title: string;
+	items: Item[];
+	onSelect?: (item: Item) => void;
 }
 
 const { title, items, onSelect } = $props<Props>();
@@ -157,7 +161,7 @@ let total = $derived(items.reduce((sum, item) => sum + item.price, 0));
 // Avoid - imperative
 let total = $state(0);
 $effect(() => {
-  total = items.reduce((sum, item) => sum + item.price, 0);
+	total = items.reduce((sum, item) => sum + item.price, 0);
 });
 ```
 
@@ -166,12 +170,12 @@ $effect(() => {
 ```typescript
 // Good - side effect
 $effect(() => {
-  document.title = `${title} - My App`;
+	document.title = `${title} - My App`;
 });
 
 // Avoid - derived value
 $effect(() => {
-  displayName = `${firstName} ${lastName}`;
+	displayName = `${firstName} ${lastName}`;
 });
 ```
 
@@ -193,7 +197,7 @@ const { data } = $props();
 // Wrong
 let fullName = $state('');
 $effect(() => {
-  fullName = `${firstName} ${lastName}`;
+	fullName = `${firstName} ${lastName}`;
 });
 
 // Correct
@@ -220,13 +224,13 @@ import { describe, it, expect } from 'vitest';
 import MyComponent from './MyComponent.svelte';
 
 describe('MyComponent', () => {
-  it('renders with Svelte 5 props', () => {
-    render(MyComponent, { 
-      props: { title: 'Test Title' } 
-    });
-    
-    expect(screen.getByText('Test Title')).toBeInTheDocument();
-  });
+	it('renders with Svelte 5 props', () => {
+		render(MyComponent, {
+			props: { title: 'Test Title' }
+		});
+
+		expect(screen.getByText('Test Title')).toBeInTheDocument();
+	});
 });
 ```
 
@@ -236,12 +240,12 @@ describe('MyComponent', () => {
 import { test, expect } from '@playwright/test';
 
 test('component works after migration', async ({ page }) => {
-  await page.goto('/');
-  
-  await expect(page.getByRole('button')).toBeVisible();
-  await page.getByRole('button').click();
-  
-  await expect(page.getByText('Updated')).toBeVisible();
+	await page.goto('/');
+
+	await expect(page.getByRole('button')).toBeVisible();
+	await page.getByRole('button').click();
+
+	await expect(page.getByText('Updated')).toBeVisible();
 });
 ```
 

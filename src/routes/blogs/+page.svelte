@@ -1,6 +1,7 @@
 <script>
 	import * as m from '$lib/paraglide/messages';
 	import { formatDate } from '$lib/utils/blog-client';
+	import { localizeHref } from '$lib/paraglide/runtime';
 
 	const { data } = $props();
 	const { posts } = data;
@@ -19,7 +20,7 @@
 				<article class="blog-post-card">
 					<div class="post-header">
 						<h2>
-							<a href="/blogs/{post.slug}" class="post-title-link">
+							<a href={localizeHref(`/blogs/${post.slug}`)} class="post-title-link">
 								{post.title}
 							</a>
 						</h2>
@@ -41,7 +42,7 @@
 								<span class="tag">{tag}</span>
 							{/each}
 						</div>
-						<a href="/blogs/{post.slug}" class="read-more">
+						<a href={localizeHref(`/blogs/${post.slug}`)} class="read-more">
 							Lire la suite →
 						</a>
 					</div>

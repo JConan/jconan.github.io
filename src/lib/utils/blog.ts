@@ -74,7 +74,8 @@ export function loadBlogPostsMetadata(locale?: string): BlogPostMetadata[] {
 					featured: metadata.featured || false,
 					published: metadata.published || false,
 					excerpt: metadata.excerpt || '',
-					readingTime: metadata.readingTime || 5
+					readingTime: metadata.readingTime || 5,
+					translation_id: metadata.translation_id
 				} as BlogPostMetadata;
 			})
 			.filter((post) => post.published)
@@ -112,7 +113,8 @@ export async function loadBlogPost(slug: string, locale?: string): Promise<BlogP
 			published: metadata.published || false,
 			excerpt: metadata.excerpt || '',
 			readingTime: metadata.readingTime || 5,
-			content: await marked(content)
+			content: await marked(content),
+			translation_id: metadata.translation_id
 		};
 
 		return post.published ? post : null;
@@ -139,6 +141,45 @@ export function loadBlogMetadata(locale?: string): any {
 			type: 'website' as const
 		};
 	}
+}
+
+// Find the translated version of a blog post by translation_id
+export function findTranslatedPost(
+	translationId: string,
+	targetLocale: string
+): BlogPostMetadata | null {
+	try {
+		const posts = loadBlogPostsMetadata(targetLocale);
+		return posts.find((post) => post.translation_id === translationId) || null;
+	} catch (error) {
+		console.error(`Error finding translated post for translation_id "${translationId}":`, error);
+		return null;
+	}
+}
+
+// Get all available translations for a blog post
+export function getPostTranslations(translationId: string): Record<string, BlogPostMetadata> {
+	const translations: Record<string, BlogPostMetadata> = {};
+
+	try {
+		// Check French posts
+		const frenchPosts = loadBlogPostsMetadata('fr');
+		const frenchPost = frenchPosts.find((post) => post.translation_id === translationId);
+		if (frenchPost) {
+			translations['fr'] = frenchPost;
+		}
+
+		// Check English posts
+		const englishPosts = loadBlogPostsMetadata('en');
+		const englishPost = englishPosts.find((post) => post.translation_id === translationId);
+		if (englishPost) {
+			translations['en'] = englishPost;
+		}
+	} catch (error) {
+		console.error(`Error getting translations for translation_id "${translationId}":`, error);
+	}
+
+	return translations;
 }
 
 // Client-safe utility functions for blog functionality

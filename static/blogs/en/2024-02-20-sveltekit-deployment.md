@@ -1,14 +1,15 @@
 ---
-title: "SvelteKit Deployment: From Development to Production"
-description: "Complete guide to deploying SvelteKit applications to various platforms including Vercel, Netlify, and GitHub Pages"
-date: "2024-02-20"
-author: "Johan Conan"
-tags: ["SvelteKit", "Deployment", "DevOps", "GitHub Pages"]
-category: "Deployment"
+title: 'SvelteKit Deployment: From Development to Production'
+description: 'Complete guide to deploying SvelteKit applications to various platforms including Vercel, Netlify, and GitHub Pages'
+date: '2024-02-20'
+author: 'Johan Conan'
+tags: ['SvelteKit', 'Deployment', 'DevOps', 'GitHub Pages']
+category: 'Deployment'
 featured: true
 published: true
-excerpt: "Learn how to deploy your SvelteKit applications to production with different hosting platforms, covering static generation, server-side rendering, and CI/CD setup."
+excerpt: 'Learn how to deploy your SvelteKit applications to production with different hosting platforms, covering static generation, server-side rendering, and CI/CD setup.'
 readingTime: 12
+translation_id: 'sveltekit-deployment-2024'
 ---
 
 # SvelteKit Deployment: From Development to Production
@@ -28,15 +29,15 @@ Perfect for static sites, GitHub Pages, and CDNs.
 import adapter from '@sveltejs/adapter-static';
 
 const config = {
-  kit: {
-    adapter: adapter({
-      pages: 'build',
-      assets: 'build',
-      fallback: undefined,
-      precompress: false,
-      strict: true
-    })
-  }
+	kit: {
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: undefined,
+			precompress: false,
+			strict: true
+		})
+	}
 };
 
 export default config;
@@ -51,9 +52,9 @@ Automatically detects the deployment platform.
 import adapter from '@sveltejs/adapter-auto';
 
 const config = {
-  kit: {
-    adapter: adapter()
-  }
+	kit: {
+		adapter: adapter()
+	}
 };
 
 export default config;
@@ -68,13 +69,13 @@ For traditional Node.js servers.
 import adapter from '@sveltejs/adapter-node';
 
 const config = {
-  kit: {
-    adapter: adapter({
-      out: 'build',
-      precompress: false,
-      envPrefix: ''
-    })
-  }
+	kit: {
+		adapter: adapter({
+			out: 'build',
+			precompress: false,
+			envPrefix: ''
+		})
+	}
 };
 
 export default config;
@@ -93,16 +94,16 @@ Perfect for portfolio sites and static applications.
 import adapter from '@sveltejs/adapter-static';
 
 const config = {
-  kit: {
-    adapter: adapter({
-      pages: 'build',
-      assets: 'build',
-      fallback: undefined
-    }),
-    paths: {
-      base: process.env.NODE_ENV === 'production' ? '/your-repo-name' : ''
-    }
-  }
+	kit: {
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: undefined
+		}),
+		paths: {
+			base: process.env.NODE_ENV === 'production' ? '/your-repo-name' : ''
+		}
+	}
 };
 
 export default config;
@@ -121,44 +122,44 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-          
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        
+
       - name: Build
         run: pnpm build
-        
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: build/
-          
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    
+
     permissions:
       pages: write
       id-token: write
-      
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-      
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
@@ -182,13 +183,13 @@ pnpm add -D @sveltejs/adapter-vercel
 import adapter from '@sveltejs/adapter-vercel';
 
 const config = {
-  kit: {
-    adapter: adapter({
-      runtime: 'nodejs18.x',
-      regions: ['iad1'],
-      split: false
-    })
-  }
+	kit: {
+		adapter: adapter({
+			runtime: 'nodejs18.x',
+			regions: ['iad1'],
+			split: false
+		})
+	}
 };
 
 export default config;
@@ -218,12 +219,12 @@ Great for static sites with form handling and edge functions.
 import adapter from '@sveltejs/adapter-netlify';
 
 const config = {
-  kit: {
-    adapter: adapter({
-      edge: false,
-      split: false
-    })
-  }
+	kit: {
+		adapter: adapter({
+			edge: false,
+			split: false
+		})
+	}
 };
 
 export default config;
@@ -284,7 +285,7 @@ services:
   sveltekit-app:
     build: .
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -309,10 +310,10 @@ VITE_ANALYTICS_ID=GA_MEASUREMENT_ID
 ```typescript
 // src/lib/config.ts
 export const config = {
-  apiUrl: import.meta.env.VITE_API_URL,
-  isDev: import.meta.env.DEV,
-  isProd: import.meta.env.PROD,
-  analyticsId: import.meta.env.VITE_ANALYTICS_ID
+	apiUrl: import.meta.env.VITE_API_URL,
+	isDev: import.meta.env.DEV,
+	isProd: import.meta.env.PROD,
+	analyticsId: import.meta.env.VITE_ANALYTICS_ID
 };
 ```
 
@@ -343,7 +344,7 @@ const LazyComponent = lazy(() => import('./LazyComponent.svelte'));
 ```svelte
 <script>
   import { dev } from '$app/environment';
-  
+
   const getOptimizedImage = (src, size) => {
     if (dev) return src;
     return `/images/${src}-${size}.webp`;
@@ -380,25 +381,25 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-          
+
       - name: Install dependencies
         run: pnpm install
-        
+
       - name: Run tests
         run: pnpm test
-        
+
       - name: Run E2E tests
         run: pnpm test:e2e
-        
+
       - name: Check types
         run: pnpm check
-        
+
       - name: Lint
         run: pnpm lint
 ```
@@ -408,7 +409,7 @@ jobs:
 ```javascript
 // Content Security Policy
 // app.html
-<meta http-equiv="Content-Security-Policy" 
+<meta http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
 
 // Environment variable validation
@@ -426,12 +427,12 @@ if (!import.meta.env.VITE_API_URL) {
 import { handleError } from '@sveltejs/kit';
 
 export const handleError = ({ error, event }) => {
-  console.error('Client error:', error);
-  
-  // Send to error tracking service
-  if (import.meta.env.PROD) {
-    // Sentry, LogRocket, etc.
-  }
+	console.error('Client error:', error);
+
+	// Send to error tracking service
+	if (import.meta.env.PROD) {
+		// Sentry, LogRocket, etc.
+	}
 };
 ```
 
@@ -484,10 +485,10 @@ import { browser } from '$app/environment';
 // Validate required environment variables
 const requiredEnvVars = ['VITE_API_URL'];
 
-requiredEnvVars.forEach(varName => {
-  if (!import.meta.env[varName]) {
-    throw new Error(`Missing required environment variable: ${varName}`);
-  }
+requiredEnvVars.forEach((varName) => {
+	if (!import.meta.env[varName]) {
+		throw new Error(`Missing required environment variable: ${varName}`);
+	}
 });
 ```
 

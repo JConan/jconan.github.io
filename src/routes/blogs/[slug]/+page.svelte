@@ -1,5 +1,6 @@
 <script>
 	import { formatDate } from '$lib/utils/blog-client';
+	import { localizeHref } from '$lib/paraglide/runtime';
 
 	const { data } = $props();
 	const { post, relatedPosts } = data;
@@ -56,7 +57,7 @@
 			<h3>Articles similaires</h3>
 			<div class="related-posts-grid">
 				{#each relatedPosts as relatedPost}
-					<a href="/blogs/{relatedPost.slug}" class="related-post-card">
+					<a href={localizeHref(`/blogs/${relatedPost.slug}`)} class="related-post-card">
 						<h4>{relatedPost.title}</h4>
 						<p>{relatedPost.excerpt}</p>
 						<div class="related-post-meta">

@@ -11,6 +11,7 @@ export interface BlogPost {
 	excerpt: string;
 	readingTime: number;
 	content: string;
+	translation_id?: string;
 }
 
 export interface BlogPostMetadata {
@@ -25,4 +26,5 @@ export interface BlogPostMetadata {
 	published: boolean;
 	excerpt: string;
 	readingTime: number;
+	translation_id?: string;
 }

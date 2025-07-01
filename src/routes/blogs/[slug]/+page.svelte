@@ -3,7 +3,7 @@
 	import { localizeHref } from '$lib/paraglide/runtime';
 
 	const { data } = $props();
-	const { post, relatedPosts } = data;
+	const { post, relatedPosts, translationUrls } = data;
 </script>
 
 <svelte:head>

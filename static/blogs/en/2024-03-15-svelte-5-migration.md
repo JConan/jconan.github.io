@@ -6,7 +6,7 @@ author: 'Johan Conan'
 tags: ['Svelte', 'Migration', 'Web Development', 'Runes']
 category: 'Web Development'
 featured: true
-published: true
+published: false
 excerpt: 'A step-by-step guide to migrating from Svelte 4 to Svelte 5, covering runes, breaking changes, and best practices for modern Svelte development.'
 readingTime: 8
 translation_id: 'svelte-5-migration-2024'

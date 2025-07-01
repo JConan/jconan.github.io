@@ -182,6 +182,30 @@ export function getPostTranslations(translationId: string): Record<string, BlogP
 	return translations;
 }
 
+// Get translation URLs for a blog post by translation_id
+export function getBlogPostTranslationUrls(translationId: string): Record<string, string> {
+	const translationUrls: Record<string, string> = {};
+
+	try {
+		const translations = getPostTranslations(translationId);
+
+		// Generate URLs for each available translation
+		for (const [locale, post] of Object.entries(translations)) {
+			if (locale === 'fr') {
+				// French is base locale (no prefix)
+				translationUrls[locale] = `/blogs/${post.slug}`;
+			} else {
+				// Other locales get prefix
+				translationUrls[locale] = `/${locale}/blogs/${post.slug}`;
+			}
+		}
+	} catch (error) {
+		console.error(`Error getting translation URLs for translation_id "${translationId}":`, error);
+	}
+
+	return translationUrls;
+}
+
 // Client-safe utility functions for blog functionality
 
 // Get related posts by tags (client-safe version that works with pre-loaded data)

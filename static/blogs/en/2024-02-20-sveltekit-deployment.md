@@ -6,7 +6,7 @@ author: 'Johan Conan'
 tags: ['SvelteKit', 'Deployment', 'DevOps', 'GitHub Pages']
 category: 'Deployment'
 featured: true
-published: true
+published: false
 excerpt: 'Learn how to deploy your SvelteKit applications to production with different hosting platforms, covering static generation, server-side rendering, and CI/CD setup.'
 readingTime: 12
 translation_id: 'sveltekit-deployment-2024'

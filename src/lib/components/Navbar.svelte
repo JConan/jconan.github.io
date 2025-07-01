@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LangSelector from './LangSelector.svelte';
+	import BlogAwareLangSelector from './BlogAwareLangSelector.svelte';
 
 	import type { Snippet } from 'svelte';
 	import HamburgerButton from './HamburgerButton.svelte';
@@ -40,7 +40,7 @@
 
 		<div class="navbar-end">
 			<ThemeButton />
-			<LangSelector />
+			<BlogAwareLangSelector />
 		</div>
 	</nav>
 </header>

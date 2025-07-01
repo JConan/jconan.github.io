@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { loadBlogPost, loadBlogPostsMetadata } from '$lib/utils/blog';
+import { loadBlogPost, loadBlogPostsMetadata, getBlogPostTranslationUrls } from '$lib/utils/blog';
 import { getRelatedPosts } from '$lib/utils/blog-client';
 import { error } from '@sveltejs/kit';
 
@@ -18,9 +18,15 @@ export const load: PageServerLoad = async ({ params, url }) => {
 		const allPosts = loadBlogPostsMetadata(locale);
 		const relatedPosts = getRelatedPosts(post, allPosts);
 
+		// Get translation URLs if translation_id exists
+		const translationUrls = post.translation_id
+			? getBlogPostTranslationUrls(post.translation_id)
+			: {};
+
 		return {
 			post,
 			relatedPosts,
+			translationUrls,
 			seo: {
 				title: `${post.title} | Blog Johan Chan`,
 				description: post.description,

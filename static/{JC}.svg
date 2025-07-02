@@ -1,0 +1,32 @@
+<!-- favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <style>
+        .circle {
+            fill: #1E90FF;
+        }
+
+        /* light-theme: Electric Blue circle */
+        .text {
+            fill: white;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .circle {
+                fill: #333333;
+            }
+
+            /* dark-theme: charcoal circle */
+            .text {
+                fill: #00FF85;
+            }
+
+            /* Neon Green initials */
+        }
+    </style>
+
+    <circle class="circle" cx="32" cy="32" r="30" />
+    <text x="32" y="40" text-anchor="middle" font-family="Menlo, Monaco, Consolas, monospace" font-size="28"
+        font-weight="bold" class="text">
+        {JC}
+    </text>
+</svg>

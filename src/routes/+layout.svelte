@@ -14,6 +14,11 @@
 	const seoData = $derived(getSEOData(page.url.pathname));
 </script>
 
+
+{#if data.env === 'production'}
+	<script defer src="https://cloud.umami.is/script.js" data-website-id="e9a3f679-3cfb-4606-9bdf-ad7f68c177e4"></script>
+{/if}
+
 <!-- Paraglide static generation strategy -->
 <div style="display:none">
 	{#each locales as locale}

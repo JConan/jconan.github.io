@@ -29,12 +29,12 @@
 
 	// Navigate to project
 	function navigateToProject(project: Project) {
-		window.location.href = localizeHref(`/journey/${project.slug}`);
+		window.location.href = localizeHref(`/portfolio/${project.slug}`);
 	}
 
 	// Navigate to tab
 	function navigateToTab(tab: 'description' | 'demo' | 'github') {
-		const baseUrl = `/journey/${selectedProject.slug}`;
+		const baseUrl = `/portfolio/${selectedProject.slug}`;
 		switch (tab) {
 			case 'description':
 				window.location.href = baseUrl;

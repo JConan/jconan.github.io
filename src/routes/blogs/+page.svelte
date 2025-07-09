@@ -64,7 +64,7 @@
 
 			<div class="cta">
 				<p>{m['blog.coming_soon.cta_text']()}</p>
-				<a href="/journey" class="btn btn-primary" data-sveltekit-preload-data="off"
+				<a href="/portfolio" class="btn btn-primary" data-sveltekit-preload-data="off"
 					>{m['blog.coming_soon.cta_button']()}</a
 				>
 			</div>

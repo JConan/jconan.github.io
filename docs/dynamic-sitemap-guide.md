@@ -45,7 +45,7 @@ src/
 
 ```typescript
 // Static pages with custom metadata
-'/' | '/about' | '/journey' | '/contact' | '/services' | '/blogs';
+'/' | '/about' | '/portfolio' | '/contact' | '/services' | '/blogs';
 
 // Blog posts (dynamic)
 '/blogs/[slug]' | '/en/blogs/[slug]';

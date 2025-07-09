@@ -51,7 +51,7 @@
 		<Link href="/blogs">{m['navigation.blog']()}</Link>
 	{/if}
 
-	<Link href="/journey" preload="off">{m['navigation.journey']()}</Link>
+	<Link href="/portfolio" preload="off">{m['navigation.journey']()}</Link>
 	<Link href="/about">{m['navigation.about']()}</Link>
 </Navbar>
 

@@ -260,7 +260,7 @@ src/
 │   ├── about/         # About page with CV
 │   ├── contact/       # Contact form
 │   ├── services/      # Services page
-│   └── journey/       # Learning journey
+│   └── portfolio/     # Portfolio projects
 tests/
 ├── unit/              # Unit tests (Vitest)
 ├── integration/       # Integration tests (Vitest + Mailpit)

@@ -16,11 +16,11 @@ const PAGES = {
     return `/blogs/${params['slug']}`
   },
   "/contact": `/contact`,
-  "/journey": (params?: { app?: (string | number) }) => {
-    return `/journey${params?.['app'] ? `/${params?.['app']}`: ''}`
+  "/portfolio": (params?: { app?: (string | number) }) => {
+    return `/portfolio${params?.['app'] ? `/${params?.['app']}`: ''}`
   },
-  "/journey/demo": (params?: { app?: (string | number) }) => {
-    return `/journey${params?.['app'] ? `/${params?.['app']}`: ''}/demo`
+  "/portfolio/demo": (params?: { app?: (string | number) }) => {
+    return `/portfolio${params?.['app'] ? `/${params?.['app']}`: ''}/demo`
   },
   "/services": `/services`
 }
@@ -151,7 +151,7 @@ export function route<T extends keyof AllTypes>(key: T, ...params: any[]): strin
 * ```
 */
 export type KIT_ROUTES = {
-  PAGES: { '/': never, '/about': never, '/blogs': never, '/blogs/[slug]': 'slug', '/contact': never, '/journey': 'app', '/journey/demo': 'app', '/services': never }
+  PAGES: { '/': never, '/about': never, '/blogs': never, '/blogs/[slug]': 'slug', '/contact': never, '/portfolio': 'app', '/portfolio/demo': 'app', '/services': never }
   SERVERS: { 'GET /sitemap.xml': never }
   ACTIONS: { 'default /contact': never }
   LINKS: Record<string, never>

@@ -33,12 +33,12 @@ export const seoData: Record<string, SEOData> = {
 			'à propos développeur freelance, expérience développement, expertise React, compétences Svelte, développeur fullstack, portfolio professionnel',
 		type: 'profile'
 	},
-	'/journey': {
-		title: "Parcours d'Apprentissage | Johan Chan",
+	'/portfolio': {
+		title: 'Portfolio Projets | Johan Chan',
 		description:
-			"Suivez le parcours d'apprentissage de Johan Chan à travers des défis Frontend Mentor et projets éducatifs en développement web moderne.",
+			'Découvrez le portfolio de Johan Chan avec des projets Frontend Mentor et applications éducatives en développement web moderne.',
 		keywords:
-			'parcours apprentissage, learning journey, défis coding, Frontend Mentor, développement web, React, Svelte, projets éducatifs',
+			'portfolio développeur, projets web, Frontend Mentor, développement web, React, Svelte, projets éducatifs',
 		type: 'website'
 	},
 	'/contact': {

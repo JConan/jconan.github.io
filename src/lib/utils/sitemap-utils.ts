@@ -23,7 +23,7 @@ export const routeMetadata: Record<string, RouteMetadata> = {
 		changefreq: 'monthly',
 		priority: 0.9
 	},
-	'/journey': {
+	'/portfolio': {
 		lastmod: '2025-06-21T11:44:00+00:00',
 		changefreq: 'weekly',
 		priority: 0.8

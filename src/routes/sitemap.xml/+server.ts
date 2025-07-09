@@ -1,6 +1,5 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import { loadBlogPostsMetadata } from '$lib/utils/blog';
-import { seoData } from '$lib/data/seo-data';
 import { getRouteMetadata, getCurrentTimestamp } from '$lib/utils/sitemap-utils';
 
 const SITE_URL = 'https://www.johan-chan.fr';
@@ -17,7 +16,7 @@ function formatDate(date: Date): string {
 }
 
 function generateStaticRoutes(): SitemapEntry[] {
-	const staticRoutes = ['/', '/about', '/journey', '/contact', '/services', '/blogs'];
+	const staticRoutes = ['/', '/about', '/portfolio', '/contact', '/services', '/blogs'];
 	const entries: SitemapEntry[] = [];
 
 	staticRoutes.forEach((path) => {

@@ -50,7 +50,7 @@
 				<a href="/" class="btn btn-primary">
 					{m['error.404.homeButton']()}
 				</a>
-				<a href="/journey" class="btn btn-secondary">
+				<a href="/portfolio" class="btn btn-secondary">
 					{m['error.404.journeyButton']()}
 				</a>
 				<a href="/contact" class="btn btn-outline">

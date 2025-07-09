@@ -184,7 +184,7 @@
 	}
 
 	.content-container {
-		@apply p-8 text-base-content min-h-[600px];
+		@apply p-8 text-base-content h-full overflow-y-auto;
 	}
 
 	/* Responsive Design */
